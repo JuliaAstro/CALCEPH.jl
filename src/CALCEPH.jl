@@ -28,4 +28,10 @@ export NaifId
 include("CalcephUnits.jl")
 export CalcephUnitAU, CalcephUnitKM, CalcephUnitDay, CalcephUnitSec, CalcephUnitRad, CalcephUseNaifId
 
+include("CalcephOrient.jl")
+export CalcephOrientUnit, CalcephOrientOrder
+
+include("CalcephConstants.jl")
+export CalcephConstants
+
 end # module

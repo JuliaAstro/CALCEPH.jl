@@ -42,7 +42,7 @@ function CalcephCompute(e::CalcephEphem,JD0::Float64,time::Float64,
     end
     result = Array{Float64,1}(6)
     stat = ccall((:calceph_compute, libcalceph), Cint,
-    (Ptr{Void},Cdouble,Cdouble,Cint,Cint,Ptr{Cdouble}),
+    (Ptr{Void},Cdouble,Cdouble,Cint,Cint,Ref{Cdouble}),
     e.data,JD0,time,target,center,result)
     if (stat == 0)
        error("Unable to compute ephemeris!")
@@ -71,7 +71,7 @@ function CalcephComputeUnit(e::CalcephEphem,JD0::Float64,time::Float64,
     end
     result = Array{Float64,1}(6)
     stat = ccall((:calceph_compute_unit, libcalceph), Cint,
-    (Ptr{Void},Cdouble,Cdouble,Cint,Cint,Cint,Ptr{Cdouble}),
+    (Ptr{Void},Cdouble,Cdouble,Cint,Cint,Cint,Ref{Cdouble}),
     e.data,JD0,time,target,center,unit,result)
     if (stat == 0)
        error("Unable to compute ephemeris!")
@@ -110,7 +110,7 @@ function CalcephComputeOrder(e::CalcephEphem,JD0::Float64,time::Float64,
     end
     result = Array{Float64,1}(3+3order)
     stat = ccall((:calceph_compute_order, libcalceph), Cint,
-    (Ptr{Void},Cdouble,Cdouble,Cint,Cint,Cint,Cint,Ptr{Cdouble}),
+    (Ptr{Void},Cdouble,Cdouble,Cint,Cint,Cint,Cint,Ref{Cdouble}),
     e.data,JD0,time,target,center,unit,order,result)
     if (stat == 0)
        error("Unable to compute ephemeris!")
