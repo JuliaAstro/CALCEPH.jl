@@ -1,8 +1,26 @@
 
+"
+    CalcephEphem
+
+  Ephemeris descriptor. Create with:
+
+    eph = CalCephEphem(filename)
+    eph = CalCephEphem([filename1,filename2...])
+
+  The ephemeris descriptor will be used to access the ephemeris and related
+  data stored in the specified files.
+
+  Because, Julia GC is lazy, you may want to free the memory managed by eph
+  before you get rid of the reference to eph with:
+
+    finalize(f)
+
+"
 type CalcephEphem
    data :: Ptr{Void}
    function CalcephEphem(files::Vector{<:AbstractString})
-      ptr = ccall((:calceph_open_array, libcalceph), Ptr{Void}, (Int, Ptr{Ptr{UInt8}}), length(files), files)
+      ptr = ccall((:calceph_open_array, libcalceph), Ptr{Void},
+                  (Int, Ptr{Ptr{UInt8}}), length(files), files)
       if (ptr == C_NULL)
          error("Unable to open ephemeris file(s)!")
       end
@@ -25,6 +43,12 @@ end
 
 CalcephEphem(file::AbstractString) = CalcephEphem([file])
 
+"
+    CalcephPrefetch(eph)
+
+  This function prefetches to the main memory all files associated to the ephemeris descriptor eph.
+
+"
 function CalcephPrefetch(e::CalcephEphem)
     if (e.data == C_NULL)
        error("Ephemeris object is not propely initialized.")
