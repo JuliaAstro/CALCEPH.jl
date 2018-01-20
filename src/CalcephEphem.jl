@@ -13,7 +13,7 @@
   Because, Julia GC is lazy, you may want to free the memory managed by eph
   before you get rid of the reference to eph with:
 
-    finalize(f)
+    finalize(eph)
 
 "
 type CalcephEphem
@@ -32,12 +32,12 @@ end
 
 # to be called by gc when cleaning up
 # not in the exposed interface but can be called with finalize(e)
-function CalcephEphemDestructor(e::CalcephEphem)
-   if (e.data == C_NULL)
+function CalcephEphemDestructor(eph::CalcephEphem)
+   if (eph.data == C_NULL)
       return
    end
-   ccall((:calceph_close, libcalceph), Void, (Ptr{Void},), e.data)
-   e.data = C_NULL
+   ccall((:calceph_close, libcalceph), Void, (Ptr{Void},), eph.data)
+   eph.data = C_NULL
    return
 end
 
@@ -49,11 +49,11 @@ CalcephEphem(file::AbstractString) = CalcephEphem([file])
   This function prefetches to the main memory all files associated to the ephemeris descriptor eph.
 
 "
-function CalcephPrefetch(e::CalcephEphem)
-    if (e.data == C_NULL)
+function CalcephPrefetch(eph::CalcephEphem)
+    if (eph.data == C_NULL)
        error("Ephemeris object is not propely initialized.")
     end
-    stat = ccall((:calceph_prefetch, libcalceph), Int, (Ptr{Void},), e.data)
+    stat = ccall((:calceph_prefetch, libcalceph), Int, (Ptr{Void},), eph.data)
     if (stat == 0)
        error("Unable to prefetch ephemeris!")
     end

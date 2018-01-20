@@ -35,15 +35,15 @@ The possible values for target and center are :
 * asteroid number + CALCEPH_ASTEROID    : asteroid
 
 "
-function CalcephCompute(e::CalcephEphem,JD0::Float64,time::Float64,
+function CalcephCompute(eph::CalcephEphem,JD0::Float64,time::Float64,
    target::Int64,center::Int64)
-    if (e.data == C_NULL)
+    if (eph.data == C_NULL)
        error("Ephemeris object is not propely initialized.")
     end
     result = Array{Float64,1}(6)
     stat = ccall((:calceph_compute, libcalceph), Cint,
     (Ptr{Void},Cdouble,Cdouble,Cint,Cint,Ref{Cdouble}),
-    e.data,JD0,time,target,center,result)
+    eph.data,JD0,time,target,center,result)
     if (stat == 0)
        error("Unable to compute ephemeris!")
     end
@@ -64,15 +64,15 @@ at epoch JD0+time.
 - `unit::Int` : The units of the result. This integer is a sum of some unit constants (CalcephUnit*) and/or the constant CalcephUseNaifId. If the unit contains CalcephUseNaifId, the NAIF identification numbering system is used for the target and the center (see module NaifId). If the unit does not contain CalcephUseNaifId, the old number system is used for the target and the center (see the list in the documentation of function CalcephCompute).
 
 "
-function CalcephComputeUnit(e::CalcephEphem,JD0::Float64,time::Float64,
+function CalcephComputeUnit(eph::CalcephEphem,JD0::Float64,time::Float64,
    target::Int64,center::Int64,unit::Int64)
-    if (e.data == C_NULL)
+    if (eph.data == C_NULL)
        error("Ephemeris object is not propely initialized.")
     end
     result = Array{Float64,1}(6)
     stat = ccall((:calceph_compute_unit, libcalceph), Cint,
     (Ptr{Void},Cdouble,Cdouble,Cint,Cint,Cint,Ref{Cdouble}),
-    e.data,JD0,time,target,center,unit,result)
+    eph.data,JD0,time,target,center,unit,result)
     if (stat == 0)
        error("Unable to compute ephemeris!")
     end
@@ -100,9 +100,9 @@ at epoch JD0+time.
 If order equals to 1, the behavior of CalcephComputeOrder is the same as that of CalcephComputeUnit.
 
 "
-function CalcephComputeOrder(e::CalcephEphem,JD0::Float64,time::Float64,
+function CalcephComputeOrder(eph::CalcephEphem,JD0::Float64,time::Float64,
    target::Int64,center::Int64,unit::Int64,order::Int64)
-    if (e.data == C_NULL)
+    if (eph.data == C_NULL)
        error("Ephemeris object is not propely initialized.")
     end
     if (order<0) || (order>3)
@@ -111,7 +111,7 @@ function CalcephComputeOrder(e::CalcephEphem,JD0::Float64,time::Float64,
     result = Array{Float64,1}(3+3order)
     stat = ccall((:calceph_compute_order, libcalceph), Cint,
     (Ptr{Void},Cdouble,Cdouble,Cint,Cint,Cint,Cint,Ref{Cdouble}),
-    e.data,JD0,time,target,center,unit,order,result)
+    eph.data,JD0,time,target,center,unit,order,result)
     if (stat == 0)
        error("Unable to compute ephemeris!")
     end
