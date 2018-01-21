@@ -70,3 +70,24 @@ con2 = CalcephConstants(eph2)
 @test isa(con2,Dict{Symbol,Float64})
 @test length(con2) == 313
 @test con2[:AU] ≈ 1.49597870696268e8
+
+
+inpop_files = ["test/example1.dat"]
+spk_files = ["test/example1.bsp",
+             "test/example1.tpc",
+             "test/example1.tf",
+             "test/example1.bpc",
+             "test/example1spk_time.bsp"]
+
+test_data = [
+    ("test/example1_tests.dat",inpop_files,false),
+    ("test/example1_tests.dat",spk_files,false),
+    ("test/example1_tests.dat",inpop_files,true),
+    ("test/example1_tests.dat",spk_files,true)
+]
+
+include("testfunction1.jl")
+
+for (testFile,ephFiles,prefetch) in test_data
+      testFunction1(testFile,ephFiles,prefetch)
+end

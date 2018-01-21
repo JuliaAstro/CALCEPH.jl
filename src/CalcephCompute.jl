@@ -4,10 +4,10 @@
 "
     CalcephCompute(eph,JD0,time,target,center)
 
-Compute position and velocity of target with respect to center
-at epoch JD0+time. This routine does not support the NAIF numbering scheme. For
-the NAIF numbering scheme, use CalcephComputeUnit or CalcephComputeOrder, with
-passing CalcephUseNAIFId in the unit argument.
+Compute position (in AU) and velocity (in AU per day) of target with respect to
+center at epoch JD0+time. This routine does not support the NAIF numbering
+scheme. For the NAIF numbering scheme, use CalcephComputeUnit or
+CalcephComputeOrder, with passing CalcephUseNAIFId in the unit argument.
 
 # Arguments
 - `JD0::Float64`: JD0+time must be equal to the Julian date for the time coordinate corresponding to the ephemeris (usually TDB or TCB)
