@@ -2,6 +2,8 @@
     CalcephOrientUnit(eph,JD0,time,target,unit)
 
 Compute Euler angle and derivatives for the orientation of target at epoch JD0+time.
+To get the best precision for the interpolation, the time is splitted in
+two floating-point numbers.
 
 # Arguments
 - `JD0::Float64`: JD0+time must be equal to the Julian date for the time coordinate corresponding to the ephemeris (usually TDB or TCB)
@@ -29,6 +31,8 @@ end
     CalcephOrientOrder(eph,JD0,time,target,unit,order)
 
 Compute Euler angle and derivatives up to order for the orientation of target at epoch JD0+time.
+To get the best precision for the interpolation, the time is splitted in
+two floating-point numbers.
 
 # Arguments
 - `JD0::Float64`: JD0+time must be equal to the Julian date for the time coordinate corresponding to the ephemeris (usually TDB or TCB)

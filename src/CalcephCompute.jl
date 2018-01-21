@@ -4,10 +4,17 @@
 "
     CalcephCompute(eph,JD0,time,target,center)
 
-Compute position (in AU) and velocity (in AU per day) of target with respect to
-center at epoch JD0+time. This routine does not support the NAIF numbering
-scheme. For the NAIF numbering scheme, use CalcephComputeUnit or
+Compute position and velocity of target with respect to center at epoch
+JD0+time. This routine does not support the NAIF numbering scheme.
+For the NAIF numbering scheme, use CalcephComputeUnit or
 CalcephComputeOrder, with passing CalcephUseNAIFId in the unit argument.
+To get the best precision for the interpolation, the time is splitted in
+two floating-point numbers.
+
+Output units are:
+* AU and AU/day for position and velocity
+* rad and rad/day for librations
+* second and unitless for time ephemeris and time ephemeris rate
 
 # Arguments
 - `JD0::Float64`: JD0+time must be equal to the Julian date for the time coordinate corresponding to the ephemeris (usually TDB or TCB)
@@ -55,6 +62,8 @@ end
 
 Compute position and velocity of target with respect to center
 at epoch JD0+time.
+To get the best precision for the interpolation, the time is splitted in
+two floating-point numbers.
 
 # Arguments
 - `JD0::Float64`: JD0+time must be equal to the Julian date for the time coordinate corresponding to the ephemeris (usually TDB or TCB)
@@ -84,6 +93,8 @@ end
 
 Compute position and derivatives up to order of target with respect to center
 at epoch JD0+time.
+To get the best precision for the interpolation, the time is splitted in
+two floating-point numbers.
 
 # Arguments
 - `JD0::Float64`: JD0+time must be equal to the Julian date for the time coordinate corresponding to the ephemeris (usually TDB or TCB)
