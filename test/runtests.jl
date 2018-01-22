@@ -44,10 +44,11 @@ end
 @test NaifId.ids[:charon] == 901
 @test NaifId.ids[:pluto] == 999
 
-
+testpath = joinpath(Pkg.dir("CALCEPH"), "test")
 # check memory management
-eph1 = CalcephEphem("test/example1.dat")
-eph2 = CalcephEphem(["test/example1.bsp","test/example1.tpc"])
+eph1 = CalcephEphem(joinpath(testpath,"example1.dat"))
+eph2 = CalcephEphem([joinpath(testpath,"example1.bsp"),
+                     joinpath(testpath,"example1.tpc")])
 
 @test eph1.data != C_NULL
 finalize(eph1)
@@ -58,8 +59,9 @@ finalize(eph2)
 @test eph2.data == C_NULL
 
 # check constants
-eph1 = CalcephEphem("test/example1.dat")
-eph2 = CalcephEphem(["test/example1.bsp","test/example1.tpc"])
+eph1 = CalcephEphem(joinpath(testpath,"example1.dat"))
+eph2 = CalcephEphem([joinpath(testpath,"example1.bsp"),
+                     joinpath(testpath,"example1.tpc")])
 
 con1 = CalcephConstants(eph1)
 con2 = CalcephConstants(eph2)
@@ -72,12 +74,12 @@ con2 = CalcephConstants(eph2)
 @test con2[:AU] ≈ 1.49597870696268e8
 
 
-inpop_files = ["test/example1.dat"]
-spk_files = ["test/example1.bsp",
-             "test/example1.tpc",
-             "test/example1.tf",
-             "test/example1.bpc",
-             "test/example1spk_time.bsp"]
+inpop_files = [joinpath(testpath,"example1.dat")]
+spk_files = [joinpath(testpath,"example1.bsp"),
+             joinpath(testpath,"example1.tpc"),
+             joinpath(testpath,"example1.tf"),
+             joinpath(testpath,"example1.bpc"),
+             joinpath(testpath,"example1spk_time.bsp")]
 
 test_data = [
     ("test/example1_tests.dat",inpop_files,false),
