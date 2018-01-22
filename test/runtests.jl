@@ -81,11 +81,13 @@ spk_files = [joinpath(testpath,"example1.bsp"),
              joinpath(testpath,"example1.bpc"),
              joinpath(testpath,"example1spk_time.bsp")]
 
+testfile = joinpath(testpath,"example1_tests.dat")
+
 test_data = [
-    ("test/example1_tests.dat",inpop_files,false),
-    ("test/example1_tests.dat",spk_files,false),
-    ("test/example1_tests.dat",inpop_files,true),
-    ("test/example1_tests.dat",spk_files,true)
+    (testfile,inpop_files,false),
+    (testfile,spk_files,false),
+    (testfile,inpop_files,true),
+    (testfile,spk_files,true)
 ]
 
 include("testfunction1.jl")
