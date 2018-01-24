@@ -67,7 +67,7 @@ end
 const NaifId = BodyId()
 loadData!(NaifId,joinpath(Pkg.dir("CALCEPH"), "data", "NaifIds.txt"))
 
-# NAIF IDs for Hyperbolic Asteroid 'Oumuamua (A/2017 U1)
+# NAIF IDs for Hyperbolic Asteroid 'Oumuamua (1I/2017 U1)
 add!(NaifId,:oumuamua,3788040)
 
 # NAIF IDs for CALCEPH time ephemeris
