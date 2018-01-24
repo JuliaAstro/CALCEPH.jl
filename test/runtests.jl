@@ -1,6 +1,8 @@
 using CALCEPH
 using Base.Test
 
+testpath = joinpath(Pkg.dir("CALCEPH"), "test")
+
 # NAIF ID tests
 
 for (name,id) ∈ NaifId.id
@@ -44,9 +46,12 @@ end
 @test NaifId.id[:charon] == 901
 @test NaifId.id[:pluto] == 999
 
+# test error case: changing name->id mapping
 @test_throws ErrorException CALCEPH.add!(NaifId,:jupiter,1)
+# test error case: parsing wrongly formatted body id input file
+bid = CALCEPH.BodyId()
+@test_throws ErrorException CALCEPH.loadData!(bid,joinpath(testpath,"badIds.txt"))
 
-testpath = joinpath(Pkg.dir("CALCEPH"), "test")
 # check memory management
 eph1 = CalcephEphem(joinpath(testpath,"example1.dat"))
 eph2 = CalcephEphem([joinpath(testpath,"example1.bsp"),
@@ -61,6 +66,7 @@ finalize(eph1)
 finalize(eph2)
 @test eph2.data == C_NULL
 finalize(eph2)
+CALCEPH.CalcephEphemDestructor(eph2)
 
 # Opening invalid ephemeris
 @test_throws ErrorException eph1 = CalcephEphem(String[])
@@ -88,6 +94,8 @@ finalize(eph2)
 eph2 = CalcephEphem(joinpath(testpath,"example1.bsp"))
 @test_throws ErrorException con2 = CalcephConstants(eph2)
 
+# test CalcephCompute*
+# test data and thresholds from CALCEPH C library tests
 inpop_files = [joinpath(testpath,"example1.dat")]
 spk_files = [joinpath(testpath,"example1.bsp"),
              joinpath(testpath,"example1.tpc"),
@@ -107,5 +115,13 @@ test_data = [
 include("testfunction1.jl")
 
 for (testFile,ephFiles,prefetch) in test_data
-      testFunction1(testFile,ephFiles,prefetch)
+    testFunction1(testFile,ephFiles,prefetch)
 end
+
+# test error case wrong order
+eph1 = CalcephEphem(joinpath(testpath,"example1.bsp"))
+@test_throws ErrorException CalcephComputeOrder(eph1,0.0,0.0,1,0,0,4)
+@test_throws ErrorException CalcephComputeOrder(eph1,0.0,0.0,1,0,0,-1)
+
+# test error case:
+@test_throws ErrorException CalcephComputeUnit(eph1,0.0,0.0,-144,0,0)
