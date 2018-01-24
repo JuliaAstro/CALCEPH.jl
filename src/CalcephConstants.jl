@@ -8,9 +8,7 @@ const CalcephMaxConstName = 33
 "
 function CalcephConstants(eph::CalcephEphem)
     res = Dict{Symbol,Float64}()
-    if (eph.data == C_NULL)
-       error("Ephemeris object is not propely initialized.")
-    end
+    CalcephCheck(eph)
     NC::Int = ccall((:calceph_getconstantcount , libcalceph), Cint,
     (Ptr{Void},),eph.data)
     if (NC == 0)

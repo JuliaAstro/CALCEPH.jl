@@ -14,9 +14,7 @@ two floating-point numbers.
 "
 function CalcephOrientUnit(eph::CalcephEphem,JD0::Float64,time::Float64,
    target::Int64,unit::Int64)
-    if (eph.data == C_NULL)
-       error("Ephemeris object is not propely initialized.")
-    end
+    CalcephCheck(eph)
     result = Array{Float64,1}(6)
     stat = ccall((:calceph_orient_unit, libcalceph), Cint,
     (Ptr{Void},Cdouble,Cdouble,Cint,Cint,Ref{Cdouble}),
@@ -50,9 +48,7 @@ If order equals to 1, the behavior of CalcephOrientOrder is the same as that of 
 "
 function CalcephOrientOrder(eph::CalcephEphem,JD0::Float64,time::Float64,
    target::Int64,unit::Int64,order::Int64)
-    if (eph.data == C_NULL)
-       error("Ephemeris object is not propely initialized.")
-    end
+    CalcephCheck(eph)
     if (order<0) || (order>3)
       error("Order must be between 0 and 3.")
     end

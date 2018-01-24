@@ -22,7 +22,7 @@ export CalcephEphem, CalcephPrefetch
 include("CalcephCompute.jl")
 export CalcephCompute,  CalcephComputeUnit, CalcephComputeOrder
 
-include("NaifId.jl")
+include("BodyId.jl")
 export NaifId
 
 include("CalcephUnits.jl")

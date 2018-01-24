@@ -50,12 +50,23 @@ CalcephEphem(file::AbstractString) = CalcephEphem([file])
 
 "
 function CalcephPrefetch(eph::CalcephEphem)
-    if (eph.data == C_NULL)
-       error("Ephemeris object is not propely initialized.")
-    end
+    CalcephCheck(eph)
     stat = ccall((:calceph_prefetch, libcalceph), Int, (Ptr{Void},), eph.data)
     if (stat == 0)
        error("Unable to prefetch ephemeris!")
     end
     return
+end
+
+
+"
+    CalcephCheck(eph)
+
+  Throws an exception if the ephemeris handler is a NULL pointer.
+
+"
+function CalcephIsValid(eph::CalcephEphem)
+   if (eph.data == C_NULL)
+      error("Ephemeris object is not propely initialized.")
+   end
 end
