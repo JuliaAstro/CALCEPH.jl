@@ -118,17 +118,11 @@ function testFunction1(testFile,ephFiles,prefetch)
                 @test abs(ref[i]-val[i]) < ϵ
             end
         elseif target ∈ [16,17]
+            ϵ = 1e-18
             val = CalcephComputeUnit(eph,jd0,dt,target,center,CalcephUnitSec)
-            for i in 1:6
-                @test abs(ref[i]-val[i]) < ϵ
-            end
+            @test abs(ref[1]-val[1]) < ϵ
             val = CalcephComputeUnit(eph,jd0,dt,target,center,CalcephUnitDay)
-            for i in 1:6
-                if i<=3
-                    val[i]*=86400
-                end
-                @test abs(ref[i]-val[i]) < ϵ
-            end
+            @test abs(ref[1]-val[1]*86400) < ϵ*86400
         end
 
     end

@@ -1,12 +1,24 @@
+"
+    BodyId
 
+  Body identifiers.
+"
 mutable struct BodyId
+   "names from ID"
    names :: Dict{Int,Set{Symbol}}
+   "ID from names"
    id :: Dict{Symbol,Int}
    function BodyId()
        new(Dict{Int,Set{Symbol}}(),Dict{Symbol,Int}())
    end
 end
 
+"
+    add!(bid,name,id)
+
+  Add a new mapping name->id into BodyId instance bid.
+
+"
 function add!(bid::BodyId,name::Symbol,id::Int)
    if (name ∈ keys(bid.id))
       if bid.id[name] != id
@@ -22,11 +34,12 @@ function add!(bid::BodyId,name::Symbol,id::Int)
    bid.id[name]=id
    nothing
 end
+"
+    loadData!(bid,filename)
 
-# add(:jupiter,599)
-# add(:ssb,0)
-# add(:solar_system_barycenter,0)
+  Load mapping (body name,body ID) from file into BodyId instance bid.
 
+"
 function loadData!(bid::BodyId,filename::AbstractString)
    pattern1 = r"^\s*([-+]{0,1}\d+)\s+\'(.*)\'.*$"
    pattern2 = r"[\s-]"
@@ -53,3 +66,11 @@ end
 
 const NaifId = BodyId()
 loadData!(NaifId,joinpath(Pkg.dir("CALCEPH"), "data", "NaifIds.txt"))
+
+# NAIF IDs for Hyperbolic Asteroid 'Oumuamua (A/2017 U1)
+add!(NaifId,:oumuamua,3788040)
+
+# NAIF IDs for CALCEPH time ephemeris
+add!(NaifId,:timecenter,1000000000)
+add!(NaifId,:ttmtdb    ,1000000001)
+add!(NaifId,:tcgmtcb   ,1000000002)
