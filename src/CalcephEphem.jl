@@ -1,4 +1,30 @@
 
+
+macro CalcephCheckStatus(stat,msg)
+   return quote
+      if ($(esc(stat)) == 0)
+         error($(esc(msg)))
+      end
+   end
+end
+
+macro CalcephCheckPointer(ptr,msg)
+   return quote
+      if ($(esc(ptr)) == C_NULL)
+         error($(esc(msg)))
+      end
+   end
+end
+
+macro CalcephCheckOrder(order)
+   return quote
+      local or = $(esc(order))
+      if (or<0) || (or>3)
+         error("Order must be between 0 and 3.")
+      end
+   end
+end
+
 "
     CalcephEphem
 
@@ -21,9 +47,7 @@ type CalcephEphem
    function CalcephEphem(files::Vector{<:AbstractString})
       ptr = ccall((:calceph_open_array, libcalceph), Ptr{Void},
                   (Int, Ptr{Ptr{UInt8}}), length(files), files)
-      if (ptr == C_NULL)
-         error("Unable to open ephemeris file(s)!")
-      end
+      @CalcephCheckPointer ptr "Unable to open ephemeris file(s)!"
       obj = new(ptr)
       finalizer(obj,CalcephEphemDestructor) # register object destructor
       return obj
@@ -50,23 +74,8 @@ CalcephEphem(file::AbstractString) = CalcephEphem([file])
 
 "
 function CalcephPrefetch(eph::CalcephEphem)
-    CalcephCheck(eph)
+    @CalcephCheckPointer eph.data "Ephemeris is not properly initialized!"
     stat = ccall((:calceph_prefetch, libcalceph), Int, (Ptr{Void},), eph.data)
-    if (stat == 0)
-       error("Unable to prefetch ephemeris!")
-    end
+    @CalcephCheckStatus stat "Unable to prefetch  ephemeris!"
     return
-end
-
-
-"
-    CalcephCheck(eph)
-
-  Throws an exception if the ephemeris handler is a NULL pointer.
-
-"
-function CalcephIsValid(eph::CalcephEphem)
-   if (eph.data == C_NULL)
-      error("Ephemeris object is not propely initialized.")
-   end
 end

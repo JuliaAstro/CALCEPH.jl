@@ -44,14 +44,12 @@ The possible values for target and center are :
 "
 function CalcephCompute(eph::CalcephEphem,JD0::Float64,time::Float64,
    target::Int64,center::Int64)
-    CalcephCheck(eph)
+    @CalcephCheckPointer eph.data "Ephemeris is not properly initialized!"
     result = Array{Float64,1}(6)
     stat = ccall((:calceph_compute, libcalceph), Cint,
     (Ptr{Void},Cdouble,Cdouble,Cint,Cint,Ref{Cdouble}),
     eph.data,JD0,time,target,center,result)
-    if (stat == 0)
-       error("Unable to compute ephemeris!")
-    end
+    @CalcephCheckStatus stat "Unable to compute ephemeris"
     return result
 end
 
@@ -73,14 +71,12 @@ two floating-point numbers.
 "
 function CalcephComputeUnit(eph::CalcephEphem,JD0::Float64,time::Float64,
    target::Int64,center::Int64,unit::Int64)
-    CalcephCheck(eph)
+    @CalcephCheckPointer eph.data "Ephemeris is not properly initialized!"
     result = Array{Float64,1}(6)
     stat = ccall((:calceph_compute_unit, libcalceph), Cint,
     (Ptr{Void},Cdouble,Cdouble,Cint,Cint,Cint,Ref{Cdouble}),
     eph.data,JD0,time,target,center,unit,result)
-    if (stat == 0)
-       error("Unable to compute ephemeris!")
-    end
+    @CalcephCheckStatus stat "Unable to compute ephemeris"
     return result
 end
 
@@ -109,16 +105,12 @@ If order equals to 1, the behavior of CalcephComputeOrder is the same as that of
 "
 function CalcephComputeOrder(eph::CalcephEphem,JD0::Float64,time::Float64,
    target::Int64,center::Int64,unit::Int64,order::Int64)
-    CalcephCheck(eph)
-    if (order<0) || (order>3)
-      error("Order must be between 0 and 3.")
-    end
+    @CalcephCheckPointer eph.data "Ephemeris is not properly initialized!"
+    @CalcephCheckOrder order
     result = Array{Float64,1}(3+3order)
     stat = ccall((:calceph_compute_order, libcalceph), Cint,
     (Ptr{Void},Cdouble,Cdouble,Cint,Cint,Cint,Cint,Ref{Cdouble}),
     eph.data,JD0,time,target,center,unit,order,result)
-    if (stat == 0)
-       error("Unable to compute ephemeris!")
-    end
+    @CalcephCheckStatus stat "Unable to compute ephemeris"
     return result
 end

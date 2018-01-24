@@ -8,7 +8,7 @@ const CalcephMaxConstName = 33
 "
 function CalcephConstants(eph::CalcephEphem)
     res = Dict{Symbol,Float64}()
-    CalcephCheck(eph)
+    @CalcephCheckPointer eph.data "Ephemeris is not properly initialized!"
     NC::Int = ccall((:calceph_getconstantcount , libcalceph), Cint,
     (Ptr{Void},),eph.data)
     if (NC == 0)
@@ -20,8 +20,9 @@ function CalcephConstants(eph::CalcephEphem)
        stat = ccall((:calceph_getconstantindex , libcalceph), Cint,
                   (Ptr{Void},Cint,Ptr{UInt8},Ref{Cdouble}),
                   eph.data, i ,name ,value)
-
-                  res[Symbol(strip(unsafe_string(pointer(name))))] = value[]
+       if (stat!=0)
+          res[Symbol(strip(unsafe_string(pointer(name))))] = value[]
+       end
     end
 
     return res
