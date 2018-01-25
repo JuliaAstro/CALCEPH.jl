@@ -106,16 +106,24 @@ spk_files = [joinpath(testpath,"example1.bsp"),
 testfile = joinpath(testpath,"example1_tests.dat")
 
 test_data = [
-    (testfile,inpop_files,false),
-    (testfile,spk_files,false),
-    (testfile,inpop_files,true),
-    (testfile,spk_files,true)
+    (inpop_files,false),
+    (spk_files,false),
+    (inpop_files,true),
+    (spk_files,true)
 ]
 
 include("testfunction1.jl")
 
-for (testFile,ephFiles,prefetch) in test_data
-    testFunction1(testFile,ephFiles,prefetch)
+for (ephFiles,prefetch) in test_data
+    testFunction1(testfile,ephFiles,prefetch)
+end
+
+testfile2 = joinpath(testpath,"example1_tests_naifid.dat")
+
+include("testfunction2.jl")
+
+for (ephFiles,prefetch) in test_data
+    testFunction2(testfile,testfile2,ephFiles,prefetch)
 end
 
 # test error case wrong order
