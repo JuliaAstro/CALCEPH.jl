@@ -133,3 +133,15 @@ eph1 = CalcephEphem(joinpath(testpath,"example1.bsp"))
 
 # test error case:
 @test_throws ErrorException CalcephComputeUnit(eph1,0.0,0.0,-144,0,0)
+
+
+# Five-Point Stencil
+include("../src/FivePointStencil.jl")
+f(x)=x^8
+val = FivePointStencil(f,1.5,4,0.001)
+ref = [25.62890625,136.6875,637.875,2551.5,8505.0]
+@test ref[1] ≈ val[1] atol=1e-10
+@test ref[2] ≈ val[2] atol=1e-8
+@test ref[3] ≈ val[3] atol=1e-5
+@test ref[4] ≈ val[4] atol=1e-2
+@test ref[5] ≈ val[5] atol=1e-2
