@@ -1,5 +1,6 @@
 
-
+# This test is derived from test cmcomputeunit_naifid.c in Calceph version 2.3.2
+# the test data files are copied from calceph-2.3.2.tar.gz
 function testFunction2(testFile,testFile2,ephFiles,prefetch)
 
     eph = CalcephEphem(ephFiles)
