@@ -14,9 +14,9 @@ function CalcephConstants(eph::CalcephEphem)
     if (NC == 0)
        error("Unable to get number of constants!")
     end
+    value = Ref{Cdouble}(0.0)
+    name = Vector{UInt8}(CalcephMaxConstName)
     for i=1:NC
-       value = Ref{Cdouble}(0.0)
-       name = Vector{UInt8}(CalcephMaxConstName)
        stat = ccall((:calceph_getconstantindex , libcalceph), Cint,
                   (Ptr{Void},Cint,Ptr{UInt8},Ref{Cdouble}),
                   eph.data, i ,name ,value)

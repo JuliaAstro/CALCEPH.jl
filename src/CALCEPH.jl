@@ -34,4 +34,6 @@ export CalcephOrientUnit, CalcephOrientOrder
 include("CalcephConstants.jl")
 export CalcephConstants
 
+include("FivePointStencil.jl")
+
 end # module
