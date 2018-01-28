@@ -7,7 +7,7 @@ f(x),f'(x),...,f(order)(x)
 The result is an array of length order+1.
 Derivatives are numerically computed using the 5-point stencil method
 with h≠0 being the grid spacing:
-https://en.wikipedia.org/wiki/Five-point_stencil
+[https://en.wikipedia.org/wiki/Five-point_stencil](https://en.wikipedia.org/wiki/Five-point_stencil)
 
 "
 

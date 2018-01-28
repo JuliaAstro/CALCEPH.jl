@@ -18,6 +18,13 @@ end
 
   Add a new mapping name->id into BodyId instance bid.
 
+Example:
+
+    bid=CALCEPH.BodyId()
+    add!(bid,:tatooine,1)
+    add!(bid,:dagobah,2)
+    add!(bid,:Dagobah,2)
+
 "
 function add!(bid::BodyId,name::Symbol,id::Int)
    if (name ∈ keys(bid.id))
@@ -39,6 +46,7 @@ end
 
   Load mapping (body name,body ID) from file into BodyId instance bid.
 
+  Example file [https://github.com/bgodard/CALCEPH.jl/blob/master/data/NaifIds.txt](https://github.com/bgodard/CALCEPH.jl/blob/master/data/NaifIds.txt)
 "
 function loadData!(bid::BodyId,filename::AbstractString)
    pattern1 = r"^\s*([-+]{0,1}\d+)\s+\'(.*)\'.*$"
@@ -64,6 +72,17 @@ function loadData!(bid::BodyId,filename::AbstractString)
    nothing
 end
 
+"
+    NaifId
+
+NAIF identification numbers
+
+Examples:
+- NaifId.id[:sun]->10
+- NaifId.id[:mars]->499
+- NaifId.names[0]->Set(Symbol[:ssb, :solar_system_barycenter])
+
+"
 const NaifId = BodyId()
 loadData!(NaifId,joinpath(Pkg.dir("CALCEPH"), "data", "NaifIds.txt"))
 

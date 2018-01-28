@@ -1,14 +1,57 @@
-# CALCEPH.jl
-
 [![Build Status](https://travis-ci.org/bgodard/CALCEPH.jl.svg?branch=master)](https://travis-ci.org/bgodard/CALCEPH.jl)
 [![Coverage Status](https://coveralls.io/repos/bgodard/CALCEPH.jl/badge.svg?branch=master&service=github)](https://coveralls.io/github/bgodard/CALCEPH.jl?branch=master)
 [![codecov.io](http://codecov.io/github/bgodard/CALCEPH.jl/coverage.svg?branch=master)](http://codecov.io/github/bgodard/CALCEPH.jl?branch=master)
 
-This is a julia wrapper for CALCEPH a C library for reading planetary ephemeris files, such INPOPxx, JPL DExxx and SPICE ephemeris files.
+This is a julia wrapper for [CALCEPH](https://www.imcce.fr/recherche/equipes/asd/calceph/) a C library for reading planetary ephemeris files, such INPOPxx, JPL DExxx and SPICE ephemeris files.
 
-[CALCEPH](https://www.imcce.fr/recherche/equipes/asd/calceph/) C library is developped by IMCCE.
+[CALCEPH](https://www.imcce.fr/recherche/equipes/asd/calceph/) C library is developped by [IMCCE](https://www.imcce.fr/).
 
-## Why use CALCEPH?
+# Quick start
+
+In your favorite Julia interpreter, run:
+
+```julia
+Pkg.clone("https://github.com/bgodard/CALCEPH.jl")
+using CALCEPH
+
+# ephemeris kernels can be downloaded from many different sources
+download("ftp://ftp.imcce.fr/pub/ephem/planets/inpop13c/inpop13c_TDB_m100_p100_tt.dat","planets.dat")
+# WARNING this file is huge (Jupiter Moons ephemeris)
+# download("https://naif.jpl.nasa.gov/pub/naif/generic_kernels/spk/satellites/jup310.bsp","jupiter_system.bsp")
+
+# create an ephemeris context
+eph = CalcephEphem("planets.dat")
+# from multiple files
+# eph = CalcephEphem("planets.dat","jupiter_system.bsp")
+
+# prefetch ephemeris files data to main memory for faster access
+CalcephPrefetch(eph)
+
+# retrieve constants from ephemeris as a dictionary
+constants = CalcephConstants(eph)
+# list the constants
+keys(constants)
+# get the sun J2
+J2sun = constants[:J2SUN]
+
+# retrieve the position, velocity and acceleration of Earth (geocenter) relative to the Earth-Moon system barycenter in kilometers, kilometers per second and kilometers per second square at JD= 2451624.5 TDB timescale
+# for best accuracy the first time argument should be the integer part and the delta the fractional part
+# when using NAIF identification numbers, CalcephUseNaifId has to be added to the units argument
+pva=CalcephComputeOrder(eph,2451624.0,0.5,NaifId.id[:earth],NaifId.id[:emb],
+                                    CalcephUseNaifId+CalcephUnitKM+CalcephUnitSec,2)
+position=pva[1:3]
+velocity=pva[4:6]
+acceleration=pva[7:end]
+
+# what is the NAIF identification number for Deimos
+id_deimos = NaifId.id[:deimos]
+
+# what does NAIF ID 0 correspond to?
+names_0 = NaifId.names[0]
+
+```
+
+# Why use CALCEPH?
 CALCEPH functionality is also provided by [NAIF SPICE Toolkit](https://naif.jpl.nasa.gov/naif/toolkit.html). However CALCEPH has several advantages over SPICE:
 - It is faster at computing ephemeris data.
 - It can handle multiple ephemeris context whereas SPICE cannot.

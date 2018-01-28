@@ -21,4 +21,11 @@ extra_javascript:
 docs_dir: 'build'
 
 pages:
-- Introduction: index.md
+- Quick start: index.md
+- Install: install.md
+- Ephemeris context: context.md
+- Units : units.md
+- Identifiers: ids.md
+- Ephemeris computation: compute.md
+- Ephemeris constants: constants.md
+- Utilities: utilities.md
