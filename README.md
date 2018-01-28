@@ -34,11 +34,15 @@ keys(constants)
 # get the sun J2
 J2sun = constants[:J2SUN]
 
-# retrieve the position, velocity and acceleration of Earth (geocenter) relative to the Earth-Moon system barycenter in kilometers, kilometers per second and kilometers per second square at JD= 2451624.5 TDB timescale
-# for best accuracy the first time argument should be the integer part and the delta the fractional part
-# when using NAIF identification numbers, CalcephUseNaifId has to be added to the units argument
+# retrieve the position, velocity and acceleration of Earth (geocenter) relative
+# to the Earth-Moon system barycenter in kilometers, kilometers per second and
+# kilometers per second square at JD= 2451624.5 TDB timescale
+# for best accuracy the first time argument should be the integer part and the
+# delta the fractional part
+# when using NAIF identification numbers, CalcephUseNaifId has to be added to
+# the units argument.
 pva=CalcephComputeOrder(eph,2451624.0,0.5,NaifId.id[:earth],NaifId.id[:emb],
-                                    CalcephUseNaifId+CalcephUnitKM+CalcephUnitSec,2)
+                        CalcephUseNaifId+CalcephUnitKM+CalcephUnitSec,2)
 position=pva[1:3]
 velocity=pva[4:6]
 acceleration=pva[7:end]
