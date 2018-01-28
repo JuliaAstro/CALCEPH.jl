@@ -22,7 +22,7 @@ download("ftp://ftp.imcce.fr/pub/ephem/planets/inpop13c/inpop13c_TDB_m100_p100_t
 # create an ephemeris context
 eph = CalcephEphem("planets.dat")
 # from multiple files
-# eph = CalcephEphem("planets.dat","jupiter_system.bsp")
+# eph = CalcephEphem(["planets.dat","jupiter_system.bsp"])
 
 # prefetch ephemeris files data to main memory for faster access
 CalcephPrefetch(eph)
