@@ -6,6 +6,8 @@ This is a julia wrapper for [CALCEPH](https://www.imcce.fr/recherche/equipes/asd
 
 [CALCEPH](https://www.imcce.fr/recherche/equipes/asd/calceph/) C library is developped by [IMCCE](https://www.imcce.fr/).
 
+See the package [documentation](https://bgodard.github.io/CALCEPH.jl/).
+
 # Quick start
 
 In your favorite Julia interpreter, run:
