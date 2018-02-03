@@ -15,7 +15,7 @@ See the package [documentation](https://bgodard.github.io/CALCEPH.jl/).
 In your favorite Julia interpreter, run:
 
 ```julia
-Pkg.clone("https://github.com/bgodard/CALCEPH.jl")
+Pkg.add("CALCEPH")
 using CALCEPH
 
 # ephemeris kernels can be downloaded from many different sources

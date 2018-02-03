@@ -7,7 +7,7 @@ This is a julia wrapper for [CALCEPH](https://www.imcce.fr/inpop/calceph/) a C l
 In your favorite Julia interpreter, run:
 
 ```julia
-Pkg.clone("https://github.com/bgodard/CALCEPH.jl")
+Pkg.add("CALCEPH")
 using CALCEPH
 
 # ephemeris kernels can be downloaded from many different sources

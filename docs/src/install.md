@@ -13,7 +13,7 @@ Install first the [CALCEPH C library](https://www.imcce.fr/recherche/equipes/asd
 In your favorite Julia interpreter, run:
 
 ```julia
-Pkg.clone("https://github.com/bgodard/CALCEPH.jl")
+Pkg.add("CALCEPH")
 ```
 
 To start using it:
