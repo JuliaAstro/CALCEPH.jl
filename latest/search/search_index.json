@@ -17,7 +17,7 @@
         }, 
         {
             "location": "/install/", 
-            "text": "Prerequisites\n\n\n\n\nLinux and OS X\n\n\nIf you do not have the \nCALCEPH C library\n installed, the installation process will fetch it and try to build it, in which case you need a working C compiler.\n\n\n\n\nWindows\n\n\nInstall first the \nCALCEPH C library\n.\n\n\n\n\nRetrieving and installing CALCEPH.jl\n\n\nIn your favorite Julia interpreter, run:\n\n\nPkg.clone(\nhttps://github.com/bgodard/CALCEPH.jl\n)\n\n\n\n\nTo start using it:\n\n\nusing CALCEPH\n\n\n\n\n\n\nModule\n\n\n#\n\n\nCALCEPH\n \n \nModule\n.\n\n\nCALCEPH\n\n\n\n\nThis module is a wrapper of CALCEPH, IMCCE planetary ephemeris access   library. It supports INPOPxx, JPL DExxx and SPICE ephemeris.\n\n\nhttps://www.imcce.fr/recherche/equipes/asd/calceph\n\n\nsource", 
+            "text": "Prerequisites\n\n\n\n\nLinux and OS X\n\n\nIf you do not have the \nCALCEPH C library\n installed, the installation process will fetch it and try to build it, in which case you need a working C compiler.\n\n\n\n\nWindows\n\n\nInstall first the \nCALCEPH C library\n.\n\n\n\n\nRetrieving and installing CALCEPH.jl\n\n\nIn your favorite Julia interpreter, run:\n\n\nPkg.clone(\nhttps://github.com/bgodard/CALCEPH.jl\n)\n\n\n\n\nTo start using it:\n\n\nusing CALCEPH", 
             "title": "Install"
         }, 
         {
@@ -41,11 +41,6 @@
             "title": "Retrieving and installing CALCEPH.jl"
         }, 
         {
-            "location": "/install/#module", 
-            "text": "#  CALCEPH     Module .  CALCEPH  This module is a wrapper of CALCEPH, IMCCE planetary ephemeris access   library. It supports INPOPxx, JPL DExxx and SPICE ephemeris.  https://www.imcce.fr/recherche/equipes/asd/calceph  source", 
-            "title": "Module"
-        }, 
-        {
             "location": "/context/", 
             "text": "#\n\n\nCALCEPH.CalcephEphem\n \n \nType\n.\n\n\nCalcephEphem\n\n\n\n\nEphemeris descriptor. Create with:\n\n\neph = CalCephEphem(filename)\neph = CalCephEphem([filename1,filename2...])\n\n\n\n\nThe ephemeris descriptor will be used to access the ephemeris and related   data stored in the specified files.\n\n\nBecause, Julia GC is lazy, you may want to free the memory managed by eph   before you get rid of the reference to eph with:\n\n\nfinalize(eph)\n\n\n\n\nsource\n\n\n#\n\n\nCALCEPH.CalcephPrefetch\n \n \nFunction\n.\n\n\nCalcephPrefetch(eph)\n\n\n\n\nThis function prefetches to the main memory all files associated to the ephemeris descriptor eph.\n\n\nsource", 
             "title": "Ephemeris context"
@@ -57,7 +52,7 @@
         }, 
         {
             "location": "/ids/", 
-            "text": "#\n\n\nCALCEPH.BodyId\n \n \nType\n.\n\n\nBodyId\n\n\n\n\nBody identifiers.\n\n\nsource\n\n\n#\n\n\nCALCEPH.add!\n \n \nFunction\n.\n\n\nadd!(bid,name,id)\n\n\n\n\nAdd a new mapping name-\nid into BodyId instance bid.\n\n\nExample:\n\n\nbid=CALCEPH.BodyId()\nadd!(bid,:tatooine,1000001)\nadd!(bid,:dagobah,1000002)\nadd!(bid,:endor,1000003)\nadd!(bid,:deathstar,1000004)\nadd!(bid,:endor_deathstar_system_barycenter,1000005)\nadd!(bid,:edsb,1000005)\n\n\n\n\nsource\n\n\n#\n\n\nCALCEPH.loadData!\n \n \nFunction\n.\n\n\nloadData!(bid,filename)\n\n\n\n\nLoad mapping (body name,body ID) from file into BodyId instance bid.   Name from the file are converted to lower case and have spaces replaced by underscores   before being converted to symbols/interned string.\n\n\nExample file \nhttps://github.com/bgodard/CALCEPH.jl/blob/master/data/NaifIds.txt\n\n\nsource\n\n\n#\n\n\nCALCEPH.NaifId\n \n \nConstant\n.\n\n\nNaifId\n\n\n\n\nNAIF identification numbers\n\n\nExamples:\n\n\n\n\nNaifId.id[:sun]-\n10\n\n\nNaifId.id[:mars]-\n499\n\n\nNaifId.names[0]-\nSet(Symbol[:ssb, :solar_system_barycenter])\n\n\n\n\nsource", 
+            "text": "#\n\n\nCALCEPH.BodyId\n \n \nType\n.\n\n\nBodyId\n\n\n\n\nBody identifiers.\n\n\nsource\n\n\n#\n\n\nCALCEPH.add!\n \n \nFunction\n.\n\n\nadd!(bid,name,id)\n\n\n\n\nAdd a new mapping name-\nid into BodyId instance bid.\n\n\nExample:\n\n\nbid=CALCEPH.BodyId()\nadd!(bid,:tatooine,1000001)\nadd!(bid,:dagobah,1000002)\nadd!(bid,:endor,1000003)\nadd!(bid,:deathstar,1000004)\nadd!(bid,:endor_deathstar_system_barycenter,1000005)\nadd!(bid,:edsb,1000005)\n\n\n\n\nsource\n\n\n#\n\n\nCALCEPH.loadData!\n \n \nFunction\n.\n\n\nloadData!(bid,filename)\n\n\n\n\nLoad mapping (body name,body ID) from file into BodyId instance bid.   Names from the file are converted to lower case and have spaces replaced by   underscores before being converted to symbols/interned strings.\n\n\nExample file \nhttps://github.com/bgodard/CALCEPH.jl/blob/master/data/NaifIds.txt\n\n\nsource\n\n\n#\n\n\nCALCEPH.NaifId\n \n \nConstant\n.\n\n\nNaifId\n\n\n\n\nNAIF identification numbers\n\n\nExamples:\n\n\n\n\nNaifId.id[:sun]-\n10\n\n\nNaifId.id[:mars]-\n499\n\n\nNaifId.names[0]-\nSet(Symbol[:ssb, :solar_system_barycenter])\n\n\n\n\nsource", 
             "title": "Identifiers"
         }, 
         {
