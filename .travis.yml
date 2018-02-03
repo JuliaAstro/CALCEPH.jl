@@ -34,7 +34,9 @@ matrix:
 #script:
 #  - julia -e 'Pkg.clone(pwd()); Pkg.build("CALCEPH"); Pkg.test("CALCEPH"; coverage=true)'
 after_success:
-  - julia -e 'cd(Pkg.dir("PkgName")); include(joinpath("docs", "make.jl"))'
+  # Build and push documentation to github pages
+  - julia -e 'Pkg.add("Documenter")'
+  - julia -e 'cd(Pkg.dir("CALCEPH")); include(joinpath("docs", "make.jl"))'
   # push coverage results to Coveralls
   - julia -e 'cd(Pkg.dir("CALCEPH")); Pkg.add("Coverage"); using Coverage; Coveralls.submit(Coveralls.process_folder())'
   # push coverage results to Codecov
