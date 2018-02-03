@@ -1,7 +1,6 @@
+This is a julia wrapper for [CALCEPH](https://www.imcce.fr/inpop/calceph/) a C library for reading planetary ephemeris files, such [INPOPxx](https://www.imcce.fr/inpop), JPL DExxx and SPICE ephemeris files.
 
-CALCEPH.jl is a julia wrapper for [CALCEPH](https://www.imcce.fr/recherche/equipes/asd/calceph/) a C library for reading planetary ephemeris files, such INPOPxx, JPL DExxx and SPICE ephemeris files.
-
-[CALCEPH](https://www.imcce.fr/recherche/equipes/asd/calceph/) C library is developped by [IMCCE](https://www.imcce.fr/).
+[CALCEPH](https://www.imcce.fr/inpop/calceph/) C library is developped by [IMCCE](https://www.imcce.fr/).
 
 # Quick start
 
@@ -53,13 +52,12 @@ names_0 = NaifId.names[0]
 ```
 
 # Why use CALCEPH?
-CALCEPH functionality is also provided by [NAIF SPICE Toolkit](https://naif.jpl.nasa.gov/naif/toolkit.html). However CALCEPH has several advantages over SPICE:
+CALCEPH functionality is also provided by [NAIF SPICE Toolkit](https://naif.jpl.nasa.gov/naif/toolkit.html). However CALCEPH has several advantages over the SPICE toolkit:
 - It is faster at computing ephemeris data.
-- It can handle multiple ephemeris context whereas SPICE cannot.
-- It is thread safe (if using one context per thread) whereas SPICE is not.
+- It can handle multiple ephemeris contexts whereas the SPICE toolkit cannot.
+- It is thread safe (if using one context per thread) whereas the SPICE toolkit is not.
 - It can compute higher order derivatives (acceleration and jerk) approximation using differentiation of the interpolation polynomials.
-- Its ephemeris computation interface expects the time separated in two double precision numbers (SPICE interface only has one). This can be used to achieve higher
-precision in timetag (this can have a significant impact when modeling Doppler observations from a deep space probe).
-- It is distributed as a single cross platform source making it easy to integrate in other projects whereas SPICE is distributed one source per platform.
+- Its ephemeris computation interface expects the time separated in two double precision floating point numbers (the SPICE toolkit interface only use one double precision floating point number to specify an epoch). This can be used to achieve higher precision in timetag (this can have a significant impact when modeling Doppler observations from a deep space probe).
+- It is distributed as a single cross platform source making it easy to integrate in other projects whereas the SPICE toolkit is distributed one source per platform.
 
-But CALCEPH does not support all functions of the SPICE Toolkit. If you need more functionalities [SPICE.jl](https://github.com/JuliaAstrodynamics/SPICE.jl) is a Julia wrapper for SPICE.
+But CALCEPH does not support all functions of the SPICE toolkit. If you need more functionalities [SPICE.jl](https://github.com/JuliaAstrodynamics/SPICE.jl) is a Julia wrapper for the SPICE toolkit.

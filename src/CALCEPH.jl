@@ -16,8 +16,12 @@ else
     error("libcalceph was not found. Please run 'Pkg.build(\"CALCEPH\").")
 end
 
+struct CalcephException <: Exception
+    msg::String
+end
+
 include("CalcephEphem.jl")
-export CalcephEphem, CalcephPrefetch
+export CalcephEphem, CalcephPrefetch, CalcephException
 
 include("CalcephCompute.jl")
 export CalcephCompute,  CalcephComputeUnit, CalcephComputeOrder

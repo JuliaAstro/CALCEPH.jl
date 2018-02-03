@@ -12,7 +12,7 @@ function CalcephConstants(eph::CalcephEphem)
     NC::Int = ccall((:calceph_getconstantcount , libcalceph), Cint,
     (Ptr{Void},),eph.data)
     if (NC == 0)
-       error("Unable to get number of constants!")
+       throw(CalcephException("Unable to get number of constants!"))
     end
     value = Ref{Cdouble}(0.0)
     name = Vector{UInt8}(CalcephMaxConstName)

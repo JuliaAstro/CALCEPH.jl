@@ -14,10 +14,10 @@ with h≠0 being the grid spacing:
 
 function FivePointStencil(f,x,n::Int,h)
     if ((n<0) || (n>4))
-        error("Invalid order $n")
+        error("In FivePointStencil: Invalid order $n")
     end
     if (h==0.0)
-        error("Invalid grid spacing $h")
+        error("In FivePointStencil: Invalid grid spacing $h")
     end
     fm2 = f(x-2h)
     fm1 = f(x-h)

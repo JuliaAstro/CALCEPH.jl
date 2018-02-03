@@ -3,7 +3,7 @@
 macro CalcephCheckStatus(stat,msg)
    return quote
       if ($(esc(stat)) == 0)
-         error($(esc(msg)))
+         throw(CalcephException($(esc(msg))))
       end
    end
 end
@@ -11,7 +11,7 @@ end
 macro CalcephCheckPointer(ptr,msg)
    return quote
       if ($(esc(ptr)) == C_NULL)
-         error($(esc(msg)))
+         throw(CalcephException($(esc(msg))))
       end
    end
 end
@@ -20,7 +20,7 @@ macro CalcephCheckOrder(order)
    return quote
       local or = $(esc(order))
       if (or<0) || (or>3)
-         error("Order must be between 0 and 3.")
+         throw(CalcephException("Order must be between 0 and 3."))
       end
    end
 end

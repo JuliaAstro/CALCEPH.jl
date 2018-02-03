@@ -47,10 +47,10 @@ end
 @test NaifId.id[:pluto] == 999
 
 # test error case: changing name->id mapping
-@test_throws ErrorException CALCEPH.add!(NaifId,:jupiter,1)
+@test_throws CalcephException CALCEPH.add!(NaifId,:jupiter,1)
 # test error case: parsing wrongly formatted body id input file
 bid = CALCEPH.BodyId()
-@test_throws ErrorException CALCEPH.loadData!(bid,joinpath(testpath,"badIds.txt"))
+@test_throws CalcephException CALCEPH.loadData!(bid,joinpath(testpath,"badIds.txt"))
 
 # check memory management
 eph1 = CalcephEphem(joinpath(testpath,"example1.dat"))
@@ -69,7 +69,7 @@ finalize(eph2)
 CALCEPH.CalcephEphemDestructor(eph2)
 
 # Opening invalid ephemeris
-@test_throws ErrorException eph1 = CalcephEphem(String[])
+@test_throws CalcephException eph1 = CalcephEphem(String[])
 
 # check constants
 eph1 = CalcephEphem(joinpath(testpath,"example1.dat"))
@@ -88,11 +88,11 @@ con2 = CalcephConstants(eph2)
 
 # Retrieving constants from closed ephemeris
 finalize(eph2)
-@test_throws ErrorException con2 = CalcephConstants(eph2)
+@test_throws CalcephException con2 = CalcephConstants(eph2)
 
 # Retrieving constants from ephemeris with no constants
 eph2 = CalcephEphem(joinpath(testpath,"example1.bsp"))
-@test_throws ErrorException con2 = CalcephConstants(eph2)
+@test_throws CalcephException con2 = CalcephConstants(eph2)
 
 # test CalcephCompute*
 # test data and thresholds from CALCEPH C library tests
@@ -128,11 +128,11 @@ end
 
 # test error case wrong order
 eph1 = CalcephEphem(joinpath(testpath,"example1.bsp"))
-@test_throws ErrorException CalcephComputeOrder(eph1,0.0,0.0,1,0,0,4)
-@test_throws ErrorException CalcephComputeOrder(eph1,0.0,0.0,1,0,0,-1)
+@test_throws CalcephException CalcephComputeOrder(eph1,0.0,0.0,1,0,0,4)
+@test_throws CalcephException CalcephComputeOrder(eph1,0.0,0.0,1,0,0,-1)
 
 # test error case:
-@test_throws ErrorException CalcephComputeUnit(eph1,0.0,0.0,-144,0,0)
+@test_throws CalcephException CalcephComputeUnit(eph1,0.0,0.0,-144,0,0)
 
 
 # Five-Point Stencil

@@ -21,3 +21,9 @@ To start using it:
 ```julia
 using CALCEPH
 ```
+
+# Module
+
+```@docs
+CALCEPH
+```

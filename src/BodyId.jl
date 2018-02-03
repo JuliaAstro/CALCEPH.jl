@@ -21,15 +21,17 @@ end
 Example:
 
     bid=CALCEPH.BodyId()
-    add!(bid,:tatooine,1)
-    add!(bid,:dagobah,2)
-    add!(bid,:Dagobah,2)
-
+    add!(bid,:tatooine,1000001)
+    add!(bid,:dagobah,1000002)
+    add!(bid,:endor,1000003)
+    add!(bid,:deathstar,1000004)
+    add!(bid,:endor_deathstar_system_barycenter,1000005)
+    add!(bid,:edsb,1000005)
 "
 function add!(bid::BodyId,name::Symbol,id::Int)
    if (name ∈ keys(bid.id))
       if bid.id[name] != id
-         error("Cannot map already defined identifier [$name] to a different ID [$id]")
+         throw(CalcephException("Cannot map already defined identifier [$name] to a different ID [$id]"))
       else
          return
       end
@@ -45,6 +47,8 @@ end
     loadData!(bid,filename)
 
   Load mapping (body name,body ID) from file into BodyId instance bid.
+  Name from the file are converted to lower case and have spaces replaced by underscores
+  before being converted to symbols/interned string.
 
   Example file [https://github.com/bgodard/CALCEPH.jl/blob/master/data/NaifIds.txt](https://github.com/bgodard/CALCEPH.jl/blob/master/data/NaifIds.txt)
 "
@@ -60,7 +64,7 @@ function loadData!(bid::BodyId,filename::AbstractString)
          if ln1[1] != '#'
             m = match(pattern1,ln1)
             if isa(m,Void)
-               error("parsing line $cnt in data input file: $filename:\n$ln0")
+               throw(CalcephException("parsing line $cnt in data input file: $filename:\n$ln0"))
             end
             id = parse(Int,m.captures[1])
             name = Symbol(lowercase(replace(strip(m.captures[2]),pattern2,"_")))

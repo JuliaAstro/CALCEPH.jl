@@ -1,6 +1,3 @@
-
-
-
 "
     CalcephCompute(eph,JD0,time,target,center)
 
