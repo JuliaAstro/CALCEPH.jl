@@ -165,7 +165,7 @@
 <li>17    : TCG-TCB</li>
 <li>asteroid number + CALCEPH_ASTEROID    : asteroid</li>
 </ul>
-<p><a target='_blank' href='https://github.com/bgodard/CALCEPH.jl/blob/a6654d0b7944f6b05df4f5dc0ce643c2ff140cd3/src/CalcephCompute.jl#L4-L47' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/bgodard/CALCEPH.jl/blob/890e2c9d65f5b419c9fd42d9eb103299bfe464e0/src/CalcephCompute.jl#L1-L44' class='documenter-source'>source</a><br></p>
 <p><a id='CALCEPH.CalcephComputeUnit' href='#CALCEPH.CalcephComputeUnit'>#</a>
 <strong><code>CALCEPH.CalcephComputeUnit</code></strong> &mdash; <em>Function</em>.</p>
 <pre class="codehilite"><code>CalcephComputeUnit(eph,JD0,time,target,center,unit)</code></pre>
@@ -180,7 +180,7 @@
 <li><code>center::Int</code>: The origin of the coordinate system. The numbering system depends on the parameter unit.</li>
 <li><code>unit::Int</code> : The units of the result. This integer is a sum of some unit constants (CalcephUnit*) and/or the constant CalcephUseNaifId. If the unit contains CalcephUseNaifId, the NAIF identification numbering system is used for the target and the center (see module NaifId). If the unit does not contain CalcephUseNaifId, the old number system is used for the target and the center (see the list in the documentation of function CalcephCompute).</li>
 </ul>
-<p><a target='_blank' href='https://github.com/bgodard/CALCEPH.jl/blob/a6654d0b7944f6b05df4f5dc0ce643c2ff140cd3/src/CalcephCompute.jl#L58-L76' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/bgodard/CALCEPH.jl/blob/890e2c9d65f5b419c9fd42d9eb103299bfe464e0/src/CalcephCompute.jl#L55-L73' class='documenter-source'>source</a><br></p>
 <p><a id='CALCEPH.CalcephComputeOrder' href='#CALCEPH.CalcephComputeOrder'>#</a>
 <strong><code>CALCEPH.CalcephComputeOrder</code></strong> &mdash; <em>Function</em>.</p>
 <pre class="codehilite"><code>CalcephComputeOrder(eph,JD0,time,target,center,unit,order)</code></pre>
@@ -205,7 +205,7 @@
 </li>
 </ul>
 <p>If order equals to 1, the behavior of CalcephComputeOrder is the same as that of CalcephComputeUnit.</p>
-<p><a target='_blank' href='https://github.com/bgodard/CALCEPH.jl/blob/a6654d0b7944f6b05df4f5dc0ce643c2ff140cd3/src/CalcephCompute.jl#L87-L112' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/bgodard/CALCEPH.jl/blob/890e2c9d65f5b419c9fd42d9eb103299bfe464e0/src/CalcephCompute.jl#L84-L109' class='documenter-source'>source</a><br></p>
 <p><a id='CALCEPH.CalcephOrientUnit' href='#CALCEPH.CalcephOrientUnit'>#</a>
 <strong><code>CALCEPH.CalcephOrientUnit</code></strong> &mdash; <em>Function</em>.</p>
 <pre class="codehilite"><code>CalcephOrientUnit(eph,JD0,time,target,unit)</code></pre>
@@ -219,7 +219,7 @@
 <li><code>target::Int</code>: The body or reference point whose orientation is required. The numbering system depends on the parameter unit.</li>
 <li><code>unit::Int</code> : The units of the result. This integer is a sum of some unit constants (CalcephUnit*) and/or the constant CalcephUseNaifId. If the unit contains CalcephUseNaifId, the NAIF identification numbering system is used for the target and the center (see module NaifId). If the unit does not contain CalcephUseNaifId, the old number system is used for the target and the center (see the list in the documentation of function CalcephCompute). The angles are expressed in radians if unit contains CalcephUnitRad.</li>
 </ul>
-<p><a target='_blank' href='https://github.com/bgodard/CALCEPH.jl/blob/a6654d0b7944f6b05df4f5dc0ce643c2ff140cd3/src/CalcephOrient.jl#L1-L18' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/bgodard/CALCEPH.jl/blob/890e2c9d65f5b419c9fd42d9eb103299bfe464e0/src/CalcephOrient.jl#L1-L18' class='documenter-source'>source</a><br></p>
 <p><a id='CALCEPH.CalcephOrientOrder' href='#CALCEPH.CalcephOrientOrder'>#</a>
 <strong><code>CALCEPH.CalcephOrientOrder</code></strong> &mdash; <em>Function</em>.</p>
 <pre class="codehilite"><code>CalcephOrientOrder(eph,JD0,time,target,unit,order)</code></pre>
@@ -243,7 +243,7 @@
 </li>
 </ul>
 <p>If order equals to 1, the behavior of CalcephOrientOrder is the same as that of CalcephOrientUnit.</p>
-<p><a target='_blank' href='https://github.com/bgodard/CALCEPH.jl/blob/a6654d0b7944f6b05df4f5dc0ce643c2ff140cd3/src/CalcephOrient.jl#L29-L53' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/bgodard/CALCEPH.jl/blob/890e2c9d65f5b419c9fd42d9eb103299bfe464e0/src/CalcephOrient.jl#L29-L53' class='documenter-source'>source</a><br></p>
               
             </div>
           </div>

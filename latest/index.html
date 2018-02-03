@@ -132,8 +132,8 @@
           <div role="main">
             <div class="section">
               
-                <p>CALCEPH.jl is a julia wrapper for <a href="https://www.imcce.fr/recherche/equipes/asd/calceph/">CALCEPH</a> a C library for reading planetary ephemeris files, such INPOPxx, JPL DExxx and SPICE ephemeris files.</p>
-<p><a href="https://www.imcce.fr/recherche/equipes/asd/calceph/">CALCEPH</a> C library is developped by <a href="https://www.imcce.fr/">IMCCE</a>.</p>
+                <p>This is a julia wrapper for <a href="https://www.imcce.fr/inpop/calceph/">CALCEPH</a> a C library for reading planetary ephemeris files, such <a href="https://www.imcce.fr/inpop">INPOPxx</a>, JPL DExxx and SPICE ephemeris files.</p>
+<p><a href="https://www.imcce.fr/inpop/calceph/">CALCEPH</a> C library is developped by <a href="https://www.imcce.fr/">IMCCE</a>.</p>
 <p><a id='Quick-start-1'></a></p>
 <h1 id="quick-start">Quick start</h1>
 <p>In your favorite Julia interpreter, run:</p>
@@ -182,19 +182,16 @@ names_0 = NaifId.names[0]</code></pre>
 
 <p><a id='Why-use-CALCEPH?-1'></a></p>
 <h1 id="why-use-calceph">Why use CALCEPH?</h1>
-<p>CALCEPH functionality is also provided by <a href="https://naif.jpl.nasa.gov/naif/toolkit.html">NAIF SPICE Toolkit</a>. However CALCEPH has several advantages over SPICE:</p>
+<p>CALCEPH functionality is also provided by <a href="https://naif.jpl.nasa.gov/naif/toolkit.html">NAIF SPICE Toolkit</a>. However CALCEPH has several advantages over the SPICE toolkit:</p>
 <ul>
 <li>It is faster at computing ephemeris data.</li>
-<li>It can handle multiple ephemeris context whereas SPICE cannot.</li>
-<li>It is thread safe (if using one context per thread) whereas SPICE is not.</li>
+<li>It can handle multiple ephemeris contexts whereas the SPICE toolkit cannot.</li>
+<li>It is thread safe (if using one context per thread) whereas the SPICE toolkit is not.</li>
 <li>It can compute higher order derivatives (acceleration and jerk) approximation using differentiation of the interpolation polynomials.</li>
-<li>Its ephemeris computation interface expects the time separated in two double precision numbers (SPICE interface only has one). This can be used to achieve higher</li>
+<li>Its ephemeris computation interface expects the time separated in two double precision floating point numbers (the SPICE toolkit interface only use one double precision floating point number to specify an epoch). This can be used to achieve higher precision in timetag (this can have a significant impact when modeling Doppler observations from a deep space probe).</li>
+<li>It is distributed as a single cross platform source making it easy to integrate in other projects whereas the SPICE toolkit is distributed one source per platform.</li>
 </ul>
-<p>precision in timetag (this can have a significant impact when modeling Doppler observations from a deep space probe).</p>
-<ul>
-<li>It is distributed as a single cross platform source making it easy to integrate in other projects whereas SPICE is distributed one source per platform.</li>
-</ul>
-<p>But CALCEPH does not support all functions of the SPICE Toolkit. If you need more functionalities <a href="https://github.com/JuliaAstrodynamics/SPICE.jl">SPICE.jl</a> is a Julia wrapper for SPICE.</p>
+<p>But CALCEPH does not support all functions of the SPICE toolkit. If you need more functionalities <a href="https://github.com/JuliaAstrodynamics/SPICE.jl">SPICE.jl</a> is a Julia wrapper for the SPICE toolkit.</p>
               
             </div>
           </div>
@@ -248,5 +245,5 @@ names_0 = NaifId.names[0]</code></pre>
 
 <!--
 MkDocs version : 0.17.2
-Build Date UTC : 2018-02-03 18:27:47
+Build Date UTC : 2018-02-03 19:16:07
 -->
