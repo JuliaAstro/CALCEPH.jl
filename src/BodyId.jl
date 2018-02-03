@@ -47,8 +47,8 @@ end
     loadData!(bid,filename)
 
   Load mapping (body name,body ID) from file into BodyId instance bid.
-  Name from the file are converted to lower case and have spaces replaced by underscores
-  before being converted to symbols/interned string.
+  Names from the file are converted to lower case and have spaces replaced by
+  underscores before being converted to symbols/interned strings.
 
   Example file [https://github.com/bgodard/CALCEPH.jl/blob/master/data/NaifIds.txt](https://github.com/bgodard/CALCEPH.jl/blob/master/data/NaifIds.txt)
 "
