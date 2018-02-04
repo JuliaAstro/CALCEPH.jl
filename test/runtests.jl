@@ -5,49 +5,49 @@ testpath = joinpath(Pkg.dir("CALCEPH"), "test")
 
 # NAIF ID tests
 
-for (name,id) ∈ NaifId.id
-    @test name ∈ NaifId.names[id]
+for (name,id) ∈ naifId.id
+    @test name ∈ naifId.names[id]
 end
 
-for (id,names) ∈ NaifId.names
+for (id,names) ∈ naifId.names
     for name ∈ names
-       @test NaifId.id[name] == id
+       @test naifId.id[name] == id
    end
 end
 
-@test NaifId.id[:ssb] == NaifId.id[:solar_system_barycenter] == 0
-@test NaifId.id[:sun] == 10
-@test NaifId.id[:mercury_barycenter] == 1
-@test NaifId.id[:mercury] == 199
-@test NaifId.id[:venus_barycenter] == 2
-@test NaifId.id[:venus] == 299
-@test NaifId.id[:emb] == NaifId.id[:earth_barycenter] == 3
-@test NaifId.id[:moon] == 301
-@test NaifId.id[:earth] == 399
-@test NaifId.id[:mars_barycenter] == 4
-@test NaifId.id[:phobos] == 401
-@test NaifId.id[:deimos] == 402
-@test NaifId.id[:mars] == 499
-@test NaifId.id[:jupiter_barycenter] == 5
-@test NaifId.id[:io] == 501
-@test NaifId.id[:europa] == 502
-@test NaifId.id[:ganymede] == 503
-@test NaifId.id[:callisto] == 504
-@test NaifId.id[:jupiter] == 599
-@test NaifId.id[:saturn_barycenter] == 6
-@test NaifId.id[:titan] == 606
-@test NaifId.id[:saturn] == 699
-@test NaifId.id[:uranus_barycenter] == 7
-@test NaifId.id[:uranus] == 799
-@test NaifId.id[:neptune_barycenter] == 8
-@test NaifId.id[:triton] == 801
-@test NaifId.id[:neptune] == 899
-@test NaifId.id[:pluto_barycenter] == 9
-@test NaifId.id[:charon] == 901
-@test NaifId.id[:pluto] == 999
+@test naifId.id[:ssb] == naifId.id[:solar_system_barycenter] == 0
+@test naifId.id[:sun] == 10
+@test naifId.id[:mercury_barycenter] == 1
+@test naifId.id[:mercury] == 199
+@test naifId.id[:venus_barycenter] == 2
+@test naifId.id[:venus] == 299
+@test naifId.id[:emb] == naifId.id[:earth_barycenter] == 3
+@test naifId.id[:moon] == 301
+@test naifId.id[:earth] == 399
+@test naifId.id[:mars_barycenter] == 4
+@test naifId.id[:phobos] == 401
+@test naifId.id[:deimos] == 402
+@test naifId.id[:mars] == 499
+@test naifId.id[:jupiter_barycenter] == 5
+@test naifId.id[:io] == 501
+@test naifId.id[:europa] == 502
+@test naifId.id[:ganymede] == 503
+@test naifId.id[:callisto] == 504
+@test naifId.id[:jupiter] == 599
+@test naifId.id[:saturn_barycenter] == 6
+@test naifId.id[:titan] == 606
+@test naifId.id[:saturn] == 699
+@test naifId.id[:uranus_barycenter] == 7
+@test naifId.id[:uranus] == 799
+@test naifId.id[:neptune_barycenter] == 8
+@test naifId.id[:triton] == 801
+@test naifId.id[:neptune] == 899
+@test naifId.id[:pluto_barycenter] == 9
+@test naifId.id[:charon] == 901
+@test naifId.id[:pluto] == 999
 
 # test error case: changing name->id mapping
-@test_throws CALCEPHException CALCEPH.add!(NaifId,:jupiter,1)
+@test_throws CALCEPHException CALCEPH.add!(naifId,:jupiter,1)
 # test error case: parsing wrongly formatted body id input file
 bid = CALCEPH.BodyId()
 @test_throws CALCEPHException CALCEPH.loadData!(bid,joinpath(testpath,"badIds.txt"))

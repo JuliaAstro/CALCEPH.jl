@@ -2,13 +2,13 @@
     compute(eph,JD0,time,target,center)
 
 Compute position and velocity of target with respect to center at epoch
-JD0+time. This routine does not support the NAIF numbering scheme.
-For the NAIF numbering scheme, use compute or
-compute, with passing useNaifId in the unit argument.
+JD0+time. This method does not support the NAIF numbering scheme.
 To get the best precision for the interpolation, the time is splitted in two
 floating-point numbers. The argument JD0 should be an integer and time should
 be a fraction of the day. But you may call this function with time=0 and JD0,
 the desired time, if you don't take care about precision.
+
+This method does not support the NAIF body identification scheme.
 
 Output units are:
 * AU and AU/day for position and velocity
@@ -67,7 +67,7 @@ the desired time, if you don't take care about precision.
 - `time::Float64`: JD0+time must be equal to the Julian date for the time coordinate corresponding to the ephemeris (usually TDB or TCB)
 - `target::Int`: The body or reference point whose coordinates are required. The numbering system depends on the parameter unit.
 - `center::Int`: The origin of the coordinate system. The numbering system depends on the parameter unit.
-- `unit::Int` : The units of the result. This integer is a sum of some unit constants (unit*) and/or the constant useNaifId. If the unit contains useNaifId, the NAIF identification numbering system is used for the target and the center (see module NaifId). If the unit does not contain useNaifId, the old number system is used for the target and the center (see the list in the documentation of function compute).
+- `unit::Int` : The units of the result. This integer is a sum of some unit constants (unit*) and/or the constant useNaifId. If the unit contains useNaifId, the NAIF identification numbering system is used for the target and the center. If the unit does not contain useNaifId, the old number system is used for the target and the center.
 
 "
 function compute(eph::Ephem,JD0::Float64,time::Float64,
@@ -96,14 +96,13 @@ the desired time, if you don't take care about precision.
 - `time::Float64`: JD0+time must be equal to the Julian date for the time coordinate corresponding to the ephemeris (usually TDB or TCB)
 - `target::Int`: The body or reference point whose coordinates are required. The numbering system depends on the parameter unit.
 - `center::Int`: The origin of the coordinate system. The numbering system depends on the parameter unit.
-- `unit::Int` : The units of the result. This integer is a sum of some unit constants (unit*) and/or the constant useNaifId. If the unit contains useNaifId, the NAIF identification numbering system is used for the target and the center (see module NaifId). If the unit does not contain useNaifId, the old number system is used for the target and the center (see the list in the documentation of function compute).
+- `unit::Int` : The units of the result. This integer is a sum of some unit constants (unit*) and/or the constant useNaifId. If the unit contains useNaifId, the NAIF identification numbering system is used for the target and the center. If the unit does not contain useNaifId, the old number system is used for the target and the center.
 - `order::Int` : The order of derivatives
     * 0: only the position is computed.
     * 1: only the position and velocity are computed.
     * 2: only the position, velocity and acceleration are computed.
     * 3: the position, velocity and acceleration and jerk are computed.
 
-If order equals to 1, the behavior of compute is the same as that of compute.
 
 "
 function compute(eph::Ephem,JD0::Float64,time::Float64,

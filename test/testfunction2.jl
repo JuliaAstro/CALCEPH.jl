@@ -27,7 +27,7 @@ function testFunction2(testFile,testFile2,ephFiles,pflag)
         ref = [parse(Float64, x) for x in elts[4:end]]
         @test [parse(Float64, x) for x in elts2[4:end]] == ref
 
-        if (target != NaifId.id[:ttmtdb] && target != 15)
+        if (target != naifId.id[:ttmtdb] && target != 15)
             for (unitold,ϵ) in [ (unitAU+unitDay,0.0),
                                  (unitKM+unitDay,0.0),
                                  (unitAU+unitSec,0.0),
@@ -49,7 +49,7 @@ function testFunction2(testFile,testFile2,ephFiles,pflag)
                @test length(val2) == 12
                [(@test val2[i] ≈ val[i] atol=ϵ) for i in 1:6]
            end
-       elseif (target == NaifId.id[:ttmtdb])
+       elseif (target == naifId.id[:ttmtdb])
            for (unitold,ϵ) in [ (unitDay,0.0),
                                 (unitSec,0.0)]
                unit = unitold + useNaifId

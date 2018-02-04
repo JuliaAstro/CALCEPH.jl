@@ -77,23 +77,23 @@ function loadData!(bid::BodyId,filename::AbstractString)
 end
 
 "
-    NaifId
+    naifId
 
 NAIF identification numbers
 
 Examples:
-- NaifId.id[:sun]->10
-- NaifId.id[:mars]->499
-- NaifId.names[0]->Set(Symbol[:ssb, :solar_system_barycenter])
+- naifId.id[:sun]->10
+- naifId.id[:mars]->499
+- naifId.names[0]->Set(Symbol[:ssb, :solar_system_barycenter])
 
 "
-const NaifId = BodyId()
-loadData!(NaifId,joinpath(Pkg.dir("CALCEPH"), "data", "NaifIds.txt"))
+const naifId = BodyId()
+loadData!(naifId,joinpath(Pkg.dir("CALCEPH"), "data", "NaifIds.txt"))
 
 # NAIF IDs for Hyperbolic Asteroid 'Oumuamua (1I/2017 U1)
-add!(NaifId,:oumuamua,3788040)
+add!(naifId,:oumuamua,3788040)
 
 # NAIF IDs for CALCEPH time ephemeris
-add!(NaifId,:timecenter,1000000000)
-add!(NaifId,:ttmtdb    ,1000000001)
-add!(NaifId,:tcgmtcb   ,1000000002)
+add!(naifId,:timecenter,1000000000)
+add!(naifId,:ttmtdb    ,1000000001)
+add!(naifId,:tcgmtcb   ,1000000002)

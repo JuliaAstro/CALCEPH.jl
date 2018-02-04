@@ -45,17 +45,17 @@ J2sun = con[:J2SUN]
 # delta the fractional part
 # when using NAIF identification numbers, useNaifId has to be added to
 # the units argument.
-pva=compute(eph,2451624.0,0.5,NaifId.id[:earth],NaifId.id[:emb],
+pva=compute(eph,2451624.0,0.5,naifId.id[:earth],naifId.id[:emb],
                         useNaifId+unitKM+unitSec,2)
 position=pva[1:3]
 velocity=pva[4:6]
 acceleration=pva[7:end]
 
 # what is the NAIF identification number for Deimos
-id_deimos = NaifId.id[:deimos]
+id_deimos = naifId.id[:deimos]
 
 # what does NAIF ID 0 correspond to?
-names_0 = NaifId.names[0]
+names_0 = naifId.names[0]
 
 ```
 

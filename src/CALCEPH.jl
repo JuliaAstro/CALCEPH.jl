@@ -27,7 +27,7 @@ include("compute.jl")
 export compute,  compute, compute
 
 include("bodyId.jl")
-export NaifId
+export naifId
 
 include("units.jl")
 export unitAU, unitKM, unitDay, unitSec, unitRad, useNaifId
