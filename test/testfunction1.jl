@@ -1,5 +1,5 @@
 
-# This test is derived from test cmcomputeUnit.c in Calceph version 2.3.2
+# This test is derived from test cmcompute.c in Calceph version 2.3.2
 # the test data files are copied from calceph-2.3.2.tar.gz
 function testFunction1(testFile,ephFiles,pflag)
 
@@ -39,11 +39,11 @@ function testFunction1(testFile,ephFiles,pflag)
         ref = val0
         ϵ = 3.0e-15
         if target ∉ [15,16,17]
-            val = computeUnit(eph,jd0,dt,target,center,unitAU+unitDay)
+            val = compute(eph,jd0,dt,target,center,unitAU+unitDay)
             for i in 1:6
                 @test abs(ref[i]-val[i]) < ϵ
             end
-            val = computeUnit(eph,jd0,dt,target,center,unitAU+unitSec)
+            val = compute(eph,jd0,dt,target,center,unitAU+unitSec)
             for i in 1:6
                 if i>3
                     val[i]*=86400
@@ -51,12 +51,12 @@ function testFunction1(testFile,ephFiles,pflag)
                 @test abs(ref[i]-val[i]) < ϵ
             end
             ϵ = 3.0e-14;
-            val = computeUnit(eph,jd0,dt,target,center,unitKM+unitDay)
+            val = compute(eph,jd0,dt,target,center,unitKM+unitDay)
             for i in 1:6
                 @test abs(ref[i]-val[i]/AU) < ϵ
             end
 
-            val = computeUnit(eph,jd0,dt,target,center,unitKM+unitSec)
+            val = compute(eph,jd0,dt,target,center,unitKM+unitSec)
             for i in 1:6
                 if i>3
                     val[i]*=86400
@@ -65,31 +65,31 @@ function testFunction1(testFile,ephFiles,pflag)
             end
 
             ϵ = 3.0e-15
-            val = computeOrder(eph,jd0,dt,target,center,unitDay+unitAU,3)
+            val = compute(eph,jd0,dt,target,center,unitDay+unitAU,3)
             @test length(val)==12
             for i in 1:6
                 @test abs(ref[i]-val[i]) < ϵ
             end
 
             ref = val
-            val = computeOrder(eph,jd0,dt,target,center,unitDay+unitAU,2)
+            val = compute(eph,jd0,dt,target,center,unitDay+unitAU,2)
             @test length(val)==9
             for i in 1:9
                 @test abs(ref[i]-val[i]) < ϵ
             end
-            val = computeOrder(eph,jd0,dt,target,center,unitDay+unitAU,1)
+            val = compute(eph,jd0,dt,target,center,unitDay+unitAU,1)
             @test length(val)==6
             for i in 1:6
                 @test abs(ref[i]-val[i]) < ϵ
             end
-            val = computeOrder(eph,jd0,dt,target,center,unitDay+unitAU,0)
+            val = compute(eph,jd0,dt,target,center,unitDay+unitAU,0)
             @test length(val)==3
             for i in 1:3
                 @test abs(ref[i]-val[i]) < ϵ
             end
 
             ϵ = 3.0e-14
-            val = computeOrder(eph,jd0,dt,target,center,unitSec+unitKM,3)
+            val = compute(eph,jd0,dt,target,center,unitSec+unitKM,3)
             @test length(val)==12
             for i in 1:12
                 if i>3
@@ -107,11 +107,11 @@ function testFunction1(testFile,ephFiles,pflag)
 
 
         elseif target == 15
-            val = computeUnit(eph,jd0,dt,target,center,unitRad+unitDay)
+            val = compute(eph,jd0,dt,target,center,unitRad+unitDay)
             for i in 1:6
                 @test abs(ref[i]-val[i]) < ϵ
             end
-            val = computeUnit(eph,jd0,dt,target,center,unitRad+unitSec)
+            val = compute(eph,jd0,dt,target,center,unitRad+unitSec)
             for i in 1:6
                 if i>3
                     val[i]*=86400
@@ -120,9 +120,9 @@ function testFunction1(testFile,ephFiles,pflag)
             end
         elseif target ∈ [16,17]
             ϵ = 1e-18
-            val = computeUnit(eph,jd0,dt,target,center,unitSec)
+            val = compute(eph,jd0,dt,target,center,unitSec)
             @test abs(ref[1]-val[1]) < ϵ
-            val = computeUnit(eph,jd0,dt,target,center,unitDay)
+            val = compute(eph,jd0,dt,target,center,unitDay)
             @test abs(ref[1]-val[1]*86400) < ϵ*86400
         end
 

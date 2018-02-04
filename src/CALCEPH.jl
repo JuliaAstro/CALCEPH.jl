@@ -24,7 +24,7 @@ include("ephem.jl")
 export Ephem, prefetch, CALCEPHException
 
 include("compute.jl")
-export compute,  computeUnit, computeOrder
+export compute,  compute, compute
 
 include("bodyId.jl")
 export NaifId
@@ -33,7 +33,7 @@ include("units.jl")
 export unitAU, unitKM, unitDay, unitSec, unitRad, useNaifId
 
 include("orient.jl")
-export orientUnit, orientOrder
+export orient, orient
 
 include("constants.jl")
 export constants

@@ -1,5 +1,5 @@
 
-# This test is derived from test cmcomputeUnit_naifid.c in Calceph version 2.3.2
+# This test is derived from test cmcompute_naifid.c in Calceph version 2.3.2
 # the test data files are copied from calceph-2.3.2.tar.gz
 function testFunction2(testFile,testFile2,ephFiles,pflag)
 
@@ -33,8 +33,8 @@ function testFunction2(testFile,testFile2,ephFiles,pflag)
                                  (unitAU+unitSec,0.0),
                                  (unitKM+unitSec,0.0)]
                unit = unitold + useNaifId
-               val = computeUnit(eph, jd0, dt, target, center, unit)
-               ref = computeUnit(eph, jd0, dt, targetold, centerold, unitold)
+               val = compute(eph, jd0, dt, target, center, unit)
+               ref = compute(eph, jd0, dt, targetold, centerold, unitold)
                [(@test ref[i] ≈ val[i] atol=ϵ) for i in 1:6]
            end
        elseif (target == 15)
@@ -42,10 +42,10 @@ function testFunction2(testFile,testFile2,ephFiles,pflag)
             for (unitold,ϵ) in [ (unitRad+unitDay,0.0),
                                  (unitRad+unitSec,0.0)]
                unit = unitold + useNaifId
-               val = orientUnit(eph, jd0, dt, targetN, unit)
-               ref = computeUnit(eph, jd0, dt, targetold, centerold, unitold)
+               val = orient(eph, jd0, dt, targetN, unit)
+               ref = compute(eph, jd0, dt, targetold, centerold, unitold)
                [(@test ref[i] ≈ val[i] atol=ϵ) for i in 1:6]
-               val2 = orientOrder(eph, jd0, dt, targetN, unit,3)
+               val2 = orient(eph, jd0, dt, targetN, unit,3)
                @test length(val2) == 12
                [(@test val2[i] ≈ val[i] atol=ϵ) for i in 1:6]
            end
@@ -53,8 +53,8 @@ function testFunction2(testFile,testFile2,ephFiles,pflag)
            for (unitold,ϵ) in [ (unitDay,0.0),
                                 (unitSec,0.0)]
                unit = unitold + useNaifId
-               val = computeUnit(eph, jd0, dt, target, center, unit)
-               ref = computeUnit(eph, jd0, dt, targetold, centerold, unitold)
+               val = compute(eph, jd0, dt, target, center, unit)
+               ref = compute(eph, jd0, dt, targetold, centerold, unitold)
                @test ref[1] ≈ val[1] atol=ϵ
            end
        end

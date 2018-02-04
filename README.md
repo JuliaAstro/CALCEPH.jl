@@ -45,7 +45,7 @@ J2sun = con[:J2SUN]
 # delta the fractional part
 # when using NAIF identification numbers, useNaifId has to be added to
 # the units argument.
-pva=computeOrder(eph,2451624.0,0.5,NaifId.id[:earth],NaifId.id[:emb],
+pva=compute(eph,2451624.0,0.5,NaifId.id[:earth],NaifId.id[:emb],
                         useNaifId+unitKM+unitSec,2)
 position=pva[1:3]
 velocity=pva[4:6]

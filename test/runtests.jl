@@ -128,11 +128,11 @@ end
 
 # test error case wrong order
 eph1 = Ephem(joinpath(testpath,"example1.bsp"))
-@test_throws CALCEPHException computeOrder(eph1,0.0,0.0,1,0,0,4)
-@test_throws CALCEPHException computeOrder(eph1,0.0,0.0,1,0,0,-1)
+@test_throws CALCEPHException compute(eph1,0.0,0.0,1,0,0,4)
+@test_throws CALCEPHException compute(eph1,0.0,0.0,1,0,0,-1)
 
 # test error case:
-@test_throws CALCEPHException computeUnit(eph1,0.0,0.0,-144,0,0)
+@test_throws CALCEPHException compute(eph1,0.0,0.0,-144,0,0)
 
 
 # Five-Point Stencil
