@@ -126,14 +126,14 @@
           <div role="main">
             <div class="section">
               
-                <p><a id='CALCEPH.CalcephEphem' href='#CALCEPH.CalcephEphem'>#</a>
-<strong><code>CALCEPH.CalcephEphem</code></strong> &mdash; <em>Type</em>.</p>
-<pre class="codehilite"><code>CalcephEphem</code></pre>
+                <p><a id='CALCEPH.Ephem' href='#CALCEPH.Ephem'>#</a>
+<strong><code>CALCEPH.Ephem</code></strong> &mdash; <em>Type</em>.</p>
+<pre class="codehilite"><code>Ephem</code></pre>
 
 
 <p>Ephemeris descriptor. Create with:</p>
-<pre class="codehilite"><code>eph = CalCephEphem(filename)
-eph = CalCephEphem([filename1,filename2...])</code></pre>
+<pre class="codehilite"><code>eph = Ephem(filename)
+eph = Ephem([filename1,filename2...])</code></pre>
 
 
 <p>The ephemeris descriptor will be used to access the ephemeris and related   data stored in the specified files.</p>
@@ -141,14 +141,18 @@ eph = CalCephEphem([filename1,filename2...])</code></pre>
 <pre class="codehilite"><code>finalize(eph)</code></pre>
 
 
-<p><a target='_blank' href='https://github.com/bgodard/CALCEPH.jl/blob/d7148ebb09cf94fe14d54935b28734d41ffb98ef/src/CalcephEphem.jl#L28-L45' class='documenter-source'>source</a><br></p>
-<p><a id='CALCEPH.CalcephPrefetch' href='#CALCEPH.CalcephPrefetch'>#</a>
-<strong><code>CALCEPH.CalcephPrefetch</code></strong> &mdash; <em>Function</em>.</p>
-<pre class="codehilite"><code>CalcephPrefetch(eph)</code></pre>
+<p>or after by forcing the GC to run:</p>
+<pre class="codehilite"><code>gc()</code></pre>
+
+
+<p><a target='_blank' href='https://github.com/bgodard/CALCEPH.jl/blob/8da32d34c5b1297200db25eb4caa6eaa89e701f7/src/ephem.jl#L28-L49' class='documenter-source'>source</a><br></p>
+<p><a id='CALCEPH.prefetch' href='#CALCEPH.prefetch'>#</a>
+<strong><code>CALCEPH.prefetch</code></strong> &mdash; <em>Function</em>.</p>
+<pre class="codehilite"><code>prefetch(eph)</code></pre>
 
 
 <p>This function prefetches to the main memory all files associated to the ephemeris descriptor eph.</p>
-<p><a target='_blank' href='https://github.com/bgodard/CALCEPH.jl/blob/d7148ebb09cf94fe14d54935b28734d41ffb98ef/src/CalcephEphem.jl#L70-L76' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/bgodard/CALCEPH.jl/blob/8da32d34c5b1297200db25eb4caa6eaa89e701f7/src/ephem.jl#L74-L80' class='documenter-source'>source</a><br></p>
               
             </div>
           </div>
