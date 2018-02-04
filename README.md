@@ -24,29 +24,29 @@ download("ftp://ftp.imcce.fr/pub/ephem/planets/inpop13c/inpop13c_TDB_m100_p100_t
 # download("https://naif.jpl.nasa.gov/pub/naif/generic_kernels/spk/satellites/jup310.bsp","jupiter_system.bsp")
 
 # create an ephemeris context
-eph = CalcephEphem("planets.dat")
+eph = Ephem("planets.dat")
 # from multiple files
-# eph = CalcephEphem(["planets.dat","jupiter_system.bsp"])
+# eph = Ephem(["planets.dat","jupiter_system.bsp"])
 
 # prefetch ephemeris files data to main memory for faster access
-CalcephPrefetch(eph)
+prefetch(eph)
 
 # retrieve constants from ephemeris as a dictionary
-constants = CalcephConstants(eph)
+con = constants(eph)
 # list the constants
-keys(constants)
+keys(con)
 # get the sun J2
-J2sun = constants[:J2SUN]
+J2sun = con[:J2SUN]
 
 # retrieve the position, velocity and acceleration of Earth (geocenter) relative
 # to the Earth-Moon system barycenter in kilometers, kilometers per second and
 # kilometers per second square at JD= 2451624.5 TDB timescale
 # for best accuracy the first time argument should be the integer part and the
 # delta the fractional part
-# when using NAIF identification numbers, CalcephUseNaifId has to be added to
+# when using NAIF identification numbers, useNaifId has to be added to
 # the units argument.
-pva=CalcephComputeOrder(eph,2451624.0,0.5,NaifId.id[:earth],NaifId.id[:emb],
-                        CalcephUseNaifId+CalcephUnitKM+CalcephUnitSec,2)
+pva=computeOrder(eph,2451624.0,0.5,NaifId.id[:earth],NaifId.id[:emb],
+                        useNaifId+unitKM+unitSec,2)
 position=pva[1:3]
 velocity=pva[4:6]
 acceleration=pva[7:end]

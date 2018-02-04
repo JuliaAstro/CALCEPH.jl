@@ -1,14 +1,14 @@
 
-# This test is derived from test cmcomputeunit_naifid.c in Calceph version 2.3.2
+# This test is derived from test cmcomputeUnit_naifid.c in Calceph version 2.3.2
 # the test data files are copied from calceph-2.3.2.tar.gz
-function testFunction2(testFile,testFile2,ephFiles,prefetch)
+function testFunction2(testFile,testFile2,ephFiles,pflag)
 
-    eph = CalcephEphem(ephFiles)
-    if prefetch
-        CalcephPrefetch(eph)
+    eph = Ephem(ephFiles)
+    if pflag
+        prefetch(eph)
     end
 
-    con = CalcephConstants(eph)
+    con = constants(eph)
     AU = con[:AU]
 
     f = open(testFile);
@@ -28,33 +28,33 @@ function testFunction2(testFile,testFile2,ephFiles,prefetch)
         @test [parse(Float64, x) for x in elts2[4:end]] == ref
 
         if (target != NaifId.id[:ttmtdb] && target != 15)
-            for (unitold,ϵ) in [ (CalcephUnitAU+CalcephUnitDay,0.0),
-                                 (CalcephUnitKM+CalcephUnitDay,0.0),
-                                 (CalcephUnitAU+CalcephUnitSec,0.0),
-                                 (CalcephUnitKM+CalcephUnitSec,0.0)]
-               unit = unitold + CalcephUseNaifId
-               val = CalcephComputeUnit(eph, jd0, dt, target, center, unit)
-               ref = CalcephComputeUnit(eph, jd0, dt, targetold, centerold, unitold)
+            for (unitold,ϵ) in [ (unitAU+unitDay,0.0),
+                                 (unitKM+unitDay,0.0),
+                                 (unitAU+unitSec,0.0),
+                                 (unitKM+unitSec,0.0)]
+               unit = unitold + useNaifId
+               val = computeUnit(eph, jd0, dt, target, center, unit)
+               ref = computeUnit(eph, jd0, dt, targetold, centerold, unitold)
                [(@test ref[i] ≈ val[i] atol=ϵ) for i in 1:6]
            end
        elseif (target == 15)
             targetN = 301
-            for (unitold,ϵ) in [ (CalcephUnitRad+CalcephUnitDay,0.0),
-                                 (CalcephUnitRad+CalcephUnitSec,0.0)]
-               unit = unitold + CalcephUseNaifId
-               val = CalcephOrientUnit(eph, jd0, dt, targetN, unit)
-               ref = CalcephComputeUnit(eph, jd0, dt, targetold, centerold, unitold)
+            for (unitold,ϵ) in [ (unitRad+unitDay,0.0),
+                                 (unitRad+unitSec,0.0)]
+               unit = unitold + useNaifId
+               val = orientUnit(eph, jd0, dt, targetN, unit)
+               ref = computeUnit(eph, jd0, dt, targetold, centerold, unitold)
                [(@test ref[i] ≈ val[i] atol=ϵ) for i in 1:6]
-               val2 = CalcephOrientOrder(eph, jd0, dt, targetN, unit,3)
+               val2 = orientOrder(eph, jd0, dt, targetN, unit,3)
                @test length(val2) == 12
                [(@test val2[i] ≈ val[i] atol=ϵ) for i in 1:6]
            end
        elseif (target == NaifId.id[:ttmtdb])
-           for (unitold,ϵ) in [ (CalcephUnitDay,0.0),
-                                (CalcephUnitSec,0.0)]
-               unit = unitold + CalcephUseNaifId
-               val = CalcephComputeUnit(eph, jd0, dt, target, center, unit)
-               ref = CalcephComputeUnit(eph, jd0, dt, targetold, centerold, unitold)
+           for (unitold,ϵ) in [ (unitDay,0.0),
+                                (unitSec,0.0)]
+               unit = unitold + useNaifId
+               val = computeUnit(eph, jd0, dt, target, center, unit)
+               ref = computeUnit(eph, jd0, dt, targetold, centerold, unitold)
                @test ref[1] ≈ val[1] atol=ϵ
            end
        end

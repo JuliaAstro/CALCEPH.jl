@@ -1,7 +1,7 @@
 ```@docs
-CALCEPH.CalcephCompute
-CALCEPH.CalcephComputeUnit
-CALCEPH.CalcephComputeOrder
-CALCEPH.CalcephOrientUnit
-CALCEPH.CalcephOrientOrder
+CALCEPH.compute
+CALCEPH.computeUnit
+CALCEPH.computeOrder
+CALCEPH.orientUnit
+CALCEPH.orientOrder
 ```

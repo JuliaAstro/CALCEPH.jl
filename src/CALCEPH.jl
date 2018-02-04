@@ -16,28 +16,28 @@ else
     error("libcalceph was not found. Please run 'Pkg.build(\"CALCEPH\").")
 end
 
-struct CalcephException <: Exception
+struct CALCEPHException <: Exception
     msg::String
 end
 
-include("CalcephEphem.jl")
-export CalcephEphem, CalcephPrefetch, CalcephException
+include("ephem.jl")
+export Ephem, prefetch, CALCEPHException
 
-include("CalcephCompute.jl")
-export CalcephCompute,  CalcephComputeUnit, CalcephComputeOrder
+include("compute.jl")
+export compute,  computeUnit, computeOrder
 
-include("BodyId.jl")
+include("bodyId.jl")
 export NaifId
 
-include("CalcephUnits.jl")
-export CalcephUnitAU, CalcephUnitKM, CalcephUnitDay, CalcephUnitSec, CalcephUnitRad, CalcephUseNaifId
+include("units.jl")
+export unitAU, unitKM, unitDay, unitSec, unitRad, useNaifId
 
-include("CalcephOrient.jl")
-export CalcephOrientUnit, CalcephOrientOrder
+include("orient.jl")
+export orientUnit, orientOrder
 
-include("CalcephConstants.jl")
-export CalcephConstants
+include("constants.jl")
+export constants
 
-include("FivePointStencil.jl")
+include("fivePointStencil.jl")
 
 end # module

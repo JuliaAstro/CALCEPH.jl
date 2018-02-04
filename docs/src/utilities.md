@@ -1,3 +1,3 @@
 ```@docs
-CALCEPH.FivePointStencil
+CALCEPH.fivePointStencil
 ```

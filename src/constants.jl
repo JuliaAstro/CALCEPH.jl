@@ -1,21 +1,21 @@
 
-const CalcephMaxConstName = 33
+const _maxConstName = 33
 "
-   CalcephConstants(eph)
+   constants(eph)
 
    Retrieve the constants stored in the ephemeris associated to handle eph as a dictionary
 
 "
-function CalcephConstants(eph::CalcephEphem)
+function constants(eph::Ephem)
     res = Dict{Symbol,Float64}()
-    @CalcephCheckPointer eph.data "Ephemeris is not properly initialized!"
+    @_checkPointer eph.data "Ephemeris is not properly initialized!"
     NC::Int = ccall((:calceph_getconstantcount , libcalceph), Cint,
     (Ptr{Void},),eph.data)
     if (NC == 0)
-       throw(CalcephException("Unable to get number of constants!"))
+       throw(CALCEPHException("Unable to get number of constants!"))
     end
     value = Ref{Cdouble}(0.0)
-    name = Vector{UInt8}(CalcephMaxConstName)
+    name = Vector{UInt8}(_maxConstName)
     for i=1:NC
        stat = ccall((:calceph_getconstantindex , libcalceph), Cint,
                   (Ptr{Void},Cint,Ptr{UInt8},Ref{Cdouble}),

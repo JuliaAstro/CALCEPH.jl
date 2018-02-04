@@ -1,6 +1,6 @@
 
 "
-    FivePointStencil(f,x,n::Integer,h)
+    fivePointStencil(f,x,n::Integer,h)
 
 Evaluates function f and its derivatives up to order n ∈ [0,4] at x:
 \$f(x),f'(x),...,f^{(n)}(x)\$
@@ -12,12 +12,12 @@ with h≠0 being the grid spacing:
 "
 
 
-function FivePointStencil(f,x,n::Int,h)
+function fivePointStencil(f,x,n::Int,h)
     if ((n<0) || (n>4))
-        error("In FivePointStencil: Invalid order $n")
+        error("In fivePointStencil: Invalid order $n")
     end
     if (h==0.0)
-        error("In FivePointStencil: Invalid grid spacing $h")
+        error("In fivePointStencil: Invalid grid spacing $h")
     end
     fm2 = f(x-2h)
     fm1 = f(x-h)

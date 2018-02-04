@@ -31,7 +31,7 @@ Example:
 function add!(bid::BodyId,name::Symbol,id::Int)
    if (name ∈ keys(bid.id))
       if bid.id[name] != id
-         throw(CalcephException("Cannot map already defined identifier [$name] to a different ID [$id]"))
+         throw(CALCEPHException("Cannot map already defined identifier [$name] to a different ID [$id]"))
       else
          return
       end
@@ -64,7 +64,7 @@ function loadData!(bid::BodyId,filename::AbstractString)
          if ln1[1] != '#'
             m = match(pattern1,ln1)
             if isa(m,Void)
-               throw(CalcephException("parsing line $cnt in data input file: $filename:\n$ln0"))
+               throw(CALCEPHException("parsing line $cnt in data input file: $filename:\n$ln0"))
             end
             id = parse(Int,m.captures[1])
             name = Symbol(lowercase(replace(strip(m.captures[2]),pattern2,"_")))

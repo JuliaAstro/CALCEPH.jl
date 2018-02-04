@@ -1,8 +1,8 @@
 ```@docs
-CALCEPH.CalcephUnitAU
-CALCEPH.CalcephUnitKM
-CALCEPH.CalcephUnitDay
-CALCEPH.CalcephUnitSec
-CALCEPH.CalcephUnitRad
-CALCEPH.CalcephUseNaifId
+CALCEPH.unitAU
+CALCEPH.unitKM
+CALCEPH.unitDay
+CALCEPH.unitSec
+CALCEPH.unitRad
+CALCEPH.useNaifId
 ```

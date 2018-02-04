@@ -1,14 +1,14 @@
 
-# This test is derived from test cmcomputeunit.c in Calceph version 2.3.2
+# This test is derived from test cmcomputeUnit.c in Calceph version 2.3.2
 # the test data files are copied from calceph-2.3.2.tar.gz
-function testFunction1(testFile,ephFiles,prefetch)
+function testFunction1(testFile,ephFiles,pflag)
 
-    eph = CalcephEphem(ephFiles)
-    if prefetch
-        CalcephPrefetch(eph)
+    eph = Ephem(ephFiles)
+    if pflag
+        prefetch(eph)
     end
 
-    con = CalcephConstants(eph)
+    con = constants(eph)
     AU = con[:AU]
 
     f = open(testFile);
@@ -20,7 +20,7 @@ function testFunction1(testFile,ephFiles,prefetch)
         dt = jd0 - trunc(Int,jd0);
         jd0 = trunc(Int,jd0) + 2.4515450000000000000E+06
         ref = [parse(Float64, x) for x in elts[4:end]]
-        val = CalcephCompute(eph,jd0,dt,target,center)
+        val = compute(eph,jd0,dt,target,center)
 
         ϵ = 1.0e-8
         val0 = val[:]
@@ -39,11 +39,11 @@ function testFunction1(testFile,ephFiles,prefetch)
         ref = val0
         ϵ = 3.0e-15
         if target ∉ [15,16,17]
-            val = CalcephComputeUnit(eph,jd0,dt,target,center,CalcephUnitAU+CalcephUnitDay)
+            val = computeUnit(eph,jd0,dt,target,center,unitAU+unitDay)
             for i in 1:6
                 @test abs(ref[i]-val[i]) < ϵ
             end
-            val = CalcephComputeUnit(eph,jd0,dt,target,center,CalcephUnitAU+CalcephUnitSec)
+            val = computeUnit(eph,jd0,dt,target,center,unitAU+unitSec)
             for i in 1:6
                 if i>3
                     val[i]*=86400
@@ -51,12 +51,12 @@ function testFunction1(testFile,ephFiles,prefetch)
                 @test abs(ref[i]-val[i]) < ϵ
             end
             ϵ = 3.0e-14;
-            val = CalcephComputeUnit(eph,jd0,dt,target,center,CalcephUnitKM+CalcephUnitDay)
+            val = computeUnit(eph,jd0,dt,target,center,unitKM+unitDay)
             for i in 1:6
                 @test abs(ref[i]-val[i]/AU) < ϵ
             end
 
-            val = CalcephComputeUnit(eph,jd0,dt,target,center,CalcephUnitKM+CalcephUnitSec)
+            val = computeUnit(eph,jd0,dt,target,center,unitKM+unitSec)
             for i in 1:6
                 if i>3
                     val[i]*=86400
@@ -65,31 +65,31 @@ function testFunction1(testFile,ephFiles,prefetch)
             end
 
             ϵ = 3.0e-15
-            val = CalcephComputeOrder(eph,jd0,dt,target,center,CalcephUnitDay+CalcephUnitAU,3)
+            val = computeOrder(eph,jd0,dt,target,center,unitDay+unitAU,3)
             @test length(val)==12
             for i in 1:6
                 @test abs(ref[i]-val[i]) < ϵ
             end
 
             ref = val
-            val = CalcephComputeOrder(eph,jd0,dt,target,center,CalcephUnitDay+CalcephUnitAU,2)
+            val = computeOrder(eph,jd0,dt,target,center,unitDay+unitAU,2)
             @test length(val)==9
             for i in 1:9
                 @test abs(ref[i]-val[i]) < ϵ
             end
-            val = CalcephComputeOrder(eph,jd0,dt,target,center,CalcephUnitDay+CalcephUnitAU,1)
+            val = computeOrder(eph,jd0,dt,target,center,unitDay+unitAU,1)
             @test length(val)==6
             for i in 1:6
                 @test abs(ref[i]-val[i]) < ϵ
             end
-            val = CalcephComputeOrder(eph,jd0,dt,target,center,CalcephUnitDay+CalcephUnitAU,0)
+            val = computeOrder(eph,jd0,dt,target,center,unitDay+unitAU,0)
             @test length(val)==3
             for i in 1:3
                 @test abs(ref[i]-val[i]) < ϵ
             end
 
             ϵ = 3.0e-14
-            val = CalcephComputeOrder(eph,jd0,dt,target,center,CalcephUnitSec+CalcephUnitKM,3)
+            val = computeOrder(eph,jd0,dt,target,center,unitSec+unitKM,3)
             @test length(val)==12
             for i in 1:12
                 if i>3
@@ -107,11 +107,11 @@ function testFunction1(testFile,ephFiles,prefetch)
 
 
         elseif target == 15
-            val = CalcephComputeUnit(eph,jd0,dt,target,center,CalcephUnitRad+CalcephUnitDay)
+            val = computeUnit(eph,jd0,dt,target,center,unitRad+unitDay)
             for i in 1:6
                 @test abs(ref[i]-val[i]) < ϵ
             end
-            val = CalcephComputeUnit(eph,jd0,dt,target,center,CalcephUnitRad+CalcephUnitSec)
+            val = computeUnit(eph,jd0,dt,target,center,unitRad+unitSec)
             for i in 1:6
                 if i>3
                     val[i]*=86400
@@ -120,9 +120,9 @@ function testFunction1(testFile,ephFiles,prefetch)
             end
         elseif target ∈ [16,17]
             ϵ = 1e-18
-            val = CalcephComputeUnit(eph,jd0,dt,target,center,CalcephUnitSec)
+            val = computeUnit(eph,jd0,dt,target,center,unitSec)
             @test abs(ref[1]-val[1]) < ϵ
-            val = CalcephComputeUnit(eph,jd0,dt,target,center,CalcephUnitDay)
+            val = computeUnit(eph,jd0,dt,target,center,unitDay)
             @test abs(ref[1]-val[1]*86400) < ϵ*86400
         end
 

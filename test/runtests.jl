@@ -47,14 +47,14 @@ end
 @test NaifId.id[:pluto] == 999
 
 # test error case: changing name->id mapping
-@test_throws CalcephException CALCEPH.add!(NaifId,:jupiter,1)
+@test_throws CALCEPHException CALCEPH.add!(NaifId,:jupiter,1)
 # test error case: parsing wrongly formatted body id input file
 bid = CALCEPH.BodyId()
-@test_throws CalcephException CALCEPH.loadData!(bid,joinpath(testpath,"badIds.txt"))
+@test_throws CALCEPHException CALCEPH.loadData!(bid,joinpath(testpath,"badIds.txt"))
 
 # check memory management
-eph1 = CalcephEphem(joinpath(testpath,"example1.dat"))
-eph2 = CalcephEphem([joinpath(testpath,"example1.bsp"),
+eph1 = Ephem(joinpath(testpath,"example1.dat"))
+eph2 = Ephem([joinpath(testpath,"example1.bsp"),
                      joinpath(testpath,"example1.tpc")])
 
 
@@ -66,18 +66,18 @@ finalize(eph1)
 finalize(eph2)
 @test eph2.data == C_NULL
 finalize(eph2)
-CALCEPH.CalcephEphemDestructor(eph2)
+CALCEPH._ephemDestructor(eph2)
 
 # Opening invalid ephemeris
-@test_throws CalcephException eph1 = CalcephEphem(String[])
+@test_throws CALCEPHException eph1 = Ephem(String[])
 
 # check constants
-eph1 = CalcephEphem(joinpath(testpath,"example1.dat"))
-eph2 = CalcephEphem([joinpath(testpath,"example1.bsp"),
+eph1 = Ephem(joinpath(testpath,"example1.dat"))
+eph2 = Ephem([joinpath(testpath,"example1.bsp"),
                      joinpath(testpath,"example1.tpc")])
 
-con1 = CalcephConstants(eph1)
-con2 = CalcephConstants(eph2)
+con1 = constants(eph1)
+con2 = constants(eph2)
 
 @test isa(con1,Dict{Symbol,Float64})
 @test length(con1) == 402
@@ -88,13 +88,13 @@ con2 = CalcephConstants(eph2)
 
 # Retrieving constants from closed ephemeris
 finalize(eph2)
-@test_throws CalcephException con2 = CalcephConstants(eph2)
+@test_throws CALCEPHException con2 = constants(eph2)
 
 # Retrieving constants from ephemeris with no constants
-eph2 = CalcephEphem(joinpath(testpath,"example1.bsp"))
-@test_throws CalcephException con2 = CalcephConstants(eph2)
+eph2 = Ephem(joinpath(testpath,"example1.bsp"))
+@test_throws CALCEPHException con2 = constants(eph2)
 
-# test CalcephCompute*
+# test compute*
 # test data and thresholds from CALCEPH C library tests
 inpop_files = [joinpath(testpath,"example1.dat")]
 spk_files = [joinpath(testpath,"example1.bsp"),
@@ -127,21 +127,21 @@ for (ephFiles,prefetch) in test_data
 end
 
 # test error case wrong order
-eph1 = CalcephEphem(joinpath(testpath,"example1.bsp"))
-@test_throws CalcephException CalcephComputeOrder(eph1,0.0,0.0,1,0,0,4)
-@test_throws CalcephException CalcephComputeOrder(eph1,0.0,0.0,1,0,0,-1)
+eph1 = Ephem(joinpath(testpath,"example1.bsp"))
+@test_throws CALCEPHException computeOrder(eph1,0.0,0.0,1,0,0,4)
+@test_throws CALCEPHException computeOrder(eph1,0.0,0.0,1,0,0,-1)
 
 # test error case:
-@test_throws CalcephException CalcephComputeUnit(eph1,0.0,0.0,-144,0,0)
+@test_throws CALCEPHException computeUnit(eph1,0.0,0.0,-144,0,0)
 
 
 # Five-Point Stencil
 
 f(x)=x^8
-@test_throws ErrorException CALCEPH.FivePointStencil(f,1.5,5,0.001)
-@test_throws ErrorException CALCEPH.FivePointStencil(f,1.5,-1,0.001)
-@test_throws ErrorException CALCEPH.FivePointStencil(f,1.5,4,0.0)
-val = CALCEPH.FivePointStencil(f,1.5,4,0.001)
+@test_throws ErrorException CALCEPH.fivePointStencil(f,1.5,5,0.001)
+@test_throws ErrorException CALCEPH.fivePointStencil(f,1.5,-1,0.001)
+@test_throws ErrorException CALCEPH.fivePointStencil(f,1.5,4,0.0)
+val = CALCEPH.fivePointStencil(f,1.5,4,0.001)
 ref = [25.62890625,136.6875,637.875,2551.5,8505.0]
 @test ref[1] ≈ val[1] atol=1e-10
 @test ref[2] ≈ val[2] atol=1e-8

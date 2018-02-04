@@ -1,3 +1,3 @@
 ```@docs
-CALCEPH.CalcephConstants
+CALCEPH.constants
 ```

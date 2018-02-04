@@ -1,4 +1,4 @@
 ```@docs
-CALCEPH.CalcephEphem
-CALCEPH.CalcephPrefetch
+CALCEPH.Ephem
+CALCEPH.prefetch
 ```
