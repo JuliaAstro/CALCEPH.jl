@@ -132,7 +132,7 @@
 
 
 <p>Body identifiers.</p>
-<p><a target='_blank' href='https://github.com/bgodard/CALCEPH.jl/blob/8da32d34c5b1297200db25eb4caa6eaa89e701f7/src/bodyId.jl#L1-L6' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/bgodard/CALCEPH.jl/blob/332c9b3e0cb8d12f4c7c266f839f4bb906ef38ef/src/bodyId.jl#L1-L6' class='documenter-source'>source</a><br></p>
 <p><a id='CALCEPH.add!' href='#CALCEPH.add!'>#</a>
 <strong><code>CALCEPH.add!</code></strong> &mdash; <em>Function</em>.</p>
 <pre class="codehilite"><code>add!(bid,name,id)</code></pre>
@@ -149,7 +149,7 @@ add!(bid,:endor_deathstar_system_barycenter,1000005)
 add!(bid,:edsb,1000005)</code></pre>
 
 
-<p><a target='_blank' href='https://github.com/bgodard/CALCEPH.jl/blob/8da32d34c5b1297200db25eb4caa6eaa89e701f7/src/bodyId.jl#L16-L31' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/bgodard/CALCEPH.jl/blob/332c9b3e0cb8d12f4c7c266f839f4bb906ef38ef/src/bodyId.jl#L16-L31' class='documenter-source'>source</a><br></p>
 <p><a id='CALCEPH.loadData!' href='#CALCEPH.loadData!'>#</a>
 <strong><code>CALCEPH.loadData!</code></strong> &mdash; <em>Function</em>.</p>
 <pre class="codehilite"><code>loadData!(bid,filename)</code></pre>
@@ -157,20 +157,20 @@ add!(bid,:edsb,1000005)</code></pre>
 
 <p>Load mapping (body name,body ID) from file into BodyId instance bid.   Names from the file are converted to lower case and have spaces replaced by   underscores before being converted to symbols/interned strings.</p>
 <p>Example file <a href="https://github.com/bgodard/CALCEPH.jl/blob/master/data/NaifIds.txt">https://github.com/bgodard/CALCEPH.jl/blob/master/data/NaifIds.txt</a></p>
-<p><a target='_blank' href='https://github.com/bgodard/CALCEPH.jl/blob/8da32d34c5b1297200db25eb4caa6eaa89e701f7/src/bodyId.jl#L46-L55' class='documenter-source'>source</a><br></p>
-<p><a id='CALCEPH.NaifId' href='#CALCEPH.NaifId'>#</a>
-<strong><code>CALCEPH.NaifId</code></strong> &mdash; <em>Constant</em>.</p>
-<pre class="codehilite"><code>NaifId</code></pre>
+<p><a target='_blank' href='https://github.com/bgodard/CALCEPH.jl/blob/332c9b3e0cb8d12f4c7c266f839f4bb906ef38ef/src/bodyId.jl#L46-L55' class='documenter-source'>source</a><br></p>
+<p><a id='CALCEPH.naifId' href='#CALCEPH.naifId'>#</a>
+<strong><code>CALCEPH.naifId</code></strong> &mdash; <em>Constant</em>.</p>
+<pre class="codehilite"><code>naifId</code></pre>
 
 
 <p>NAIF identification numbers</p>
 <p>Examples:</p>
 <ul>
-<li>NaifId.id[:sun]-&gt;10</li>
-<li>NaifId.id[:mars]-&gt;499</li>
-<li>NaifId.names[0]-&gt;Set(Symbol[:ssb, :solar_system_barycenter])</li>
+<li>naifId.id[:sun]-&gt;10</li>
+<li>naifId.id[:mars]-&gt;499</li>
+<li>naifId.names[0]-&gt;Set(Symbol[:ssb, :solar_system_barycenter])</li>
 </ul>
-<p><a target='_blank' href='https://github.com/bgodard/CALCEPH.jl/blob/8da32d34c5b1297200db25eb4caa6eaa89e701f7/src/bodyId.jl#L79-L90' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/bgodard/CALCEPH.jl/blob/332c9b3e0cb8d12f4c7c266f839f4bb906ef38ef/src/bodyId.jl#L79-L90' class='documenter-source'>source</a><br></p>
               
             </div>
           </div>

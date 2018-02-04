@@ -131,7 +131,8 @@
 <pre class="codehilite"><code>compute(eph,JD0,time,target,center)</code></pre>
 
 
-<p>Compute position and velocity of target with respect to center at epoch JD0+time. This routine does not support the NAIF numbering scheme. For the NAIF numbering scheme, use compute or compute, with passing useNaifId in the unit argument. To get the best precision for the interpolation, the time is splitted in two floating-point numbers. The argument JD0 should be an integer and time should be a fraction of the day. But you may call this function with time=0 and JD0, the desired time, if you don't take care about precision.</p>
+<p>Compute position and velocity of target with respect to center at epoch JD0+time. This method does not support the NAIF numbering scheme. To get the best precision for the interpolation, the time is splitted in two floating-point numbers. The argument JD0 should be an integer and time should be a fraction of the day. But you may call this function with time=0 and JD0, the desired time, if you don't take care about precision.</p>
+<p>This method does not support the NAIF body identification scheme.</p>
 <p>Output units are:</p>
 <ul>
 <li>AU and AU/day for position and velocity</li>
@@ -165,7 +166,7 @@
 <li>17    : TCG-TCB</li>
 <li>asteroid number + CALCEPH_ASTEROID    : asteroid</li>
 </ul>
-<p><a target='_blank' href='https://github.com/bgodard/CALCEPH.jl/blob/8da32d34c5b1297200db25eb4caa6eaa89e701f7/src/compute.jl#L1-L44' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/bgodard/CALCEPH.jl/blob/332c9b3e0cb8d12f4c7c266f839f4bb906ef38ef/src/compute.jl#L1-L44' class='documenter-source'>source</a><br></p>
 <pre class="codehilite"><code>compute(eph,JD0,time,target,center,unit)</code></pre>
 
 
@@ -176,9 +177,9 @@
 <li><code>time::Float64</code>: JD0+time must be equal to the Julian date for the time coordinate corresponding to the ephemeris (usually TDB or TCB)</li>
 <li><code>target::Int</code>: The body or reference point whose coordinates are required. The numbering system depends on the parameter unit.</li>
 <li><code>center::Int</code>: The origin of the coordinate system. The numbering system depends on the parameter unit.</li>
-<li><code>unit::Int</code> : The units of the result. This integer is a sum of some unit constants (unit*) and/or the constant useNaifId. If the unit contains useNaifId, the NAIF identification numbering system is used for the target and the center (see module NaifId). If the unit does not contain useNaifId, the old number system is used for the target and the center (see the list in the documentation of function compute).</li>
+<li><code>unit::Int</code> : The units of the result. This integer is a sum of some unit constants (unit*) and/or the constant useNaifId. If the unit contains useNaifId, the NAIF identification numbering system is used for the target and the center. If the unit does not contain useNaifId, the old number system is used for the target and the center.</li>
 </ul>
-<p><a target='_blank' href='https://github.com/bgodard/CALCEPH.jl/blob/8da32d34c5b1297200db25eb4caa6eaa89e701f7/src/compute.jl#L55-L73' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/bgodard/CALCEPH.jl/blob/332c9b3e0cb8d12f4c7c266f839f4bb906ef38ef/src/compute.jl#L55-L73' class='documenter-source'>source</a><br></p>
 <pre class="codehilite"><code>compute(eph,JD0,time,target,center,unit,order)</code></pre>
 
 
@@ -189,7 +190,7 @@
 <li><code>time::Float64</code>: JD0+time must be equal to the Julian date for the time coordinate corresponding to the ephemeris (usually TDB or TCB)</li>
 <li><code>target::Int</code>: The body or reference point whose coordinates are required. The numbering system depends on the parameter unit.</li>
 <li><code>center::Int</code>: The origin of the coordinate system. The numbering system depends on the parameter unit.</li>
-<li><code>unit::Int</code> : The units of the result. This integer is a sum of some unit constants (unit*) and/or the constant useNaifId. If the unit contains useNaifId, the NAIF identification numbering system is used for the target and the center (see module NaifId). If the unit does not contain useNaifId, the old number system is used for the target and the center (see the list in the documentation of function compute).</li>
+<li><code>unit::Int</code> : The units of the result. This integer is a sum of some unit constants (unit*) and/or the constant useNaifId. If the unit contains useNaifId, the NAIF identification numbering system is used for the target and the center. If the unit does not contain useNaifId, the old number system is used for the target and the center.</li>
 <li>
 <p><code>order::Int</code> : The order of derivatives</p>
 <ul>
@@ -200,8 +201,7 @@
 </ul>
 </li>
 </ul>
-<p>If order equals to 1, the behavior of compute is the same as that of compute.</p>
-<p><a target='_blank' href='https://github.com/bgodard/CALCEPH.jl/blob/8da32d34c5b1297200db25eb4caa6eaa89e701f7/src/compute.jl#L84-L109' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/bgodard/CALCEPH.jl/blob/332c9b3e0cb8d12f4c7c266f839f4bb906ef38ef/src/compute.jl#L84-L108' class='documenter-source'>source</a><br></p>
 <p><a id='CALCEPH.orient' href='#CALCEPH.orient'>#</a>
 <strong><code>CALCEPH.orient</code></strong> &mdash; <em>Function</em>.</p>
 <pre class="codehilite"><code>orient(eph,JD0,time,target,unit)</code></pre>
@@ -213,9 +213,9 @@
 <li><code>JD0::Float64</code>: JD0+time must be equal to the Julian date for the time coordinate corresponding to the ephemeris (usually TDB or TCB)</li>
 <li><code>time::Float64</code>: JD0+time must be equal to the Julian date for the time coordinate corresponding to the ephemeris (usually TDB or TCB)</li>
 <li><code>target::Int</code>: The body or reference point whose orientation is required. The numbering system depends on the parameter unit.</li>
-<li><code>unit::Int</code> : The units of the result. This integer is a sum of some unit constants (unit*) and/or the constant useNaifId. If the unit contains useNaifId, the NAIF identification numbering system is used for the target and the center (see module NaifId). If the unit does not contain useNaifId, the old number system is used for the target and the center (see the list in the documentation of function compute). The angles are expressed in radians if unit contains unitRad.</li>
+<li><code>unit::Int</code> : The units of the result. This integer is a sum of some unit constants (unit*) and/or the constant useNaifId. If the unit contains useNaifId, the NAIF identification numbering system is used for the target and the center. If the unit does not contain useNaifId, the old number system is used for the target and the center (see the list in the documentation of function compute). The angles are expressed in radians if unit contains unitRad.</li>
 </ul>
-<p><a target='_blank' href='https://github.com/bgodard/CALCEPH.jl/blob/8da32d34c5b1297200db25eb4caa6eaa89e701f7/src/orient.jl#L1-L18' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/bgodard/CALCEPH.jl/blob/332c9b3e0cb8d12f4c7c266f839f4bb906ef38ef/src/orient.jl#L1-L18' class='documenter-source'>source</a><br></p>
 <pre class="codehilite"><code>orient(eph,JD0,time,target,unit,order)</code></pre>
 
 
@@ -225,7 +225,7 @@
 <li><code>JD0::Float64</code>: JD0+time must be equal to the Julian date for the time coordinate corresponding to the ephemeris (usually TDB or TCB)</li>
 <li><code>time::Float64</code>: JD0+time must be equal to the Julian date for the time coordinate corresponding to the ephemeris (usually TDB or TCB)</li>
 <li><code>target::Int</code>: The body or reference point whose orientation is required. The numbering system depends on the parameter unit.</li>
-<li><code>unit::Int</code> : The units of the result. This integer is a sum of some unit constants (unit*) and/or the constant useNaifId. If the unit contains useNaifId, the NAIF identification numbering system is used for the target and the center (see module NaifId). If the unit does not contain useNaifId, the old number system is used for the target and the center (see the list in the documentation of function compute).</li>
+<li><code>unit::Int</code> : The units of the result. This integer is a sum of some unit constants (unit*) and/or the constant useNaifId. If the unit contains useNaifId, the NAIF identification numbering system is used for the target and the center. If the unit does not contain useNaifId, the old number system is used for the target and the center (see the list in the documentation of function compute).</li>
 <li>
 <p><code>order::Int</code> : The order of derivatives</p>
 <ul>
@@ -236,8 +236,7 @@
 </ul>
 </li>
 </ul>
-<p>If order equals to 1, the behavior of orient is the same as that of orient.</p>
-<p><a target='_blank' href='https://github.com/bgodard/CALCEPH.jl/blob/8da32d34c5b1297200db25eb4caa6eaa89e701f7/src/orient.jl#L29-L53' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/bgodard/CALCEPH.jl/blob/332c9b3e0cb8d12f4c7c266f839f4bb906ef38ef/src/orient.jl#L29-L51' class='documenter-source'>source</a><br></p>
               
             </div>
           </div>
