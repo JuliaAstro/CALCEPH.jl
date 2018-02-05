@@ -1,4 +1,4 @@
-"
+"""
     compute(eph,JD0,time,target,center)
 
 Compute position and velocity of target with respect to center at epoch
@@ -40,7 +40,7 @@ The possible values for target and center are :
 * 17    : TCG-TCB
 * asteroid number + CALCEPH_ASTEROID    : asteroid
 
-"
+"""
 function compute(eph::Ephem,JD0::Float64,time::Float64,
    target::Int64,center::Int64)
     @_checkPointer eph.data "Ephemeris is not properly initialized!"
@@ -52,7 +52,7 @@ function compute(eph::Ephem,JD0::Float64,time::Float64,
     return result
 end
 
-"
+"""
     compute(eph,JD0,time,target,center,unit)
 
 Compute position and velocity of target with respect to center
@@ -69,7 +69,7 @@ the desired time, if you don't take care about precision.
 - `center::Int`: The origin of the coordinate system. The numbering system depends on the parameter unit.
 - `unit::Int` : The units of the result. This integer is a sum of some unit constants (unit*) and/or the constant useNaifId. If the unit contains useNaifId, the NAIF identification numbering system is used for the target and the center. If the unit does not contain useNaifId, the old number system is used for the target and the center.
 
-"
+"""
 function compute(eph::Ephem,JD0::Float64,time::Float64,
    target::Int64,center::Int64,unit::Int64)
     @_checkPointer eph.data "Ephemeris is not properly initialized!"
@@ -81,7 +81,7 @@ function compute(eph::Ephem,JD0::Float64,time::Float64,
     return result
 end
 
-"
+"""
     compute(eph,JD0,time,target,center,unit,order)
 
 Compute position and derivatives up to order of target with respect to center
@@ -103,8 +103,7 @@ the desired time, if you don't take care about precision.
     * 2: only the position, velocity and acceleration are computed.
     * 3: the position, velocity and acceleration and jerk are computed.
 
-
-"
+"""
 function compute(eph::Ephem,JD0::Float64,time::Float64,
    target::Int64,center::Int64,unit::Int64,order::Int64)
     @_checkPointer eph.data "Ephemeris is not properly initialized!"

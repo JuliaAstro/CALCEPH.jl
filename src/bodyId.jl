@@ -1,8 +1,8 @@
-"
+"""
     BodyId
 
   Body identifiers.
-"
+"""
 mutable struct BodyId
    "names from ID"
    names :: Dict{Int,Set{Symbol}}
@@ -13,7 +13,7 @@ mutable struct BodyId
    end
 end
 
-"
+"""
     add!(bid,name,id)
 
   Add a new mapping name->id into BodyId instance bid.
@@ -27,7 +27,7 @@ Example:
     add!(bid,:deathstar,1000004)
     add!(bid,:endor_deathstar_system_barycenter,1000005)
     add!(bid,:edsb,1000005)
-"
+"""
 function add!(bid::BodyId,name::Symbol,id::Int)
    if (name ∈ keys(bid.id))
       if bid.id[name] != id
@@ -43,7 +43,7 @@ function add!(bid::BodyId,name::Symbol,id::Int)
    bid.id[name]=id
    nothing
 end
-"
+"""
     loadData!(bid,filename)
 
   Load mapping (body name,body ID) from file into BodyId instance bid.
@@ -51,7 +51,7 @@ end
   underscores before being converted to symbols/interned strings.
 
   Example file [https://github.com/bgodard/CALCEPH.jl/blob/master/data/NaifIds.txt](https://github.com/bgodard/CALCEPH.jl/blob/master/data/NaifIds.txt)
-"
+"""
 function loadData!(bid::BodyId,filename::AbstractString)
    pattern1 = r"^\s*([-+]{0,1}\d+)\s+\'(.*)\'.*$"
    pattern2 = r"[\s-]"
@@ -76,7 +76,7 @@ function loadData!(bid::BodyId,filename::AbstractString)
    nothing
 end
 
-"
+"""
     naifId
 
 NAIF identification numbers
@@ -86,7 +86,7 @@ Examples:
 - naifId.id[:mars]->499
 - naifId.names[0]->Set(Symbol[:ssb, :solar_system_barycenter])
 
-"
+"""
 const naifId = BodyId()
 loadData!(naifId,joinpath(Pkg.dir("CALCEPH"), "data", "NaifIds.txt"))
 

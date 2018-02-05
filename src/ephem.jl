@@ -25,7 +25,7 @@ macro _checkOrder(order)
    end
 end
 
-"
+"""
     Ephem
 
   Ephemeris descriptor. Create with:
@@ -45,7 +45,7 @@ end
 
     gc()
 
-"
+"""
 mutable struct Ephem
    data :: Ptr{Void}
    function Ephem(files::Vector{<:AbstractString})
@@ -71,12 +71,12 @@ end
 
 Ephem(file::AbstractString) = Ephem([file])
 
-"
+"""
     prefetch(eph)
 
   This function prefetches to the main memory all files associated to the ephemeris descriptor eph.
 
-"
+"""
 function prefetch(eph::Ephem)
     @_checkPointer eph.data "Ephemeris is not properly initialized!"
     stat = ccall((:calceph_prefetch, libcalceph), Int, (Ptr{Void},), eph.data)

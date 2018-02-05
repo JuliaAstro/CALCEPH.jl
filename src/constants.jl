@@ -1,11 +1,11 @@
 
 const _maxConstName = 33
-"
+"""
    constants(eph)
 
    Retrieve the constants stored in the ephemeris associated to handle eph as a dictionary
 
-"
+"""
 function constants(eph::Ephem)
     res = Dict{Symbol,Float64}()
     @_checkPointer eph.data "Ephemeris is not properly initialized!"

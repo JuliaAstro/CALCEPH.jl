@@ -1,15 +1,15 @@
 
-"
+"""
     fivePointStencil(f,x,n::Integer,h)
 
 Evaluates function f and its derivatives up to order n ∈ [0,4] at x:
-\$f(x),f'(x),...,f^{(n)}(x)\$
+``f(x),f'(x),...,f^{(n)}(x)``
 The result is an array of length n+1.
 Derivatives are numerically computed using the 5-point stencil method
 with h≠0 being the grid spacing:
 [https://en.wikipedia.org/wiki/Five-point_stencil](https://en.wikipedia.org/wiki/Five-point_stencil)
 
-"
+"""
 
 
 function fivePointStencil(f,x,n::Int,h)

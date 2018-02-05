@@ -1,4 +1,4 @@
-"
+"""
     CALCEPH
 
   This module is a wrapper of CALCEPH, IMCCE planetary ephemeris access
@@ -6,7 +6,7 @@
 
   https://www.imcce.fr/inpop/calceph
 
-"
+"""
 module CALCEPH
 
 deps = abspath(joinpath(splitdir(@__FILE__)[1], "..", "deps", "deps.jl"))
@@ -24,7 +24,7 @@ include("ephem.jl")
 export Ephem, prefetch, CALCEPHException
 
 include("compute.jl")
-export compute,  compute, compute
+export compute
 
 include("bodyId.jl")
 export naifId
@@ -33,7 +33,7 @@ include("units.jl")
 export unitAU, unitKM, unitDay, unitSec, unitRad, useNaifId
 
 include("orient.jl")
-export orient, orient
+export orient
 
 include("constants.jl")
 export constants
