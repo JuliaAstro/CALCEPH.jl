@@ -20,13 +20,19 @@ end
 
 Example:
 
+```jldoctest
+    using CALCEPH
     bid=CALCEPH.BodyId()
-    add!(bid,:tatooine,1000001)
-    add!(bid,:dagobah,1000002)
-    add!(bid,:endor,1000003)
-    add!(bid,:deathstar,1000004)
-    add!(bid,:endor_deathstar_system_barycenter,1000005)
-    add!(bid,:edsb,1000005)
+    CALCEPH.add!(bid,:tatooine,1000001)
+    CALCEPH.add!(bid,:dagobah,1000002)
+    CALCEPH.add!(bid,:endor,1000003)
+    CALCEPH.add!(bid,:deathstar,1000004)
+    CALCEPH.add!(bid,:endor_deathstar_system_barycenter,1000005)
+    CALCEPH.add!(bid,:edsb,1000005)
+
+# output
+
+```
 """
 function add!(bid::BodyId,name::Symbol,id::Int)
    if (name ∈ keys(bid.id))
@@ -82,9 +88,20 @@ end
 NAIF identification numbers
 
 Examples:
-- naifId.id[:sun]->10
-- naifId.id[:mars]->499
-- naifId.names[0]->Set(Symbol[:ssb, :solar_system_barycenter])
+
+```jldoctest
+julia> using CALCEPH
+
+julia> naifId.id[:sun]
+10
+
+julia> naifId.id[:mars]
+499
+
+julia> naifId.names[0]
+Set(Symbol[:ssb, :solar_system_barycenter])
+
+```
 
 """
 const naifId = BodyId()
