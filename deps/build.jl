@@ -34,20 +34,21 @@ if platform_key() in keys(download_info)
     # named product here: (there will be a "libfoo" variable and a "fooifier"
     # variable, etc...)
     @write_deps_file libcalceph
-else
-    info("Could not find a binary for your platform $(Sys.MACHINE). Will attempt a build.")
+    exit(0)
+end
 
-    using BinDeps
+info("Could not find a binary for your platform $(Sys.MACHINE). Will attempt a build.")
 
-    @BinDeps.setup
+using BinDeps
 
-    libcalceph = library_dependency("libcalceph")
+@BinDeps.setup
 
-    provides(Sources,URI("https://www.imcce.fr/content/medias/recherche/equipes/asd/calceph/calceph-3.0.0.tar.gz"), libcalceph)
+libcalceph = library_dependency("libcalceph")
 
-    provides(BuildProcess,Autotools(configure_options =
+provides(Sources,URI("https://www.imcce.fr/content/medias/recherche/equipes/asd/calceph/calceph-3.0.0.tar.gz"), libcalceph)
+
+provides(BuildProcess,Autotools(configure_options =
         ["--enable-shared", "--disable-fortran", "--disable-python"],
         libtarget=joinpath("src", "libcalceph.la")),libcalceph, os = :Unix)
 
-    @BinDeps.install Dict(:libcalceph => :libcalceph)
-end
+@BinDeps.install Dict(:libcalceph => :libcalceph)
