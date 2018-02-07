@@ -35,5 +35,19 @@ if platform_key() in keys(download_info)
     # variable, etc...)
     @write_deps_file libcalceph
 else
-    error("Your platform $(Sys.MACHINE) is not supported by this package!")
+    info("Could not find a binary for your platform $(Sys.MACHINE). Will attempt a build.")
+
+    using BinDeps
+
+    @BinDeps.setup
+
+    libcalceph = library_dependency("libcalceph")
+
+    provides(Sources,URI("https://www.imcce.fr/content/medias/recherche/equipes/asd/calceph/calceph-3.0.0.tar.gz"), libcalceph)
+
+    provides(BuildProcess,Autotools(configure_options =
+        ["--enable-shared", "--disable-fortran", "--disable-python"],
+        libtarget=joinpath("src", "libcalceph.la")),libcalceph, os = :Unix)
+
+    @BinDeps.install Dict(:libcalceph => :libcalceph)
 end
