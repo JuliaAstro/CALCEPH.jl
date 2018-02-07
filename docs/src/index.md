@@ -4,7 +4,7 @@ This is a julia wrapper for [CALCEPH](https://www.imcce.fr/inpop/calceph/) a C l
 
 # Quick start
 
-In your favorite Julia interpreter, run:
+In the Julia interpreter, run:
 
 ```julia
 Pkg.add("CALCEPH")

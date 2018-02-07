@@ -12,7 +12,7 @@ See the package [documentation](https://bgodard.github.io/CALCEPH.jl/).
 
 # Quick start
 
-In your favorite Julia interpreter, run:
+In the Julia interpreter, run:
 
 ```julia
 Pkg.add("CALCEPH")
