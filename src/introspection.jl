@@ -12,7 +12,7 @@ function timeScale(eph::Ephem)
 end
 
 """
-    PositionRecords
+    PositionRecord
 
     stores position record metadata.
 """
@@ -62,9 +62,9 @@ function positionRecords(eph::Ephem)
 end
 
 """
-    OrientationRecords
+    OrientationRecord
 
-    stores position record metadata.
+    stores orientation record metadata.
 """
 struct OrientationRecord
    " Naif Id of target "
