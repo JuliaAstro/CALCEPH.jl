@@ -35,8 +35,14 @@ export unitAU, unitKM, unitDay, unitSec, unitRad, useNaifId
 include("orient.jl")
 export orient
 
+include("rotAngMom.jl")
+export rotAngMom
+
 include("constants.jl")
 export constants
+
+include("introspection.jl")
+export timeScale, positionRecords, orientationRecords
 
 include("fivePointStencil.jl")
 

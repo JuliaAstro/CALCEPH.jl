@@ -148,3 +148,22 @@ ref = [25.62890625,136.6875,637.875,2551.5,8505.0]
 @test ref[3] ≈ val[3] atol=1e-5
 @test ref[4] ≈ val[4] atol=1e-2
 @test ref[5] ≈ val[5] atol=1e-2
+
+
+# introspection
+eph = Ephem(inpop_files)
+@test timeScale(eph) == 1
+
+records = positionRecords(eph)
+@test length(records) == 12
+
+records = orientationRecords(eph)
+@test length(records) == 1
+
+
+# rotangmom
+eph = Ephem(joinpath(testpath,"example2_rotangmom.dat"))
+a = rotAngMom(eph,2.4515e6,0.0,399,useNaifId+unitSec)
+b = rotAngMom(eph,2.4515e6,0.0,399,useNaifId+unitSec,1)
+@test a == b
+@test length(a) == 6

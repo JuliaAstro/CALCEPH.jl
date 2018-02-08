@@ -28,4 +28,5 @@ pages:
 - Identifiers: ids.md
 - Ephemeris computation: compute.md
 - Ephemeris constants: constants.md
+- Introspection: introspection.md
 - Utilities: utilities.md
