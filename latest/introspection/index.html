@@ -8,7 +8,7 @@
   
   <meta name="author" content="Bernard Godard">
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>Ephemeris context - CALCEPH.jl</title>
+  <title>Introspection - CALCEPH.jl</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../css/theme.css" type="text/css" />
@@ -18,9 +18,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Ephemeris context";
-    var mkdocs_page_input_path = "context.md";
-    var mkdocs_page_url = "/context/";
+    var mkdocs_page_name = "Introspection";
+    var mkdocs_page_input_path = "introspection.md";
+    var mkdocs_page_url = "/introspection/";
   </script>
   
   <script src="../js/jquery-2.1.1.min.js"></script>
@@ -58,12 +58,9 @@
     <a class="" href="../install/">Install</a>
 	    </li>
           
-            <li class="toctree-l1 current">
+            <li class="toctree-l1">
 		
-    <a class="current" href="./">Ephemeris context</a>
-    <ul class="subnav">
-            
-    </ul>
+    <a class="" href="../context/">Ephemeris context</a>
 	    </li>
           
             <li class="toctree-l1">
@@ -86,9 +83,12 @@
     <a class="" href="../constants/">Ephemeris constants</a>
 	    </li>
           
-            <li class="toctree-l1">
+            <li class="toctree-l1 current">
 		
-    <a class="" href="../introspection/">Introspection</a>
+    <a class="current" href="./">Introspection</a>
+    <ul class="subnav">
+            
+    </ul>
 	    </li>
           
             <li class="toctree-l1">
@@ -118,10 +118,10 @@
     
       
     
-    <li>Ephemeris context</li>
+    <li>Introspection</li>
     <li class="wy-breadcrumbs-aside">
       
-        <a href="https://github.com/bgodard/CALCEPH.jl/edit/master/docs/context.md"
+        <a href="https://github.com/bgodard/CALCEPH.jl/edit/master/docs/introspection.md"
           class="icon icon-github"> Edit on GitHub</a>
       
     </li>
@@ -131,33 +131,43 @@
           <div role="main">
             <div class="section">
               
-                <p><a id='CALCEPH.Ephem' href='#CALCEPH.Ephem'>#</a>
-<strong><code>CALCEPH.Ephem</code></strong> &mdash; <em>Type</em>.</p>
-<pre class="codehilite"><code>Ephem</code></pre>
+                <p><a id='CALCEPH.timeScale' href='#CALCEPH.timeScale'>#</a>
+<strong><code>CALCEPH.timeScale</code></strong> &mdash; <em>Function</em>.</p>
+<pre class="codehilite"><code>timeScale(eph)</code></pre>
 
 
-<p>Ephemeris descriptor. Create with:</p>
-<pre class="codehilite"><code>eph = Ephem(filename)
-eph = Ephem([filename1,filename2...])</code></pre>
+<p>Retrieve the timescale associated with ephemeris handler eph    Returns 1 for TDB and 2 for TCB.</p>
+<p><a target='_blank' href='https://github.com/bgodard/CALCEPH.jl/blob/896801407891a86aa1e268138555e21553d97c2d/src/introspection.jl#L1-L7' class='documenter-source'>source</a><br></p>
+<p><a id='CALCEPH.PositionRecord' href='#CALCEPH.PositionRecord'>#</a>
+<strong><code>CALCEPH.PositionRecord</code></strong> &mdash; <em>Type</em>.</p>
+<pre class="codehilite"><code>PositionRecord
+
+stores position record metadata.</code></pre>
 
 
-<p>The ephemeris descriptor will be used to access the ephemeris and related   data stored in the specified files.</p>
-<p>Because, Julia GC is lazy, you may want to free the memory managed by eph   before you get rid of the reference to eph with:</p>
-<pre class="codehilite"><code>finalize(eph)</code></pre>
+<p><a target='_blank' href='https://github.com/bgodard/CALCEPH.jl/blob/896801407891a86aa1e268138555e21553d97c2d/src/introspection.jl#L14-L18' class='documenter-source'>source</a><br></p>
+<p><a id='CALCEPH.positionRecords' href='#CALCEPH.positionRecords'>#</a>
+<strong><code>CALCEPH.positionRecords</code></strong> &mdash; <em>Function</em>.</p>
+<pre class="codehilite"><code>positionRecords(eph)</code></pre>
 
 
-<p>or after by forcing the GC to run:</p>
-<pre class="codehilite"><code>gc()</code></pre>
+<p>Retrieve position records metadata in ephemeris associated to    handler eph .</p>
+<p><a target='_blank' href='https://github.com/bgodard/CALCEPH.jl/blob/896801407891a86aa1e268138555e21553d97c2d/src/introspection.jl#L32-L38' class='documenter-source'>source</a><br></p>
+<p><a id='CALCEPH.OrientationRecord' href='#CALCEPH.OrientationRecord'>#</a>
+<strong><code>CALCEPH.OrientationRecord</code></strong> &mdash; <em>Type</em>.</p>
+<pre class="codehilite"><code>OrientationRecord
+
+stores orientation record metadata.</code></pre>
 
 
-<p><a target='_blank' href='https://github.com/bgodard/CALCEPH.jl/blob/896801407891a86aa1e268138555e21553d97c2d/src/ephem.jl#L28-L48' class='documenter-source'>source</a><br></p>
-<p><a id='CALCEPH.prefetch' href='#CALCEPH.prefetch'>#</a>
-<strong><code>CALCEPH.prefetch</code></strong> &mdash; <em>Function</em>.</p>
-<pre class="codehilite"><code>prefetch(eph)</code></pre>
+<p><a target='_blank' href='https://github.com/bgodard/CALCEPH.jl/blob/896801407891a86aa1e268138555e21553d97c2d/src/introspection.jl#L64-L68' class='documenter-source'>source</a><br></p>
+<p><a id='CALCEPH.orientationRecords' href='#CALCEPH.orientationRecords'>#</a>
+<strong><code>CALCEPH.orientationRecords</code></strong> &mdash; <em>Function</em>.</p>
+<pre class="codehilite"><code>orientationRecords(eph)</code></pre>
 
 
-<p>This function prefetches to the main memory all files associated to the ephemeris descriptor eph.</p>
-<p><a target='_blank' href='https://github.com/bgodard/CALCEPH.jl/blob/896801407891a86aa1e268138555e21553d97c2d/src/ephem.jl#L74-L79' class='documenter-source'>source</a><br></p>
+<p>Retrieve orientation records metadata in ephemeris associated to    handler eph .</p>
+<p><a target='_blank' href='https://github.com/bgodard/CALCEPH.jl/blob/896801407891a86aa1e268138555e21553d97c2d/src/introspection.jl#L80-L86' class='documenter-source'>source</a><br></p>
               
             </div>
           </div>
@@ -165,10 +175,10 @@ eph = Ephem([filename1,filename2...])</code></pre>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../units/" class="btn btn-neutral float-right" title="Units">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../utilities/" class="btn btn-neutral float-right" title="Utilities">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../install/" class="btn btn-neutral" title="Install"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../constants/" class="btn btn-neutral" title="Ephemeris constants"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -196,10 +206,10 @@ eph = Ephem([filename1,filename2...])</code></pre>
           <a href="https://github.com/bgodard/CALCEPH.jl/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="../install/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../constants/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../units/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../utilities/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
