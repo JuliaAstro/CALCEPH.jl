@@ -41,9 +41,7 @@ function positionRecords(eph::Ephem)
     @_checkPointer eph.data "Ephemeris is not properly initialized!"
     NR::Int = ccall((:calceph_getpositionrecordcount , libcalceph), Cint,
     (Ptr{Void},),eph.data)
-    if (NR == 0)
-       throw(CALCEPHException("Could not find any position records!"))
-    end
+    (NR == 0) && throw(CALCEPHException("Could not find any position records!"))
     target = Ref{Cint}(0)
     center = Ref{Cint}(0)
     startEpoch = Ref{Cdouble}(0.0)
@@ -89,9 +87,7 @@ function orientationRecords(eph::Ephem)
     @_checkPointer eph.data "Ephemeris is not properly initialized!"
     NR::Int = ccall((:calceph_getorientrecordcount , libcalceph), Cint,
     (Ptr{Void},),eph.data)
-    if (NR == 0)
-       throw(CALCEPHException("Could not find any orientation records!"))
-    end
+    (NR == 0) && throw(CALCEPHException("Could not find any orientation records!"))
     target = Ref{Cint}(0)
     startEpoch = Ref{Cdouble}(0.0)
     stopEpoch = Ref{Cdouble}(0.0)
