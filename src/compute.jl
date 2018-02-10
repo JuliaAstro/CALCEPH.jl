@@ -38,7 +38,7 @@ The possible values for target and center are :
 * 15    : Librations
 * 16    : TT-TDB
 * 17    : TCG-TCB
-* asteroid number + CALCEPH_ASTEROID    : asteroid
+* asteroid number + 2000000    : asteroid
 
 """
 function compute(eph::Ephem,jd0::Float64,time::Float64,
