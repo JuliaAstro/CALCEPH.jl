@@ -18,8 +18,8 @@ Output units are:
 # Arguments
 - `jd0::Float64`: jd0+time must be equal to the Julian Day for the time coordinate corresponding to the ephemeris (usually TDB or TCB)
 - `time::Float64`: jd0+time must be equal to the Julian Day for the time coordinate corresponding to the ephemeris (usually TDB or TCB)
-- `target::Int`: The body or reference point whose coordinates are required.
-- `center::Int`: The origin of the coordinate system.
+- `target::Integer`: The body or reference point whose coordinates are required.
+- `center::Integer`: The origin of the coordinate system.
 
 The possible values for target and center are :
 * 1 : Mercury Barycenter
@@ -42,7 +42,7 @@ The possible values for target and center are :
 
 """
 function compute(eph::Ephem,jd0::Float64,time::Float64,
-   target::Int64,center::Int64)
+   target::Integer,center::Integer)
     @_checkPointer eph.data "Ephemeris is not properly initialized!"
     result = Array{Float64,1}(6)
     stat = ccall((:calceph_compute, libcalceph), Cint,
@@ -65,13 +65,13 @@ the desired time, if you don't take care about precision.
 # Arguments
 - `jd0::Float64`: jd0+time must be equal to the Julian Day for the time coordinate corresponding to the ephemeris (usually TDB or TCB)
 - `time::Float64`: jd0+time must be equal to the Julian Day for the time coordinate corresponding to the ephemeris (usually TDB or TCB)
-- `target::Int`: The body or reference point whose coordinates are required. The numbering system depends on the parameter unit.
-- `center::Int`: The origin of the coordinate system. The numbering system depends on the parameter unit.
-- `unit::Int` : The units of the result. This integer is a sum of some unit constants (unit*) and/or the constant useNaifId. If the unit contains useNaifId, the NAIF identification numbering system is used for the target and the center. If the unit does not contain useNaifId, the old number system is used for the target and the center.
+- `target::Integer`: The body or reference point whose coordinates are required. The numbering system depends on the parameter unit.
+- `center::Integer`: The origin of the coordinate system. The numbering system depends on the parameter unit.
+- `unit::Integer` : The units of the result. This integer is a sum of some unit constants (unit*) and/or the constant useNaifId. If the unit contains useNaifId, the NAIF identification numbering system is used for the target and the center. If the unit does not contain useNaifId, the old number system is used for the target and the center.
 
 """
 function compute(eph::Ephem,jd0::Float64,time::Float64,
-   target::Int64,center::Int64,unit::Int64)
+   target::Integer,center::Integer,unit::Integer)
     @_checkPointer eph.data "Ephemeris is not properly initialized!"
     result = Array{Float64,1}(6)
     stat = ccall((:calceph_compute_unit, libcalceph), Cint,
@@ -94,10 +94,10 @@ the desired time, if you don't take care about precision.
 # Arguments
 - `jd0::Float64`: jd0+time must be equal to the Julian Day for the time coordinate corresponding to the ephemeris (usually TDB or TCB)
 - `time::Float64`: jd0+time must be equal to the Julian Day for the time coordinate corresponding to the ephemeris (usually TDB or TCB)
-- `target::Int`: The body or reference point whose coordinates are required. The numbering system depends on the parameter unit.
-- `center::Int`: The origin of the coordinate system. The numbering system depends on the parameter unit.
-- `unit::Int` : The units of the result. This integer is a sum of some unit constants (unit*) and/or the constant useNaifId. If the unit contains useNaifId, the NAIF identification numbering system is used for the target and the center. If the unit does not contain useNaifId, the old number system is used for the target and the center.
-- `order::Int` : The order of derivatives
+- `target::Integer`: The body or reference point whose coordinates are required. The numbering system depends on the parameter unit.
+- `center::Integer`: The origin of the coordinate system. The numbering system depends on the parameter unit.
+- `unit::Integer` : The units of the result. This integer is a sum of some unit constants (unit*) and/or the constant useNaifId. If the unit contains useNaifId, the NAIF identification numbering system is used for the target and the center. If the unit does not contain useNaifId, the old number system is used for the target and the center.
+- `order::Integer` : The order of derivatives
     * 0: only the position is computed.
     * 1: only the position and velocity are computed.
     * 2: only the position, velocity and acceleration are computed.
@@ -105,7 +105,7 @@ the desired time, if you don't take care about precision.
 
 """
 function compute(eph::Ephem,jd0::Float64,time::Float64,
-   target::Int64,center::Int64,unit::Int64,order::Int64)
+   target::Integer,center::Integer,unit::Integer,order::Integer)
     @_checkPointer eph.data "Ephemeris is not properly initialized!"
     @_checkOrder order
     result = Array{Float64,1}(3+3order)

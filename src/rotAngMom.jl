@@ -11,12 +11,12 @@ the desired time, if you don't take care about precision.
 # Arguments
 - `jd0::Float64`: jd0+time must be equal to the Julian Day for the time coordinate corresponding to the ephemeris (usually TDB or TCB)
 - `time::Float64`: jd0+time must be equal to the Julian Day for the time coordinate corresponding to the ephemeris (usually TDB or TCB)
-- `target::Int`: The body whose angular momentum is required. The numbering system depends on the parameter unit.
-- `unit::Int` : The units of the result. This integer is a sum of some unit constants (unit*) and/or the constant useNaifId. If the unit contains useNaifId, the NAIF identification numbering system is used for the target and the center. If the unit does not contain useNaifId, the old number system is used for the target and the center (see the list in the documentation of function compute). The angles are expressed in radians if unit contains unitRad.
+- `target::Integer`: The body whose angular momentum is required. The numbering system depends on the parameter unit.
+- `unit::Integer` : The units of the result. This integer is a sum of some unit constants (unit*) and/or the constant useNaifId. If the unit contains useNaifId, the NAIF identification numbering system is used for the target and the center. If the unit does not contain useNaifId, the old number system is used for the target and the center (see the list in the documentation of function compute). The angles are expressed in radians if unit contains unitRad.
 
 """
 function rotAngMom(eph::Ephem,jd0::Float64,time::Float64,
-   target::Int64,unit::Int64)
+   target::Integer,unit::Integer)
     @_checkPointer eph.data "Ephemeris is not properly initialized!"
     result = Array{Float64,1}(6)
     stat = ccall((:calceph_rotangmom_unit, libcalceph), Cint,
@@ -39,9 +39,9 @@ the desired time, if you don't take care about precision.
 # Arguments
 - `jd0::Float64`: jd0+time must be equal to the Julian Day for the time coordinate corresponding to the ephemeris (usually TDB or TCB)
 - `time::Float64`: jd0+time must be equal to the Julian Day for the time coordinate corresponding to the ephemeris (usually TDB or TCB)
-- `target::Int`: The body whose angular momentum is required. The numbering system depends on the parameter unit.
-- `unit::Int` : The units of the result. This integer is a sum of some unit constants (unit*) and/or the constant useNaifId. If the unit contains useNaifId, the NAIF identification numbering system is used for the target and the center. If the unit does not contain useNaifId, the old number system is used for the target and the center (see the list in the documentation of function compute).
-- `order::Int` : The order of derivatives
+- `target::Integer`: The body whose angular momentum is required. The numbering system depends on the parameter unit.
+- `unit::Integer` : The units of the result. This integer is a sum of some unit constants (unit*) and/or the constant useNaifId. If the unit contains useNaifId, the NAIF identification numbering system is used for the target and the center. If the unit does not contain useNaifId, the old number system is used for the target and the center (see the list in the documentation of function compute).
+- `order::Integer` : The order of derivatives
     * 0: only the angles are computed.
     * 1: only the angles and 1st derivatives are computed.
     * 2: only the angles, the 1st derivatives and 2nd derivatives are computed.
@@ -49,7 +49,7 @@ the desired time, if you don't take care about precision.
 
 """
 function rotAngMom(eph::Ephem,jd0::Float64,time::Float64,
-   target::Int64,unit::Int64,order::Int64)
+   target::Integer,unit::Integer,order::Integer)
     @_checkPointer eph.data "Ephemeris is not properly initialized!"
     @_checkOrder order
     result = Array{Float64,1}(3+3order)

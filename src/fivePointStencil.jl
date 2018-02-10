@@ -12,7 +12,7 @@ with h≠0 being the grid spacing:
 """
 
 
-function fivePointStencil(f,x,n::Int,h)
+function fivePointStencil(f,x,n::Integer,h)
     if ((n<0) || (n>4))
         error("In fivePointStencil: Invalid order $n")
     end
