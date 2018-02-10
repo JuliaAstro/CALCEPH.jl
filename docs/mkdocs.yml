@@ -3,6 +3,7 @@ repo_url:            https://github.com/bgodard/CALCEPH.jl
 site_description:    CALCEPH.jl documentation
 site_author:         Bernard Godard
 theme:               readthedocs
+edit_uri:            blob/master/docs/src
 
 markdown_extensions:
   - codehilite
