@@ -169,9 +169,9 @@
 <li>15    : Librations</li>
 <li>16    : TT-TDB</li>
 <li>17    : TCG-TCB</li>
-<li>asteroid number + CALCEPH_ASTEROID    : asteroid</li>
+<li>asteroid number + 2000000    : asteroid</li>
 </ul>
-<p><a target='_blank' href='https://github.com/bgodard/CALCEPH.jl/blob/0c5ac2f475167cc884210cae0bd8938a21c82037/src/compute.jl#L1-L43' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/bgodard/CALCEPH.jl/blob/9ca31e2edc40259afb080363693e021536ccf51e/src/compute.jl#L1-L43' class='documenter-source'>source</a><br></p>
 <pre class="codehilite"><code>compute(eph,jd0,time,target,center,unit)</code></pre>
 
 
@@ -184,7 +184,7 @@
 <li><code>center::Int</code>: The origin of the coordinate system. The numbering system depends on the parameter unit.</li>
 <li><code>unit::Int</code> : The units of the result. This integer is a sum of some unit constants (unit*) and/or the constant useNaifId. If the unit contains useNaifId, the NAIF identification numbering system is used for the target and the center. If the unit does not contain useNaifId, the old number system is used for the target and the center.</li>
 </ul>
-<p><a target='_blank' href='https://github.com/bgodard/CALCEPH.jl/blob/0c5ac2f475167cc884210cae0bd8938a21c82037/src/compute.jl#L55-L72' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/bgodard/CALCEPH.jl/blob/9ca31e2edc40259afb080363693e021536ccf51e/src/compute.jl#L55-L72' class='documenter-source'>source</a><br></p>
 <pre class="codehilite"><code>compute(eph,jd0,time,target,center,unit,order)</code></pre>
 
 
@@ -206,7 +206,7 @@
 </ul>
 </li>
 </ul>
-<p><a target='_blank' href='https://github.com/bgodard/CALCEPH.jl/blob/0c5ac2f475167cc884210cae0bd8938a21c82037/src/compute.jl#L84-L106' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/bgodard/CALCEPH.jl/blob/9ca31e2edc40259afb080363693e021536ccf51e/src/compute.jl#L84-L106' class='documenter-source'>source</a><br></p>
 <p><a id='CALCEPH.orient' href='#CALCEPH.orient'>#</a>
 <strong><code>CALCEPH.orient</code></strong> &mdash; <em>Function</em>.</p>
 <pre class="codehilite"><code>orient(eph,jd0,time,target,unit)</code></pre>
@@ -220,7 +220,7 @@
 <li><code>target::Int</code>: The body whose orientation is required. The numbering system depends on the parameter unit.</li>
 <li><code>unit::Int</code> : The units of the result. This integer is a sum of some unit constants (unit*) and/or the constant useNaifId. If the unit contains useNaifId, the NAIF identification numbering system is used for the target and the center. If the unit does not contain useNaifId, the old number system is used for the target and the center (see the list in the documentation of function compute). The angles are expressed in radians if unit contains unitRad.</li>
 </ul>
-<p><a target='_blank' href='https://github.com/bgodard/CALCEPH.jl/blob/0c5ac2f475167cc884210cae0bd8938a21c82037/src/orient.jl#L1-L17' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/bgodard/CALCEPH.jl/blob/9ca31e2edc40259afb080363693e021536ccf51e/src/orient.jl#L1-L17' class='documenter-source'>source</a><br></p>
 <pre class="codehilite"><code>orient(eph,jd0,time,target,unit,order)</code></pre>
 
 
@@ -241,7 +241,7 @@
 </ul>
 </li>
 </ul>
-<p><a target='_blank' href='https://github.com/bgodard/CALCEPH.jl/blob/0c5ac2f475167cc884210cae0bd8938a21c82037/src/orient.jl#L29-L50' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/bgodard/CALCEPH.jl/blob/9ca31e2edc40259afb080363693e021536ccf51e/src/orient.jl#L29-L50' class='documenter-source'>source</a><br></p>
 <p><a id='CALCEPH.rotAngMom' href='#CALCEPH.rotAngMom'>#</a>
 <strong><code>CALCEPH.rotAngMom</code></strong> &mdash; <em>Function</em>.</p>
 <pre class="codehilite"><code>rotAngMom(eph,jd0,time,target,unit)</code></pre>
@@ -255,7 +255,7 @@
 <li><code>target::Int</code>: The body whose angular momentum is required. The numbering system depends on the parameter unit.</li>
 <li><code>unit::Int</code> : The units of the result. This integer is a sum of some unit constants (unit*) and/or the constant useNaifId. If the unit contains useNaifId, the NAIF identification numbering system is used for the target and the center. If the unit does not contain useNaifId, the old number system is used for the target and the center (see the list in the documentation of function compute). The angles are expressed in radians if unit contains unitRad.</li>
 </ul>
-<p><a target='_blank' href='https://github.com/bgodard/CALCEPH.jl/blob/0c5ac2f475167cc884210cae0bd8938a21c82037/src/rotAngMom.jl#L1-L17' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/bgodard/CALCEPH.jl/blob/9ca31e2edc40259afb080363693e021536ccf51e/src/rotAngMom.jl#L1-L17' class='documenter-source'>source</a><br></p>
 <pre class="codehilite"><code>rotAngMom(eph,jd0,time,target,unit,order)</code></pre>
 
 
@@ -276,7 +276,7 @@
 </ul>
 </li>
 </ul>
-<p><a target='_blank' href='https://github.com/bgodard/CALCEPH.jl/blob/0c5ac2f475167cc884210cae0bd8938a21c82037/src/rotAngMom.jl#L29-L50' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/bgodard/CALCEPH.jl/blob/9ca31e2edc40259afb080363693e021536ccf51e/src/rotAngMom.jl#L29-L50' class='documenter-source'>source</a><br></p>
               
             </div>
           </div>
