@@ -1,10 +1,8 @@
 using BinaryProvider
 
 # This is where all binaries will get installed
-const prefix = Prefix(!isempty(ARGS) ? ARGS[1] : joinpath(@__DIR__,"usr"))
-
-libcalceph = LibraryProduct(prefix, "libcalceph")
-
+prefix = Prefix(!isempty(ARGS) ? ARGS[1] : joinpath(@__DIR__,"usr"))
+libcalceph = LibraryProduct(prefix, "libcalceph", :libcalceph)
 products = [libcalceph]
 
 
@@ -30,21 +28,17 @@ if platform_key() in keys(download_info)
         install(url, tarball_hash; prefix=prefix, force=true, verbose=true)
     end
 
-    # Finally, write out a deps.jl file that will contain mappings for each
-    # named product here: (there will be a "libfoo" variable and a "fooifier"
-    # variable, etc...)
-    @write_deps_file libcalceph
+    # Write out our deps.jl file that will contain a `libcalceph`
+    write_deps_file(joinpath(@__DIR__, "deps.jl"), products)
     exit(0)
 end
 
-info("Could not find a binary for your platform $(Sys.MACHINE). Will attempt a build.")
+info("Could not find a binary for your platform $(triplet(platform_key())). Will attempt a build.")
 
 using BinDeps
-
 @BinDeps.setup
 
 libcalceph = library_dependency("libcalceph")
-
 provides(Sources,URI("https://www.imcce.fr/content/medias/recherche/equipes/asd/calceph/calceph-3.0.0.tar.gz"), libcalceph)
 
 provides(BuildProcess,Autotools(configure_options =
