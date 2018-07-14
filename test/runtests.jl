@@ -75,23 +75,33 @@ CALCEPH._ephemDestructor(eph2)
 eph1 = Ephem(joinpath(testpath,"example1.dat"))
 eph2 = Ephem([joinpath(testpath,"example1.bsp"),
                      joinpath(testpath,"example1.tpc")])
-
+eph3 = Ephem([joinpath(testpath,"checktpc_11627.tpc")])
+eph4 = Ephem([joinpath(testpath,"checktpc_str.tpc")])
 con1 = constants(eph1)
 con2 = constants(eph2)
+con3 = constants(eph3)
+con4 = constants(eph4)
 
-@test isa(con1,Dict{Symbol,Float64})
+@test isa(con1,Dict{Symbol,Any})
 @test length(con1) == 402
 @test con1[:EMRAT] ≈ 81.30056
-@test isa(con2,Dict{Symbol,Float64})
+@test isa(con2,Dict{Symbol,Any})
 @test length(con2) == 313
 @test con2[:AU] ≈ 1.49597870696268e8
+@test isa(con3,Dict{Symbol,Any})
+@test length(con3) == 3
+@test con3[:BODY000_GMLIST4] == [ 199.0 ; 299.0 ; 301.0 ; 399.0 ]
+@test con3[:BODY000_GMLIST2] == [ 499 ; 599 ]
+@test con3[:BODY000_GMLIST1] == 699
+@test isa(con4,Dict{Symbol,Any})
+@test length(con4) == 4
+@test con4[:MESSAGE] == "You can't always get what you want."
+@test con4[:DISTANCE_UNITS] == "KILOMETERS"
+@test con4[:MISSION_UNITS] == [ "KILOMETERS" ; "SECONDS" ; "KILOMETERS/SECOND" ]
+@test con4[:CONTINUED_STRINGS] == ["This //", "is //", "just //", "one long //", "string.", "Here's a second //", "continued //", "string."]
 
 # Retrieving constants from closed ephemeris
 finalize(eph2)
-@test_throws CALCEPHException con2 = constants(eph2)
-
-# Retrieving constants from ephemeris with no constants
-eph2 = Ephem(joinpath(testpath,"example1.bsp"))
 @test_throws CALCEPHException con2 = constants(eph2)
 
 # test compute*
