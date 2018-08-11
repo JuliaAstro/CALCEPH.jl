@@ -1,7 +1,7 @@
 using CALCEPH
-using Base.Test
+using Test
 
-testpath = joinpath(Pkg.dir("CALCEPH"), "test")
+testpath = joinpath(dirname(pathof(CALCEPH)), "..", "test")
 
 # NAIF ID tests
 

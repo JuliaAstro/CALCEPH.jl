@@ -69,11 +69,11 @@ function loadData!(bid::BodyId,filename::AbstractString)
       if length(ln1)>0
          if ln1[1] != '#'
             m = match(pattern1,ln1)
-            if isa(m,Void)
+            if m === nothing
                throw(CALCEPHException("parsing line $cnt in data input file: $filename:\n$ln0"))
             end
             id = parse(Int,m.captures[1])
-            name = Symbol(lowercase(replace(strip(m.captures[2]),pattern2,"_")))
+            name = Symbol(lowercase(replace(strip(m.captures[2]), pattern2 => "_")))
             add!(bid,name,id)
          end
       end
@@ -105,7 +105,8 @@ Set(Symbol[:ssb, :solar_system_barycenter])
 
 """
 const naifId = BodyId()
-loadData!(naifId,joinpath(Pkg.dir("CALCEPH"), "data", "NaifIds.txt"))
+import CALCEPH
+loadData!(naifId,joinpath(dirname(pathof(CALCEPH)), "..", "data", "NaifIds.txt"))
 
 # NAIF IDs for Hyperbolic Asteroid 'Oumuamua (1I/2017 U1)
 add!(naifId,:oumuamua,3788040)

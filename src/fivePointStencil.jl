@@ -10,8 +10,6 @@ with h≠0 being the grid spacing:
 [https://en.wikipedia.org/wiki/Five-point_stencil](https://en.wikipedia.org/wiki/Five-point_stencil)
 
 """
-
-
 function fivePointStencil(f,x,n::Integer,h)
     if ((n<0) || (n>4))
         error("In fivePointStencil: Invalid order $n")
@@ -25,7 +23,7 @@ function fivePointStencil(f,x,n::Integer,h)
     fp1 = f(x+h)
     fp2 = f(x+2h)
 
-    res = Vector{typeof(fn0)}(n+1)
+    res = Vector{typeof(fn0)}(undef,n+1)
 
     res[1] = fn0
 

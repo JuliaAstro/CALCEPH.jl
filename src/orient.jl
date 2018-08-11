@@ -18,9 +18,9 @@ the desired time, if you don't take care about precision.
 function orient(eph::Ephem,jd0::Float64,time::Float64,
    target::Integer,unit::Integer)
     @_checkPointer eph.data "Ephemeris is not properly initialized!"
-    result = Array{Float64,1}(6)
+    result = Array{Float64,1}(undef,6)
     stat = ccall((:calceph_orient_unit, libcalceph), Cint,
-    (Ptr{Void},Cdouble,Cdouble,Cint,Cint,Ref{Cdouble}),
+    (Ptr{Cvoid},Cdouble,Cdouble,Cint,Cint,Ref{Cdouble}),
     eph.data,jd0,time,target,unit,result)
     @_checkStatus stat "Unable to compute ephemeris"
     return result
@@ -52,9 +52,9 @@ function orient(eph::Ephem,jd0::Float64,time::Float64,
    target::Integer,unit::Integer,order::Integer)
     @_checkPointer eph.data "Ephemeris is not properly initialized!"
     @_checkOrder order
-    result = Array{Float64,1}(3+3order)
+    result = Array{Float64,1}(undef,3+3order)
     stat = ccall((:calceph_orient_order, libcalceph), Cint,
-    (Ptr{Void},Cdouble,Cdouble,Cint,Cint,Cint,Ref{Cdouble}),
+    (Ptr{Cvoid},Cdouble,Cdouble,Cint,Cint,Cint,Ref{Cdouble}),
     eph.data,jd0,time,target,unit,order,result)
     @_checkStatus stat "Unable to compute ephemeris"
     return result

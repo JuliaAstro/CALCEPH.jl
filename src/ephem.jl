@@ -47,13 +47,13 @@ end
 
 """
 mutable struct Ephem
-   data :: Ptr{Void}
+   data :: Ptr{Cvoid}
    function Ephem(files::Vector{<:AbstractString})
-      ptr = ccall((:calceph_open_array, libcalceph), Ptr{Void},
+      ptr = ccall((:calceph_open_array, libcalceph), Ptr{Cvoid},
                   (Int, Ptr{Ptr{UInt8}}), length(files), files)
       @_checkPointer ptr "Unable to open ephemeris file(s)!"
       obj = new(ptr)
-      finalizer(obj,_ephemDestructor) # register object destructor
+      finalizer(_ephemDestructor,obj) # register object destructor
       return obj
    end
 end
@@ -64,7 +64,7 @@ function _ephemDestructor(eph::Ephem)
    if (eph.data == C_NULL)
       return
    end
-   ccall((:calceph_close, libcalceph), Void, (Ptr{Void},), eph.data)
+   ccall((:calceph_close, libcalceph), Cvoid, (Ptr{Cvoid},), eph.data)
    eph.data = C_NULL
    return
 end
@@ -79,7 +79,7 @@ Ephem(file::AbstractString) = Ephem([file])
 """
 function prefetch(eph::Ephem)
     @_checkPointer eph.data "Ephemeris is not properly initialized!"
-    stat = ccall((:calceph_prefetch, libcalceph), Int, (Ptr{Void},), eph.data)
+    stat = ccall((:calceph_prefetch, libcalceph), Int, (Ptr{Cvoid},), eph.data)
     @_checkStatus stat "Unable to prefetch  ephemeris!"
     return
 end

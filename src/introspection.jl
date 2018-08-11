@@ -8,7 +8,7 @@
 function timeScale(eph::Ephem)
     @_checkPointer eph.data "Ephemeris is not properly initialized!"
     return ccall((:calceph_gettimescale , libcalceph), Cint,
-                  (Ptr{Void},),eph.data)
+                  (Ptr{Cvoid},),eph.data)
 end
 
 """
@@ -40,7 +40,7 @@ function positionRecords(eph::Ephem)
     res = Array{PositionRecord,1}()
     @_checkPointer eph.data "Ephemeris is not properly initialized!"
     NR::Int = ccall((:calceph_getpositionrecordcount , libcalceph), Cint,
-    (Ptr{Void},),eph.data)
+    (Ptr{Cvoid},),eph.data)
     (NR == 0) && throw(CALCEPHException("Could not find any position records!"))
     target = Ref{Cint}(0)
     center = Ref{Cint}(0)
@@ -49,7 +49,7 @@ function positionRecords(eph::Ephem)
     frame = Ref{Cint}(0)
     for i=1:NR
        stat = ccall((:calceph_getpositionrecordindex , libcalceph), Cint,
-                  (Ptr{Void},Cint,Ref{Cint},Ref{Cint},Ref{Cdouble},Ref{Cdouble},Ref{Cint}),
+                  (Ptr{Cvoid},Cint,Ref{Cint},Ref{Cint},Ref{Cdouble},Ref{Cdouble},Ref{Cint}),
                   eph.data, i ,target,center,startEpoch,stopEpoch,frame)
        if (stat!=0)
           push!(res,PositionRecord(target[],center[],startEpoch[],stopEpoch[],frame[]))
@@ -86,7 +86,7 @@ function orientationRecords(eph::Ephem)
     res = Array{OrientationRecord,1}()
     @_checkPointer eph.data "Ephemeris is not properly initialized!"
     NR::Int = ccall((:calceph_getorientrecordcount , libcalceph), Cint,
-    (Ptr{Void},),eph.data)
+    (Ptr{Cvoid},),eph.data)
     (NR == 0) && throw(CALCEPHException("Could not find any orientation records!"))
     target = Ref{Cint}(0)
     startEpoch = Ref{Cdouble}(0.0)
@@ -94,7 +94,7 @@ function orientationRecords(eph::Ephem)
     frame = Ref{Cint}(0)
     for i=1:NR
        stat = ccall((:calceph_getorientrecordindex , libcalceph), Cint,
-                  (Ptr{Void},Cint,Ref{Cint},Ref{Cdouble},Ref{Cdouble},Ref{Cint}),
+                  (Ptr{Cvoid},Cint,Ref{Cint},Ref{Cdouble},Ref{Cdouble},Ref{Cint}),
                   eph.data, i ,target,startEpoch,stopEpoch,frame)
        if (stat!=0)
           push!(res,OrientationRecord(target[],startEpoch[],stopEpoch[],frame[]))

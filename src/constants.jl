@@ -12,31 +12,31 @@ function constants(eph::Ephem)
     res = Dict{Symbol,Any}()
     @_checkPointer eph.data "Ephemeris is not properly initialized!"
     NC::Int = ccall((:calceph_getconstantcount , libcalceph), Cint,
-    (Ptr{Void},),eph.data)
+    (Ptr{Cvoid},),eph.data)
     value = Ref{Cdouble}(0.0)
-    name = Vector{UInt8}(_maxConstName)
+    name = Vector{UInt8}(undef,_maxConstName)
     for i=1:NC
        numberOfValues = ccall((:calceph_getconstantindex , libcalceph), Cint,
-                  (Ptr{Void},Cint,Ptr{UInt8},Ref{Cdouble}),
+                  (Ptr{Cvoid},Cint,Ptr{UInt8},Ref{Cdouble}),
                   eph.data, i ,name ,value)
        if (numberOfValues==1)
           res[Symbol(strip(unsafe_string(pointer(name))))] = value[]
        elseif (numberOfValues>1)
-          values = Array{Float64,1}(numberOfValues)
+          values = Array{Float64,1}(undef,numberOfValues)
           stat = ccall((:calceph_getconstantvd , libcalceph), Cint,
-                  (Ptr{Void},Ptr{UInt8},Ptr{Cdouble}, Cint),
+                  (Ptr{Cvoid},Ptr{UInt8},Ptr{Cdouble}, Cint),
                   eph.data, name ,values, numberOfValues)
           if (stat>0)
              res[Symbol(strip(unsafe_string(pointer(name))))] = values
           end
        else
           numberOfValues = ccall((:calceph_getconstantvs , libcalceph), Cint,
-                  (Ptr{Void},Ptr{UInt8},Ptr{Ptr{Char}}, Cint),
+                  (Ptr{Cvoid},Ptr{UInt8},Ptr{Ptr{Char}}, Cint),
                   eph.data, name ,C_NULL, 0)
           if (numberOfValues>0)
-             storage = Array{UInt8}(_maxConstValue,numberOfValues)
+             storage = Array{UInt8}(undef,_maxConstValue,numberOfValues)
              stat = ccall((:calceph_getconstantvs , libcalceph), Cint,
-             (Ptr{Void},Ptr{UInt8},Ptr{UInt8}, Cint),
+             (Ptr{Cvoid},Ptr{UInt8},Ptr{UInt8}, Cint),
              eph.data, name ,storage, numberOfValues)
              if (stat>0)
                  values = [ strip(unsafe_string(pointer(storage,i))) for i in 1:_maxConstValue:length(storage) ]
