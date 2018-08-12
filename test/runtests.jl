@@ -69,7 +69,7 @@ finalize(eph2)
 CALCEPH._ephemDestructor(eph2)
 
 # Opening invalid ephemeris
-@test_throws CALCEPHException eph1 = Ephem(String[])
+@test_throws CALCEPHException Ephem(String[])
 
 # check constants
 eph1 = Ephem(joinpath(testpath,"example1.dat"))
@@ -102,7 +102,7 @@ con4 = constants(eph4)
 
 # Retrieving constants from closed ephemeris
 finalize(eph2)
-@test_throws CALCEPHException con2 = constants(eph2)
+@test_throws CALCEPHException constants(eph2)
 
 # test compute*
 # test data and thresholds from CALCEPH C library tests
