@@ -26,6 +26,9 @@ export Ephem, prefetch, CALCEPHException
 include("compute.jl")
 export compute
 
+include("timespan.jl")
+export timespan
+
 include("bodyId.jl")
 export naifId
 
