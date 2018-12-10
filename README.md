@@ -5,7 +5,7 @@
 [![](https://img.shields.io/badge/docs-stable-blue.svg)](https://bgodard.github.io/CALCEPH.jl/stable)
 [![](https://img.shields.io/badge/docs-latest-blue.svg)](https://bgodard.github.io/CALCEPH.jl/latest)
 
-This is a julia wrapper for [CALCEPH](https://www.imcce.fr/inpop/calceph/) a C library for reading planetary ephemeris files, such [INPOPxx](https://www.imcce.fr/inpop), JPL DExxx and SPICE ephemeris files.
+This is a julia wrapper for [CALCEPH](https://www.imcce.fr/inpop/calceph/) a C library for reading planetary ephemeris files, such as [INPOPxx](https://www.imcce.fr/inpop), JPL DExxx and SPICE ephemeris files.
 
 [CALCEPH](https://www.imcce.fr/inpop/calceph/) C library is developped by [IMCCE](https://www.imcce.fr/).
 
