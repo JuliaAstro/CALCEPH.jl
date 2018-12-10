@@ -170,6 +170,8 @@ records = positionRecords(eph)
 records = orientationRecords(eph)
 @test length(records) == 1
 
+@test timespan(eph) == (2.442457e6, 2.451545e6, 1)
+
 
 # rotangmom
 eph = Ephem(joinpath(testpath,"example2_rotangmom.dat"))
