@@ -41,4 +41,4 @@ build_script:
       Pkg.clone(pwd(), \"CALCEPH\"); Pkg.build(\"CALCEPH\")"
 
 test_script:
-  - C:\projects\julia\bin\julia -e "Pkg.test(\"CALCEPH\")"
+  - C:\projects\julia\bin\julia -e "using Pkg; Pkg.test(\"CALCEPH\")"
