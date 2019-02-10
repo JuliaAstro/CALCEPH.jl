@@ -40,3 +40,17 @@ const unitRad = 16
 has to be added to the unit argument when using NAIF integer codes for identification of center and target
 """
 const useNaifId = 32
+
+"""
+    outputEulerAngles
+
+has to be added to the unit argument for orient to output Euler angles
+"""
+const outputEulerAngles = 64
+
+"""
+    outputNutationAngles
+
+has to be added to the unit argument for orient to output nutation angles
+"""
+const outputNutationAngles = 128
