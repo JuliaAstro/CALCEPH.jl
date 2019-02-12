@@ -1,6 +1,9 @@
 using CALCEPH
 using Test
 
+
+CALCEPH.disableCustomHandler()
+CALCEPH.setCustomHandler(s::String->Nothing )
 testpath = joinpath(dirname(pathof(CALCEPH)), "..", "test")
 
 # NAIF ID tests

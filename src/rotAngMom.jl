@@ -9,6 +9,7 @@ be a fraction of the day. But you may call this function with time=0 and jd0,
 the desired time, if you don't take care about precision.
 
 # Arguments
+- `eph`: ephemeris
 - `jd0::Float64`: jd0+time must be equal to the Julian Day for the time coordinate corresponding to the ephemeris (usually TDB or TCB)
 - `time::Float64`: jd0+time must be equal to the Julian Day for the time coordinate corresponding to the ephemeris (usually TDB or TCB)
 - `target::Integer`: The body whose angular momentum is required. The numbering system depends on the parameter unit.
@@ -37,6 +38,7 @@ the desired time, if you don't take care about precision.
 
 # Arguments
 - `result`: container for result. It is not checked if it is sufficiently large enough!
+- `eph`: ephemeris
 - `jd0::Float64`: jd0+time must be equal to the Julian Day for the time coordinate corresponding to the ephemeris (usually TDB or TCB)
 - `time::Float64`: jd0+time must be equal to the Julian Day for the time coordinate corresponding to the ephemeris (usually TDB or TCB)
 - `target::Integer`: The body whose angular momentum is required. The numbering system depends on the parameter unit.
@@ -62,6 +64,7 @@ be a fraction of the day. But you may call this function with time=0 and jd0,
 the desired time, if you don't take care about precision.
 
 # Arguments
+- `eph`: ephemeris
 - `jd0::Float64`: jd0+time must be equal to the Julian Day for the time coordinate corresponding to the ephemeris (usually TDB or TCB)
 - `time::Float64`: jd0+time must be equal to the Julian Day for the time coordinate corresponding to the ephemeris (usually TDB or TCB)
 - `target::Integer`: The body whose angular momentum is required. The numbering system depends on the parameter unit.
@@ -96,6 +99,7 @@ the desired time, if you don't take care about precision.
 
 # Arguments
 - `result`: container for result. It is not checked if it is sufficiently large enough!
+- `eph`: ephemeris
 - `jd0::Float64`: jd0+time must be equal to the Julian Day for the time coordinate corresponding to the ephemeris (usually TDB or TCB)
 - `time::Float64`: jd0+time must be equal to the Julian Day for the time coordinate corresponding to the ephemeris (usually TDB or TCB)
 - `target::Integer`: The body whose angular momentum is required. The numbering system depends on the parameter unit.

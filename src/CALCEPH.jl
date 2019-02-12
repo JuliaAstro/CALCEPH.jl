@@ -49,4 +49,6 @@ export timeScale, positionRecords, orientationRecords
 
 include("fivePointStencil.jl")
 
+include("errorHandling.jl")
+
 end # module

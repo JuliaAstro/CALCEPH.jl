@@ -3,13 +3,14 @@
 
 This function returns the first and last time available in the ephemeris file associated to eph.
 
-## Arguments:
-    * eph – ephemeris descriptor
+# Arguments:
+- `eph` : ephemeris
 
-## Return:
-    * firsttime – Julian date of the first time
-    * lasttime – Julian date of the last time
-    * continuous – information about the availability of the quantities over the time span
+# Return:
+a tuple containing:
+    * firsttime: Julian date of the first time
+    * lasttime: Julian date of the last time
+    * continuous: information about the availability of the quantities over the time span
 
         It returns the following value in the parameter continuous :
 
