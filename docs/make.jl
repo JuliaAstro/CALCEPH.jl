@@ -1,9 +1,9 @@
 using Documenter, CALCEPH
 
 makedocs(modules=[CALCEPH],
-        doctest=true)
+        doctest=true,
+        sitename = "CALCEPH.jl"
+)
 
 deploydocs(deps   = Deps.pip("mkdocs", "python-markdown-math"),
-    repo = "github.com/bgodard/CALCEPH.jl.git",
-    julia  = "0.6",
-    osname = "linux")
+    repo = "github.com/bgodard/CALCEPH.jl.git")
