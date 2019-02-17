@@ -44,6 +44,9 @@ the desired time, if you don't take care about precision.
 - `target::Integer`: The body whose orientation is required. The numbering system depends on the parameter unit.
 - `unit::Integer` : The units of the result. This integer is a sum of some unit constants (unit*) and/or the constant useNaifId. If the unit contains useNaifId, the NAIF identification numbering system is used for the target and the center. If the unit does not contain useNaifId, the old number system is used for the target and the center (see the list in the documentation of function compute). If the unit contains outputNutationAngles, the nutation angles are computed rather than the Euler angles.
 
+# Return:
+- status integer from CALCEPH: 0 if an error occured
+
 """
 function unsafe_orient!(result,eph::Ephem,jd0::Float64,time::Float64,
    target::Integer,unit::Integer)
@@ -109,6 +112,9 @@ the desired time, if you don't take care about precision.
     * 1: only the angles and 1st derivatives are computed.
     * 2: only the angles, the 1st derivatives and 2nd derivatives are computed.
     * 3: the angles, the 1st derivatives, 2nd derivatives and 3rd derivatives are computed.
+
+    # Return:
+    - status integer from CALCEPH: 0 if an error occured
 
 """
 function unsafe_orient!(result,eph::Ephem,jd0::Float64,time::Float64,

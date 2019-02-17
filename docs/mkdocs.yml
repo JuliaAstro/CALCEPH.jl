@@ -31,3 +31,4 @@ pages:
 - Ephemeris constants: constants.md
 - Introspection: introspection.md
 - Utilities: utilities.md
+- Error handling: errors.md

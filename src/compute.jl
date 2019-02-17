@@ -78,6 +78,9 @@ Output units are:
 - `target::Integer`: The body or reference point whose coordinates are required.
 - `center::Integer`: The origin of the coordinate system.
 
+# Return:
+- status integer from CALCEPH: 0 if an error occured
+
 The possible values for target and center are :
 * 1 : Mercury Barycenter
 * 2 : Venus Barycenter
@@ -155,6 +158,9 @@ the desired time, if you don't take care about precision.
 - `center::Integer`: The origin of the coordinate system. The numbering system depends on the parameter unit.
 - `unit::Integer` : The units of the result. This integer is a sum of some unit constants (unit*) and/or the constant useNaifId. If the unit contains useNaifId, the NAIF identification numbering system is used for the target and the center. If the unit does not contain useNaifId, the old number system is used for the target and the center.
 
+# Return:
+- status integer from CALCEPH: 0 if an error occured
+
 """
 function unsafe_compute!(result,eph::Ephem,jd0::Float64,time::Float64,
    target::Integer,center::Integer,unit::Integer)
@@ -222,6 +228,9 @@ the desired time, if you don't take care about precision.
     * 1: only the position and velocity are computed.
     * 2: only the position, velocity and acceleration are computed.
     * 3: the position, velocity and acceleration and jerk are computed.
+
+# Return:
+- status integer from CALCEPH: 0 if an error occured
 
 """
 function unsafe_compute!(result,eph::Ephem,jd0::Float64,time::Float64,

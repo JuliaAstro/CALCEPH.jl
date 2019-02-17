@@ -1,5 +1,11 @@
 
 
+"""
+    disableCustomHandler()
+
+Disables the user custom error handler.
+
+"""
 function disableCustomHandler()
     ccall((:calceph_seterrorhandler, libcalceph), Cvoid,
                   (Cint, Ptr{Cvoid}), 1, C_NULL)
@@ -18,9 +24,21 @@ function userHandlerWrapper(msg::Cstring)::Cvoid
     return
 end
 
+# see https://discourse.julialang.org/t/cfunction-error-handler/20678
 #userHandlerCWrapper = @cfunction(userHandlerWrapper, Cvoid, (Cstring,))
 userHandlerCWrapper = Nothing
 
+"""
+    setCustomHandler(f::Function)
+
+Sets the user custom error handler.
+
+# Arguments
+- `f`: function taking a single argument of type String which will contain the CALCEPH error message. f should return Nothing.
+
+Use setCustomHandler(s->Nothing) to disable CALCEPH error messages printout to the console.
+
+"""
 function setCustomHandler(f::Function)
     global userHandlerContainerInstance
     global userHandlerCWrapper
