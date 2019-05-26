@@ -1,9 +1,17 @@
 using Documenter, CALCEPH
 
-makedocs(modules=[CALCEPH],
-        doctest=true,
-        sitename = "CALCEPH.jl"
+makedocs(
+    format = Documenter.HTML(
+		prettyurls = get(ENV, "CI", nothing) == "true",
+	),
+	sitename = "CALCEPH.jl",
+	authors = "Bernard Godard and the CALCEPH.jl contributors",
+	pages = [
+		"Tutorial" => "tutorial.md"
+	],
 )
 
-deploydocs(deps   = Deps.pip("mkdocs", "python-markdown-math"),
-    repo = "github.com/bgodard/CALCEPH.jl.git")
+deploydocs(
+	repo = "github.com/JuliaAstro/CALCEPH.jl.git",
+	target = "build",
+)

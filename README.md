@@ -1,9 +1,9 @@
-[![Build Status](https://travis-ci.org/bgodard/CALCEPH.jl.svg?branch=master)](https://travis-ci.org/bgodard/CALCEPH.jl)
+[![Build Status](https://travis-ci.org/JuliaAstro/CALCEPH.jl.svg?branch=master)](https://travis-ci.org/JuliaAstro/CALCEPH.jl)
 [![AppVoyer](https://ci.appveyor.com/api/projects/status/24rxwncnrij2o0co?svg=true)](https://ci.appveyor.com/project/bgodard/calceph-jl)
-[![Coverage Status](https://coveralls.io/repos/bgodard/CALCEPH.jl/badge.svg?branch=master&service=github)](https://coveralls.io/github/bgodard/CALCEPH.jl?branch=master)
-[![codecov.io](http://codecov.io/github/bgodard/CALCEPH.jl/coverage.svg?branch=master)](http://codecov.io/github/bgodard/CALCEPH.jl?branch=master)
-[![](https://img.shields.io/badge/docs-stable-blue.svg)](https://bgodard.github.io/CALCEPH.jl/stable)
-[![](https://img.shields.io/badge/docs-latest-blue.svg)](https://bgodard.github.io/CALCEPH.jl/latest)
+[![Coverage Status](https://coveralls.io/repos/JuliaAstro/CALCEPH.jl/badge.svg?branch=master&service=github)](https://coveralls.io/github/JuliaAstro/CALCEPH.jl?branch=master)
+[![codecov.io](http://codecov.io/github/JuliaAstro/CALCEPH.jl/coverage.svg?branch=master)](http://codecov.io/github/JuliaAstro/CALCEPH.jl?branch=master)
+[![](https://img.shields.io/badge/docs-stable-blue.svg)](https://JuliaAstro.github.io/CALCEPH.jl/stable)
+[![](https://img.shields.io/badge/docs-latest-blue.svg)](https://JuliaAstro.github.io/CALCEPH.jl/latest)
 
 This is a julia wrapper for [CALCEPH](https://www.imcce.fr/inpop/calceph/) a C library for reading planetary ephemeris files, such as [INPOPxx](https://www.imcce.fr/inpop), JPL DExxx and SPICE ephemeris files.
 
@@ -59,12 +59,10 @@ names_0 = naifId.names[0]
 ```
 
 # Why use CALCEPH?
-CALCEPH functionality is also provided by [NAIF SPICE Toolkit](https://naif.jpl.nasa.gov/naif/toolkit.html). However CALCEPH has several advantages over the SPICE toolkit:
-- It is faster at computing ephemeris data.
-- It can handle multiple ephemeris contexts whereas the SPICE toolkit cannot.
-- It is thread safe (if using one context per thread) whereas the SPICE toolkit is not.
+CALCEPH functionality is also provided by [NAIF SPICE Toolkit](https://naif.jpl.nasa.gov/naif/toolkit.html). However CALCEPH has several advantages over the SPICE toolkit, mainly:
+- It can handle multiple ephemeris contexts.
+- It is thread safe (if using one context per thread).
 - It can compute higher order derivatives (acceleration and jerk) approximation using differentiation of the interpolation polynomials.
-- Its ephemeris computation interface expects the time separated in two double precision floating point numbers (the SPICE toolkit interface only use one double precision floating point number to specify an epoch). This can be used to achieve higher precision in timetag (this can have a significant impact when modeling Doppler observations from a deep space probe).
-- It is distributed as a single cross platform source making it easy to integrate in other projects whereas the SPICE toolkit is distributed one source per platform.
+- Its ephemeris computation interface expects the time separated in two double precision floating point numbers. This can be used to achieve higher precision in timetag (this can have a significant impact when modeling Doppler observations from a deep space probe).
 
 But CALCEPH does not support all functions of the SPICE toolkit. If you need more functionalities [SPICE.jl](https://github.com/JuliaAstrodynamics/SPICE.jl) is a Julia wrapper for the SPICE toolkit.

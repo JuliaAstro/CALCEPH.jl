@@ -1,6 +1,6 @@
 The CALCEPH.jl package is licensed under the MIT "Expat" License:
 
-> Copyright (c) 2017: Bernard Godard.
+> Copyright (c) 2017-2019: Bernard Godard and CALCEPH.jl contributors.
 >
 > Permission is hereby granted, free of charge, to any person obtaining a copy
 > of this software and associated documentation files (the "Software"), to deal

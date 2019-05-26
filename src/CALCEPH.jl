@@ -33,7 +33,7 @@ include("bodyId.jl")
 export naifId
 
 include("units.jl")
-export unitAU, unitKM, unitDay, unitSec, unitRad, useNaifId
+export unitAU, unitKM, unitDay, unitSec, unitRad, useNaifId, outputEulerAngles, outputNutationAngles
 
 include("orient.jl")
 export orient
