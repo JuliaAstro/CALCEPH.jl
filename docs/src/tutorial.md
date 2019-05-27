@@ -169,12 +169,12 @@ Those methods compute the position and its time derivatives of target with respe
 #### Example:
 Computing position only of Jupiter system barycenter with respect to the Earth Moon center in kilometers at JD=2456293.5 (Ephemeris Time).
 ```julia
- options = useNaifId + unitKM + unitSec
- jd1 = 2456293.0
- jd2 = 0.5
- center = naifId.id[:moon]
- target = naifId.id[:jupiter_barycenter]
- pos = compute(eph2, jd1, jd2, target, center, options,0)
+options = useNaifId + unitKM + unitSec
+jd1 = 2456293.0
+jd2 = 0.5
+center = naifId.id[:moon]
+target = naifId.id[:jupiter_barycenter]
+pos = compute(eph2, jd1, jd2, target, center, options,0)
 ```  
 
 ## Computing orientation:
@@ -198,19 +198,19 @@ Those methods compute the Euler angles of target and their time derivatives.
   - 2: only the angles, the first and second derivatives are computed.
   - 3: the angles, the first, second and third derivatives are computed.
 
-  #### Example:
-  JPL DE405 binary ephemerides contain Chebychev polynomials for the IAU 1980 nutation theory. Interpolating those is much faster than computing the IAU 1980 nutation series.    
-  Computing Earth nutation angles in radians at JD=2456293.5 (Ephemeris Time).
-  ```julia
-   download("ftp://ssd.jpl.nasa.gov/pub/eph/planets/Linux/de405/lnxp1600p2200.405","DE405")
-   eph1 = Ephem("DE405")
-   options = useNaifId + unitRad + unitSec + outputEulerAngles
-   jd1 = 2456293.0
-   jd2 = 0.5
-   target = naifId.id[:earth]
-   angles = orient(eph1, jd1, jd2, target, options,0)
-  ```
-  Note that the returned value is a vector of 3 even though there are only 2 nutation angles. The last value is zero and meaningless.
+#### Example:
+JPL DE405 binary ephemerides contain Chebychev polynomials for the IAU 1980 nutation theory. Interpolating those is much faster than computing the IAU 1980 nutation series.    
+Computing Earth nutation angles in radians at JD=2456293.5 (Ephemeris Time).
+```julia
+download("ftp://ssd.jpl.nasa.gov/pub/eph/planets/Linux/de405/lnxp1600p2200.405","DE405")
+eph1 = Ephem("DE405")
+options = useNaifId + unitRad + unitSec + outputEulerAngles
+jd1 = 2456293.0
+jd2 = 0.5
+target = naifId.id[:earth]
+angles = orient(eph1, jd1, jd2, target, options,0)
+```
+Note that the returned value is a vector of 3 even though there are only 2 nutation angles. The last value is zero and meaningless.
 
 ## Computing angular momentum:
 
@@ -244,18 +244,19 @@ The difference bewteen TT and TDB can be obtained from the following files:
 - ftp://ssd.jpl.nasa.gov/pub/eph/planets/bsp/de432t.bsp
 
 #### Example:  
-  Computing TT-TDB at geocenter in seconds at JD=2456293.5 (Ephemeris Time).
-  ```julia
-   download("ftp://ftp.imcce.fr/pub/ephem/planets/inpop17a/inpop17a_TDB_m100_p100_tt.dat","INPOP17a")
-   eph1 = Ephem("INPOP17a")
-   options = useNaifId + unitSec
-   jd1 = 2456293.0
-   jd2 = 0.5
-   target = naifId.id[:ttmtdb]
-   center = naifId.id[:timecenter]
-   ttmtdb = compute(eph1, jd1, jd2, target, center, options,0)
-  ```
-  Note that the returned value is a vector of 3 even though there is only one meaningful value. The last 2 values are zero and meaningless.
+Computing TT-TDB at geocenter in seconds at JD=2456293.5 (Ephemeris Time).
+```julia
+download("ftp://ftp.imcce.fr/pub/ephem/planets/inpop17a/inpop17a_TDB_m100_p100_tt.dat","INPOP17a")
+eph1 = Ephem("INPOP17a")
+options = useNaifId + unitSec
+jd1 = 2456293.0
+jd2 = 0.5
+target = naifId.id[:ttmtdb]
+center = naifId.id[:timecenter]
+ttmtdb = compute(eph1, jd1, jd2, target, center, options,0)
+```
+
+Note that the returned value is a vector of 3 even though there is only one meaningful value. The last 2 values are zero and meaningless.
 
 ## In place methods
 
