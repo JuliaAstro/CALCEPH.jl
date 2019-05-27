@@ -2,8 +2,8 @@
 [![AppVoyer](https://ci.appveyor.com/api/projects/status/24rxwncnrij2o0co?svg=true)](https://ci.appveyor.com/project/bgodard/calceph-jl)
 [![Coverage Status](https://coveralls.io/repos/JuliaAstro/CALCEPH.jl/badge.svg?branch=master&service=github)](https://coveralls.io/github/JuliaAstro/CALCEPH.jl?branch=master)
 [![codecov.io](http://codecov.io/github/JuliaAstro/CALCEPH.jl/coverage.svg?branch=master)](http://codecov.io/github/JuliaAstro/CALCEPH.jl?branch=master)
-[![](https://img.shields.io/badge/docs-stable-blue.svg)](https://JuliaAstro.github.io/CALCEPH.jl/stable)
-[![](https://img.shields.io/badge/docs-latest-blue.svg)](https://JuliaAstro.github.io/CALCEPH.jl/latest)
+[![](https://img.shields.io/badge/docs-stable-blue.svg)](https://JuliaAstro.github.io/CALCEPH.jl/stable/tutorial)
+[![](https://img.shields.io/badge/docs-latest-blue.svg)](https://JuliaAstro.github.io/CALCEPH.jl/dev/tutorial)
 
 This is a julia wrapper for [CALCEPH](https://www.imcce.fr/inpop/calceph/) a C library for reading planetary ephemeris files, such as [INPOPxx](https://www.imcce.fr/inpop), JPL DExxx and SPICE ephemeris files.
 
