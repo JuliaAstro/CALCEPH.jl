@@ -77,7 +77,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Tutorial",
     "title": "Example:",
     "category": "section",
-    "text": "Computing position only of Jupiter system barycenter with respect to the Earth Moon center in kilometers at JD=2456293.5 (Ephemeris Time). options = useNaifId + unitKM + unitSec\n jd1 = 2456293.0\n jd2 = 0.5\n center = naifId.id[:moon]\n target = naifId.id[:jupiter_barycenter]\n pos = compute(eph2, jd1, jd2, target, center, options,0)"
+    "text": "Computing position only of Jupiter system barycenter with respect to the Earth Moon center in kilometers at JD=2456293.5 (Ephemeris Time).options = useNaifId + unitKM + unitSec\njd1 = 2456293.0\njd2 = 0.5\ncenter = naifId.id[:moon]\ntarget = naifId.id[:jupiter_barycenter]\npos = compute(eph2, jd1, jd2, target, center, options,0)"
 },
 
 {
@@ -85,7 +85,15 @@ var documenterSearchIndex = {"docs": [
     "page": "Tutorial",
     "title": "Computing orientation:",
     "category": "section",
-    "text": "The following methods are available to compute orientation angles with CALCEPH:orient(eph,jd1,jd2,target,options)\norient(eph,jd1,jd2,target,options,order)Those methods compute the Euler angles of target and their time derivatives.The first argument eph is the ephemerides context.\nThe second and third arguments jd1 and jd2 are the epoch.\nThe fourth argument target is the body for which the Euler angles are to be computed.\nThe options argument shall specify the units. It can also be used to switch target and center numbering scheme to the NAIF identification scheme and to switch between Euler angles and nutation angles.\nThe order argument can be set to:\n0: only the angles are computed.\n1: only the angles and first derivatives are computed.\n2: only the angles, the first and second derivatives are computed.\n3: the angles, the first, second and third derivatives are computed.\nExample:\nJPL DE405 binary ephemerides contain Chebychev polynomials for the IAU 1980 nutation theory. Interpolating those is much faster than computing the IAU 1980 nutation series.     Computing Earth nutation angles in radians at JD=2456293.5 (Ephemeris Time).\n download(\"ftp://ssd.jpl.nasa.gov/pub/eph/planets/Linux/de405/lnxp1600p2200.405\",\"DE405\")\n eph1 = Ephem(\"DE405\")\n options = useNaifId + unitRad + unitSec + outputEulerAngles\n jd1 = 2456293.0\n jd2 = 0.5\n target = naifId.id[:earth]\n angles = orient(eph1, jd1, jd2, target, options,0)\nNote that the returned value is a vector of 3 even though there are only 2 nutation angles. The last value is zero and meaningless."
+    "text": "The following methods are available to compute orientation angles with CALCEPH:orient(eph,jd1,jd2,target,options)\norient(eph,jd1,jd2,target,options,order)Those methods compute the Euler angles of target and their time derivatives.The first argument eph is the ephemerides context.\nThe second and third arguments jd1 and jd2 are the epoch.\nThe fourth argument target is the body for which the Euler angles are to be computed.\nThe options argument shall specify the units. It can also be used to switch target and center numbering scheme to the NAIF identification scheme and to switch between Euler angles and nutation angles.\nThe order argument can be set to:\n0: only the angles are computed.\n1: only the angles and first derivatives are computed.\n2: only the angles, the first and second derivatives are computed.\n3: the angles, the first, second and third derivatives are computed."
+},
+
+{
+    "location": "tutorial/#Example:-2",
+    "page": "Tutorial",
+    "title": "Example:",
+    "category": "section",
+    "text": "JPL DE405 binary ephemerides contain Chebychev polynomials for the IAU 1980 nutation theory. Interpolating those is much faster than computing the IAU 1980 nutation series.     Computing Earth nutation angles in radians at JD=2456293.5 (Ephemeris Time).download(\"ftp://ssd.jpl.nasa.gov/pub/eph/planets/Linux/de405/lnxp1600p2200.405\",\"DE405\")\neph1 = Ephem(\"DE405\")\noptions = useNaifId + unitRad + unitSec + outputEulerAngles\njd1 = 2456293.0\njd2 = 0.5\ntarget = naifId.id[:earth]\nangles = orient(eph1, jd1, jd2, target, options,0)Note that the returned value is a vector of 3 even though there are only 2 nutation angles. The last value is zero and meaningless."
 },
 
 {
@@ -105,35 +113,75 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "tutorial/#Example:-2",
+    "location": "tutorial/#Example:-3",
     "page": "Tutorial",
     "title": "Example:",
     "category": "section",
-    "text": "Computing TT-TDB at geocenter in seconds at JD=2456293.5 (Ephemeris Time).   download(\"ftp://ftp.imcce.fr/pub/ephem/planets/inpop17a/inpop17a_TDB_m100_p100_tt.dat\",\"INPOP17a\")\n   eph1 = Ephem(\"INPOP17a\")\n   options = useNaifId + unitSec\n   jd1 = 2456293.0\n   jd2 = 0.5\n   target = naifId.id[:ttmtdb]\n   center = naifId.id[:timecenter]\n   ttmtdb = compute(eph1, jd1, jd2, target, center, options,0)\n  ```\n  Note that the returned value is a vector of 3 even though there is only one meaningful value. The last 2 values are zero and meaningless.\n\n## In place methods\n\nIn place versions of the methods described above are also available. Those are:\njulia unsafecompute!(result,eph,jd1,jd2,target,center) unsafecompute!(result,eph,jd1,jd2,target,center,options) unsafecompute!(result,eph,jd1,jd2,target,center,options,order) unsafeorient!(result,eph,jd1,jd2,target,options) unsafeorient!(result,eph,jd1,jd2,target,options,order) unsaferotAngMom!(result,eph,jd1,jd2,target,options) unsafe_rotAngMom!(result,eph,jd1,jd2,target,options,order)\nThose methods do not perform any checks on their inputs. In particular, result must be a contiguous vector of double precion floating point number of dimension at least 6 when order is not specified or at least 3*(order+1) otherwise.\n\n## Constants\n\nEphemerides files may contain related constants. Those can be obtained by the **constants** method which returns a dictionary:\njulia   download(\"ftp://ftp.imcce.fr/pub/ephem/planets/inpop17a/inpop17aTDBm100p100tt.dat\",\"INPOP17a\") eph1 = Ephem(\"INPOP17a\")"
+    "text": "Computing TT-TDB at geocenter in seconds at JD=2456293.5 (Ephemeris Time).download(\"ftp://ftp.imcce.fr/pub/ephem/planets/inpop17a/inpop17a_TDB_m100_p100_tt.dat\",\"INPOP17a\")\neph1 = Ephem(\"INPOP17a\")\noptions = useNaifId + unitSec\njd1 = 2456293.0\njd2 = 0.5\ntarget = naifId.id[:ttmtdb]\ncenter = naifId.id[:timecenter]\nttmtdb = compute(eph1, jd1, jd2, target, center, options,0)Note that the returned value is a vector of 3 even though there is only one meaningful value. The last 2 values are zero and meaningless."
 },
 
 {
-    "location": "tutorial/#retrieve-constants-from-ephemeris-as-a-dictionary-1",
+    "location": "tutorial/#In-place-methods-1",
     "page": "Tutorial",
-    "title": "retrieve constants from ephemeris as a dictionary",
+    "title": "In place methods",
     "category": "section",
-    "text": "con = constants(eph1)"
+    "text": "In place versions of the methods described above are also available. Those are:unsafe_compute!(result,eph,jd1,jd2,target,center)\nunsafe_compute!(result,eph,jd1,jd2,target,center,options)\nunsafe_compute!(result,eph,jd1,jd2,target,center,options,order)\nunsafe_orient!(result,eph,jd1,jd2,target,options)\nunsafe_orient!(result,eph,jd1,jd2,target,options,order)\nunsafe_rotAngMom!(result,eph,jd1,jd2,target,options)\nunsafe_rotAngMom!(result,eph,jd1,jd2,target,options,order)Those methods do not perform any checks on their inputs. In particular, result must be a contiguous vector of double precion floating point number of dimension at least 6 when order is not specified or at least 3*(order+1) otherwise."
 },
 
 {
-    "location": "tutorial/#list-the-constants-1",
+    "location": "tutorial/#Constants-1",
     "page": "Tutorial",
-    "title": "list the constants",
+    "title": "Constants",
     "category": "section",
-    "text": "keys(con)"
+    "text": "Ephemerides files may contain related constants. Those can be obtained by the constants method which returns a dictionary:download(\"ftp://ftp.imcce.fr/pub/ephem/planets/inpop17a/inpop17a_TDB_m100_p100_tt.dat\",\"INPOP17a\")\neph1 = Ephem(\"INPOP17a\")\n# retrieve constants from ephemeris as a dictionary\ncon = constants(eph1)\n# list the constants\nkeys(con)\n# get the sun J2\nJ2sun = con[:J2SUN]"
 },
 
 {
-    "location": "tutorial/#get-the-sun-J2-1",
+    "location": "tutorial/#Introspection-1",
     "page": "Tutorial",
-    "title": "get the sun J2",
+    "title": "Introspection",
     "category": "section",
-    "text": "J2sun = con[:J2SUN]\n## Introspection\n\n#### Time scalejulia timeScale(eph)returns the Ephemeris Time identifier:\n- 1 for TDB\n- 2 for TCB\n\n#### Time spanjulia timespan(eph)returns the triplet:\n- julian date of first entry in ephemerides context.\n- julian date of last entry in ephemerides context.\n- information about the availability of the quantities over the time span:\n       - 1 if the quantities of all bodies are available for any time between the first and last time.\n       - 2 if the quantities of some bodies are available on discontinuous time intervals between the first and last time.\n       - 3 if the quantities of each body are available on a continuous time interval between the first and last time, but not available for any time between the first and last time.\n\n#### Position records\njulia positionRecords(eph)retrieve position records metadata in ephemeris associated to handler eph.\nThis is a vector of metadata about the ephemerides records ordered by priority. The compute methods use the highest priority ephemerides records when there are multiple records that could satisfy the target and epoch.\n\nEach record metadata contains the following information:\n- target: NAIF identifier of target.\n- center: NAIF identifier of center.\n- startEpoch: julian date of record start.\n- stopEpoch: julian date of record end.\n- frame : 1 for ICRF.\n\n#### Orientation records\njulia orientationRecords(eph)retrieve orientation records metadata in ephemeris associated to handler eph.\nThis is a vector of metadata about the ephemerides records ordered by priority. The orient methods use the highest priority ephemerides records when there are multiple records that could satisfy the target and epoch.\n\nEach record metadata contains the following information:\n- target: NAIF identifier of target.\n- startEpoch: julian date of record start.\n- stopEpoch: julian date of record end.\n- frame : 1 for ICRF.\n\n## Cleaning up\n\nBecause, Julia\'s garbage collector is lazy, you may want to free the memory managed by the context before you get rid of the reference to the context with eg:\njulia finalize(eph1) eph1 = Noneor after withjulia eph1 = None gc() ```"
+    "text": ""
+},
+
+{
+    "location": "tutorial/#Time-scale-1",
+    "page": "Tutorial",
+    "title": "Time scale",
+    "category": "section",
+    "text": "timeScale(eph)returns the Ephemeris Time identifier:1 for TDB\n2 for TCB"
+},
+
+{
+    "location": "tutorial/#Time-span-1",
+    "page": "Tutorial",
+    "title": "Time span",
+    "category": "section",
+    "text": "timespan(eph)returns the triplet:julian date of first entry in ephemerides context.\njulian date of last entry in ephemerides context.\ninformation about the availability of the quantities over the time span:      - 1 if the quantities of all bodies are available for any time between the first and last time.      - 2 if the quantities of some bodies are available on discontinuous time intervals between the first and last time.      - 3 if the quantities of each body are available on a continuous time interval between the first and last time, but not available for any time between the first and last time."
+},
+
+{
+    "location": "tutorial/#Position-records-1",
+    "page": "Tutorial",
+    "title": "Position records",
+    "category": "section",
+    "text": "positionRecords(eph)retrieve position records metadata in ephemeris associated to handler eph. This is a vector of metadata about the ephemerides records ordered by priority. The compute methods use the highest priority ephemerides records when there are multiple records that could satisfy the target and epoch.Each record metadata contains the following information:target: NAIF identifier of target.\ncenter: NAIF identifier of center.\nstartEpoch: julian date of record start.\nstopEpoch: julian date of record end.\nframe : 1 for ICRF."
+},
+
+{
+    "location": "tutorial/#Orientation-records-1",
+    "page": "Tutorial",
+    "title": "Orientation records",
+    "category": "section",
+    "text": "orientationRecords(eph)retrieve orientation records metadata in ephemeris associated to handler eph. This is a vector of metadata about the ephemerides records ordered by priority. The orient methods use the highest priority ephemerides records when there are multiple records that could satisfy the target and epoch.Each record metadata contains the following information:target: NAIF identifier of target.\nstartEpoch: julian date of record start.\nstopEpoch: julian date of record end.\nframe : 1 for ICRF."
+},
+
+{
+    "location": "tutorial/#Cleaning-up-1",
+    "page": "Tutorial",
+    "title": "Cleaning up",
+    "category": "section",
+    "text": "Because, Julia\'s garbage collector is lazy, you may want to free the memory managed by the context before you get rid of the reference to the context with eg:finalize(eph1)\neph1 = Noneor after witheph1 = None\ngc()"
 },
 
 ]}
