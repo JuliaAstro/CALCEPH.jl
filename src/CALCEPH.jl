@@ -9,6 +9,10 @@
 """
 module CALCEPH
 
+# To make Pkg aware that this dependency
+# will be injected by BinaryProvider.
+using Libdl
+
 deps = abspath(joinpath(splitdir(@__FILE__)[1], "..", "deps", "deps.jl"))
 if isfile(deps)
     include(deps)
