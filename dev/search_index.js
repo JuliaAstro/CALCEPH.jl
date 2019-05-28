@@ -184,4 +184,12 @@ var documenterSearchIndex = {"docs": [
     "text": "Because, Julia\'s garbage collector is lazy, you may want to free the memory managed by the context before you get rid of the reference to the context with eg:finalize(eph1)\neph1 = Noneor after witheph1 = None\ngc()"
 },
 
+{
+    "location": "tutorial/#Error-handling-1",
+    "page": "Tutorial",
+    "title": "Error handling",
+    "category": "section",
+    "text": "By default, the CALCEPH C library prints error messages directly to the standard output but this can be modified.The Julia wrapper provides the following interface for this purpose:CALCEPH.setCustomHandler(f)where f should be a user function taking a single argument of type String which will contain the CALCEPH error message. f should return Nothing.To disable CALCEPH error messages printout to the console:CALCEPH.setCustomHandler(s->Nothing)To get back the default behavior:CALCEPH.disableCustomHandler()"
+},
+
 ]}
