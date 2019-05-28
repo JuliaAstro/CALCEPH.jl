@@ -165,7 +165,7 @@ Those methods compute the position and its time derivatives of target with respe
   - 1: compute position and velocity
   - 2: compute position, velocity and acceleration
   - 3: compute position, velocity, acceleration and jerk.
-  
+
 
 When order is not specified, position and velocity are computed.
 
@@ -355,4 +355,24 @@ or after with
 ```julia
 eph1 = None
 gc()
+```
+## Error handling
+
+By default, the CALCEPH C library prints error messages directly to the standard output but this can be modified.
+
+The Julia wrapper provides the following interface for this purpose:
+```julia
+CALCEPH.setCustomHandler(f)
+```
+where f should be a user function taking a single argument of type String which will contain the CALCEPH error message. f should return Nothing.
+
+To disable CALCEPH error messages printout to the console:
+
+```julia
+CALCEPH.setCustomHandler(s->Nothing)
+```
+
+To get back the default behavior:
+```julia
+CALCEPH.disableCustomHandler()
 ```
