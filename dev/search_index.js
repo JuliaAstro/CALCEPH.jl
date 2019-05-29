@@ -93,7 +93,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Tutorial",
     "title": "Example:",
     "category": "section",
-    "text": "JPL DE405 binary ephemerides contain Chebychev polynomials for the IAU 1980 nutation theory. Interpolating those is much faster than computing the IAU 1980 nutation series.     Computing Earth nutation angles in radians at JD=2456293.5 (Ephemeris Time).download(\"ftp://ssd.jpl.nasa.gov/pub/eph/planets/Linux/de405/lnxp1600p2200.405\",\"DE405\")\neph1 = Ephem(\"DE405\")\noptions = useNaifId + unitRad + unitSec + outputEulerAngles\njd1 = 2456293.0\njd2 = 0.5\ntarget = naifId.id[:earth]\nangles = orient(eph1, jd1, jd2, target, options,0)Note that the returned value is a vector of 3 even though there are only 2 nutation angles. The last value is zero and meaningless."
+    "text": "JPL DE405 binary ephemerides contain Chebychev polynomials for the IAU 1980 nutation theory. Interpolating those is much faster than computing the IAU 1980 nutation series.     Computing Earth nutation angles in radians at JD=2456293.5 (Ephemeris Time).download(\"ftp://ssd.jpl.nasa.gov/pub/eph/planets/Linux/de405/lnxp1600p2200.405\",\"DE405\")\neph1 = Ephem(\"DE405\")\noptions = useNaifId + unitRad + unitSec + outputNutationAngles\njd1 = 2456293.0\njd2 = 0.5\ntarget = naifId.id[:earth]\nangles = orient(eph1, jd1, jd2, target, options,0)Note that the returned value is a vector of 3 even though there are only 2 nutation angles. The last value is zero and meaningless."
 },
 
 {
