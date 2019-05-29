@@ -207,7 +207,7 @@ Computing Earth nutation angles in radians at JD=2456293.5 (Ephemeris Time).
 ```julia
 download("ftp://ssd.jpl.nasa.gov/pub/eph/planets/Linux/de405/lnxp1600p2200.405","DE405")
 eph1 = Ephem("DE405")
-options = useNaifId + unitRad + unitSec + outputEulerAngles
+options = useNaifId + unitRad + unitSec + outputNutationAngles
 jd1 = 2456293.0
 jd2 = 0.5
 target = naifId.id[:earth]
