@@ -101,7 +101,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Tutorial",
     "title": "Computing angular momentum:",
     "category": "section",
-    "text": "The following methods are available to compute body angular momentum with CALCEPH:rotAngMom(eph,jd1,jd2,target,unit)\nrotAngMom(eph,jd1,jd2,target,unit,order)Those methods compute the angular momentum of target and their time derivatives.The first argument eph is the ephemerides context.\nThe second and third arguments jd1 and jd2 are the epoch.\nThe fourth argument target is the body for which the angular momentum are to be computed.\nThe options argument shall specify the units. It can also be used to switch target numbering scheme to the NAIF identification scheme.\nThe order argument can be set to:\n0: only the angular momentum vector are computed.\n1: only the angular momentum vector and first derivative are computed.\n2: only the angular momentum vector, the first and second derivatives are computed.\n3: the angular momentum, the first, second and third derivatives are computed."
+    "text": "The following methods are available to compute body angular momentum with CALCEPH:rotAngMom(eph,jd1,jd2,target,options)\nrotAngMom(eph,jd1,jd2,target,options,order)Those methods compute the angular momentum of target and their time derivatives.The first argument eph is the ephemerides context.\nThe second and third arguments jd1 and jd2 are the epoch.\nThe fourth argument target is the body for which the angular momentum are to be computed.\nThe options argument shall specify the units. It can also be used to switch target numbering scheme to the NAIF identification scheme.\nThe order argument can be set to:\n0: only the angular momentum vector are computed.\n1: only the angular momentum vector and first derivative are computed.\n2: only the angular momentum vector, the first and second derivatives are computed.\n3: the angular momentum, the first, second and third derivatives are computed."
 },
 
 {
@@ -181,7 +181,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Tutorial",
     "title": "Cleaning up",
     "category": "section",
-    "text": "Because, Julia\'s garbage collector is lazy, you may want to free the memory managed by the context before you get rid of the reference to the context with eg:finalize(eph1)\neph1 = Nothingor after witheph1 = Nothing\ngc()"
+    "text": "Because, Julia\'s garbage collector is lazy, you may want to free the memory managed by the context before you get rid of the reference to the context with eg:finalize(eph1)\neph1 = Nothingor after witheph1 = Nothing\nGC.gc()"
 },
 
 {
