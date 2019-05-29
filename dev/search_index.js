@@ -181,7 +181,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Tutorial",
     "title": "Cleaning up",
     "category": "section",
-    "text": "Because, Julia\'s garbage collector is lazy, you may want to free the memory managed by the context before you get rid of the reference to the context with eg:finalize(eph1)\neph1 = Noneor after witheph1 = None\ngc()"
+    "text": "Because, Julia\'s garbage collector is lazy, you may want to free the memory managed by the context before you get rid of the reference to the context with eg:finalize(eph1)\neph1 = Nothingor after witheph1 = Nothing\ngc()"
 },
 
 {
