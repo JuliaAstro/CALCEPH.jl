@@ -1,7 +1,7 @@
 var documenterSearchIndex = {"docs": [
 
 {
-    "location": "tutorial/#",
+    "location": "#",
     "page": "Tutorial",
     "title": "Tutorial",
     "category": "page",
@@ -9,7 +9,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "tutorial/#Tutorial-1",
+    "location": "#Tutorial-1",
     "page": "Tutorial",
     "title": "Tutorial",
     "category": "section",
@@ -17,7 +17,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "tutorial/#Ephemerides-sources-1",
+    "location": "#Ephemerides-sources-1",
     "page": "Tutorial",
     "title": "Ephemerides sources",
     "category": "section",
@@ -25,7 +25,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "tutorial/#Ephemerides-context-1",
+    "location": "#Ephemerides-context-1",
     "page": "Tutorial",
     "title": "Ephemerides context",
     "category": "section",
@@ -33,7 +33,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "tutorial/#Epoch-arguments-1",
+    "location": "#Epoch-arguments-1",
     "page": "Tutorial",
     "title": "Epoch arguments",
     "category": "section",
@@ -41,7 +41,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "tutorial/#Options-1",
+    "location": "#Options-1",
     "page": "Tutorial",
     "title": "Options",
     "category": "section",
@@ -49,7 +49,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "tutorial/#Body-identification-scheme-1",
+    "location": "#Body-identification-scheme-1",
     "page": "Tutorial",
     "title": "Body identification scheme",
     "category": "section",
@@ -57,7 +57,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "tutorial/#NAIF-body-identification-scheme-1",
+    "location": "#NAIF-body-identification-scheme-1",
     "page": "Tutorial",
     "title": "NAIF body identification scheme",
     "category": "section",
@@ -65,7 +65,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "tutorial/#Computing-positions-and-velocities:-1",
+    "location": "#Computing-positions-and-velocities:-1",
     "page": "Tutorial",
     "title": "Computing positions and velocities:",
     "category": "section",
@@ -73,7 +73,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "tutorial/#Example:-1",
+    "location": "#Example:-1",
     "page": "Tutorial",
     "title": "Example:",
     "category": "section",
@@ -81,7 +81,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "tutorial/#Computing-orientation:-1",
+    "location": "#Computing-orientation:-1",
     "page": "Tutorial",
     "title": "Computing orientation:",
     "category": "section",
@@ -89,7 +89,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "tutorial/#Example:-2",
+    "location": "#Example:-2",
     "page": "Tutorial",
     "title": "Example:",
     "category": "section",
@@ -97,7 +97,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "tutorial/#Computing-angular-momentum:-1",
+    "location": "#Computing-angular-momentum:-1",
     "page": "Tutorial",
     "title": "Computing angular momentum:",
     "category": "section",
@@ -105,7 +105,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "tutorial/#Time-ephemeris-1",
+    "location": "#Time-ephemeris-1",
     "page": "Tutorial",
     "title": "Time ephemeris",
     "category": "section",
@@ -113,7 +113,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "tutorial/#Example:-3",
+    "location": "#Example:-3",
     "page": "Tutorial",
     "title": "Example:",
     "category": "section",
@@ -121,7 +121,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "tutorial/#In-place-methods-1",
+    "location": "#In-place-methods-1",
     "page": "Tutorial",
     "title": "In place methods",
     "category": "section",
@@ -129,7 +129,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "tutorial/#Constants-1",
+    "location": "#Constants-1",
     "page": "Tutorial",
     "title": "Constants",
     "category": "section",
@@ -137,7 +137,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "tutorial/#Introspection-1",
+    "location": "#Introspection-1",
     "page": "Tutorial",
     "title": "Introspection",
     "category": "section",
@@ -145,7 +145,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "tutorial/#Time-scale-1",
+    "location": "#Time-scale-1",
     "page": "Tutorial",
     "title": "Time scale",
     "category": "section",
@@ -153,7 +153,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "tutorial/#Time-span-1",
+    "location": "#Time-span-1",
     "page": "Tutorial",
     "title": "Time span",
     "category": "section",
@@ -161,7 +161,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "tutorial/#Position-records-1",
+    "location": "#Position-records-1",
     "page": "Tutorial",
     "title": "Position records",
     "category": "section",
@@ -169,7 +169,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "tutorial/#Orientation-records-1",
+    "location": "#Orientation-records-1",
     "page": "Tutorial",
     "title": "Orientation records",
     "category": "section",
@@ -177,7 +177,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "tutorial/#Cleaning-up-1",
+    "location": "#Cleaning-up-1",
     "page": "Tutorial",
     "title": "Cleaning up",
     "category": "section",
@@ -185,7 +185,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "tutorial/#Error-handling-1",
+    "location": "#Error-handling-1",
     "page": "Tutorial",
     "title": "Error handling",
     "category": "section",
