@@ -349,11 +349,11 @@ Because, Julia's garbage collector is lazy, you may want to free the memory mana
 
 ```julia
 finalize(eph1)
-eph1 = None
+eph1 = Nothing
 ```
 or after with
 ```julia
-eph1 = None
+eph1 = Nothing
 gc()
 ```
 ## Error handling
