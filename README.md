@@ -19,13 +19,9 @@ using CALCEPH
 
 # ephemeris kernels can be downloaded from many different sources
 download("ftp://ftp.imcce.fr/pub/ephem/planets/inpop13c/inpop13c_TDB_m100_p100_tt.dat","planets.dat")
-# WARNING this file is huge (Jupiter Moons ephemeris)
-# download("https://naif.jpl.nasa.gov/pub/naif/generic_kernels/spk/satellites/jup310.bsp","jupiter_system.bsp")
 
 # create an ephemeris context
 eph = Ephem("planets.dat")
-# from multiple files
-# eph = Ephem(["planets.dat","jupiter_system.bsp"])
 
 # prefetch ephemeris files data to main memory for faster access
 prefetch(eph)
