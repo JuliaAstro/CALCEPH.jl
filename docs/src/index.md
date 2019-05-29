@@ -27,7 +27,7 @@ using CALCEPH
 
 # load a single file in context eph1
 eph1 = Ephem("planets.dat")
-
+# load multiple files in context eph2
 eph2 = Ephem(["planets.dat","jupiter_system.bsp"])
 ```
 
@@ -137,7 +137,7 @@ CALCEPH.add!(MyUniverseIds,:edsb,1000005)
 
 You can also load identification data from an external file:
 ```julia
-loadData!(MyUniverseIds, "MyUniverseIds.txt"))
+CALCEPH.loadData!(MyUniverseIds, "MyUniverseIds.txt")
 ```
 See example: [https://github.com/JuliaAstro/CALCEPH.jl/blob/master/data/NaifIds.txt](https://github.com/JuliaAstro/CALCEPH.jl/blob/master/data/NaifIds.txt)
 
