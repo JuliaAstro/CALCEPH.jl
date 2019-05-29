@@ -220,8 +220,8 @@ Note that the returned value is a vector of 3 even though there are only 2 nutat
 The following methods are available to compute body angular momentum with CALCEPH:
 
 ```julia
-rotAngMom(eph,jd1,jd2,target,unit)
-rotAngMom(eph,jd1,jd2,target,unit,order)
+rotAngMom(eph,jd1,jd2,target,options)
+rotAngMom(eph,jd1,jd2,target,options,order)
 ```
 
 Those methods compute the angular momentum of target and their time derivatives.
@@ -354,7 +354,7 @@ eph1 = Nothing
 or after with
 ```julia
 eph1 = Nothing
-gc()
+GC.gc()
 ```
 ## Error handling
 
