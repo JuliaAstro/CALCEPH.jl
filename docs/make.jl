@@ -1,13 +1,12 @@
 using Documenter, CALCEPH
 
 makedocs(
-    format = Documenter.HTML(
-		prettyurls = get(ENV, "CI", nothing) == "true",
-	),
+        modules = [CALCEPH],
+        format = :html,
 	sitename = "CALCEPH.jl",
 	authors = "Bernard Godard and the CALCEPH.jl contributors",
-	pages = [
-		"Tutorial" => "tutorial.md"
+	pages = Any[
+		"Tutorial"   => "index.md"
 	],
 )
 
