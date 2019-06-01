@@ -2,6 +2,38 @@ var documenterSearchIndex = {"docs": [
 
 {
     "location": "#",
+    "page": "Home",
+    "title": "Home",
+    "category": "page",
+    "text": ""
+},
+
+{
+    "location": "#CALCEPH-1",
+    "page": "Home",
+    "title": "CALCEPH",
+    "category": "section",
+    "text": "This is a julia wrapper for CALCEPH a C library for reading planetary ephemeris files, such as INPOPxx, JPL DExxx and SPICE ephemeris files.CALCEPH C library is developped by IMCCE."
+},
+
+{
+    "location": "#Quick-start-1",
+    "page": "Home",
+    "title": "Quick start",
+    "category": "section",
+    "text": "In the Julia interpreter, run:using Pkg\nPkg.add(\"CALCEPH\")\nusing CALCEPH\n\n# ephemeris kernels can be downloaded from many different sources\ndownload(\"ftp://ftp.imcce.fr/pub/ephem/planets/inpop13c/inpop13c_TDB_m100_p100_tt.dat\",\"planets.dat\")\n\n# create an ephemeris context\neph = Ephem(\"planets.dat\")\n\n# prefetch ephemeris files data to main memory for faster access\nprefetch(eph)\n\n# retrieve constants from ephemeris as a dictionary\ncon = constants(eph)\n# list the constants\nkeys(con)\n# get the sun J2\nJ2sun = con[:J2SUN]\n\n# retrieve the position, velocity and acceleration of Earth (geocenter) relative\n# to the Earth-Moon system barycenter in kilometers, kilometers per second and\n# kilometers per second square at JD= 2451624.5 TDB timescale\n# for best accuracy the first time argument should be the integer part and the\n# delta the fractional part\n# when using NAIF identification numbers, useNaifId has to be added to\n# the units argument.\npva=compute(eph,2451624.0,0.5,naifId.id[:earth],naifId.id[:emb],\n                        useNaifId+unitKM+unitSec,2)\nposition=pva[1:3]\nvelocity=pva[4:6]\nacceleration=pva[7:end]\n\n# what is the NAIF identification number for Deimos\nid_deimos = naifId.id[:deimos]\n\n# what does NAIF ID 0 correspond to?\nnames_0 = naifId.names[0]\n"
+},
+
+{
+    "location": "#Why-use-CALCEPH?-1",
+    "page": "Home",
+    "title": "Why use CALCEPH?",
+    "category": "section",
+    "text": "CALCEPH functionality is also provided by NAIF SPICE Toolkit. However CALCEPH has several advantages over the SPICE toolkit, mainly:It can handle multiple ephemeris contexts.\nIt is thread safe (if using one context per thread).\nIt can compute higher order derivatives (acceleration and jerk) approximation using differentiation of the interpolation polynomials.\nIts ephemeris computation interface expects the time separated in two double precision floating point numbers. This can be used to achieve higher precision in timetag (this can have a significant impact when modeling Doppler observations from a deep space probe).But CALCEPH does not support all functions of the SPICE toolkit. If you need more functionalities SPICE.jl is a Julia wrapper for the SPICE toolkit."
+},
+
+{
+    "location": "tutorial/#",
     "page": "Tutorial",
     "title": "Tutorial",
     "category": "page",
@@ -9,7 +41,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "#Tutorial-1",
+    "location": "tutorial/#Tutorial-1",
     "page": "Tutorial",
     "title": "Tutorial",
     "category": "section",
@@ -17,7 +49,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "#Ephemerides-sources-1",
+    "location": "tutorial/#Ephemerides-sources-1",
     "page": "Tutorial",
     "title": "Ephemerides sources",
     "category": "section",
@@ -25,7 +57,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "#Ephemerides-context-1",
+    "location": "tutorial/#Ephemerides-context-1",
     "page": "Tutorial",
     "title": "Ephemerides context",
     "category": "section",
@@ -33,7 +65,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "#Epoch-arguments-1",
+    "location": "tutorial/#Epoch-arguments-1",
     "page": "Tutorial",
     "title": "Epoch arguments",
     "category": "section",
@@ -41,7 +73,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "#Options-1",
+    "location": "tutorial/#Options-1",
     "page": "Tutorial",
     "title": "Options",
     "category": "section",
@@ -49,7 +81,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "#Body-identification-scheme-1",
+    "location": "tutorial/#Body-identification-scheme-1",
     "page": "Tutorial",
     "title": "Body identification scheme",
     "category": "section",
@@ -57,7 +89,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "#NAIF-body-identification-scheme-1",
+    "location": "tutorial/#NAIF-body-identification-scheme-1",
     "page": "Tutorial",
     "title": "NAIF body identification scheme",
     "category": "section",
@@ -65,7 +97,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "#Computing-positions-and-velocities:-1",
+    "location": "tutorial/#Computing-positions-and-velocities:-1",
     "page": "Tutorial",
     "title": "Computing positions and velocities:",
     "category": "section",
@@ -73,7 +105,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "#Example:-1",
+    "location": "tutorial/#Example:-1",
     "page": "Tutorial",
     "title": "Example:",
     "category": "section",
@@ -81,7 +113,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "#Computing-orientation:-1",
+    "location": "tutorial/#Computing-orientation:-1",
     "page": "Tutorial",
     "title": "Computing orientation:",
     "category": "section",
@@ -89,7 +121,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "#Example:-2",
+    "location": "tutorial/#Example:-2",
     "page": "Tutorial",
     "title": "Example:",
     "category": "section",
@@ -97,7 +129,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "#Computing-angular-momentum:-1",
+    "location": "tutorial/#Computing-angular-momentum:-1",
     "page": "Tutorial",
     "title": "Computing angular momentum:",
     "category": "section",
@@ -105,7 +137,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "#Time-ephemeris-1",
+    "location": "tutorial/#Time-ephemeris-1",
     "page": "Tutorial",
     "title": "Time ephemeris",
     "category": "section",
@@ -113,7 +145,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "#Example:-3",
+    "location": "tutorial/#Example:-3",
     "page": "Tutorial",
     "title": "Example:",
     "category": "section",
@@ -121,7 +153,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "#In-place-methods-1",
+    "location": "tutorial/#In-place-methods-1",
     "page": "Tutorial",
     "title": "In place methods",
     "category": "section",
@@ -129,7 +161,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "#Constants-1",
+    "location": "tutorial/#Constants-1",
     "page": "Tutorial",
     "title": "Constants",
     "category": "section",
@@ -137,7 +169,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "#Introspection-1",
+    "location": "tutorial/#Introspection-1",
     "page": "Tutorial",
     "title": "Introspection",
     "category": "section",
@@ -145,7 +177,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "#Time-scale-1",
+    "location": "tutorial/#Time-scale-1",
     "page": "Tutorial",
     "title": "Time scale",
     "category": "section",
@@ -153,7 +185,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "#Time-span-1",
+    "location": "tutorial/#Time-span-1",
     "page": "Tutorial",
     "title": "Time span",
     "category": "section",
@@ -161,7 +193,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "#Position-records-1",
+    "location": "tutorial/#Position-records-1",
     "page": "Tutorial",
     "title": "Position records",
     "category": "section",
@@ -169,7 +201,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "#Orientation-records-1",
+    "location": "tutorial/#Orientation-records-1",
     "page": "Tutorial",
     "title": "Orientation records",
     "category": "section",
@@ -177,7 +209,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "#Cleaning-up-1",
+    "location": "tutorial/#Cleaning-up-1",
     "page": "Tutorial",
     "title": "Cleaning up",
     "category": "section",
@@ -185,11 +217,219 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "#Error-handling-1",
+    "location": "tutorial/#Error-handling-1",
     "page": "Tutorial",
     "title": "Error handling",
     "category": "section",
     "text": "By default, the CALCEPH C library prints error messages directly to the standard output but this can be modified.The Julia wrapper provides the following interface for this purpose:CALCEPH.setCustomHandler(f)where f should be a user function taking a single argument of type String which will contain the CALCEPH error message. f should return Nothing.To disable CALCEPH error messages printout to the console:CALCEPH.setCustomHandler(s->Nothing)To get back the default behavior:CALCEPH.disableCustomHandler()"
+},
+
+{
+    "location": "api/#",
+    "page": "API",
+    "title": "API",
+    "category": "page",
+    "text": ""
+},
+
+{
+    "location": "api/#CALCEPH.CALCEPH",
+    "page": "API",
+    "title": "CALCEPH.CALCEPH",
+    "category": "module",
+    "text": "CALCEPH\n\nThis module is a wrapper of CALCEPH, IMCCE planetary ephemeris access   library. It supports INPOPxx, JPL DExxx and SPICE ephemeris.\n\nhttps://www.imcce.fr/inpop/calceph\n\n\n\n\n\n"
+},
+
+{
+    "location": "api/#CALCEPH.naifId",
+    "page": "API",
+    "title": "CALCEPH.naifId",
+    "category": "constant",
+    "text": "naifId\n\nNAIF identification numbers\n\nExamples:\n\njulia> using CALCEPH\n\njulia> naifId.id[:sun]\n10\n\njulia> naifId.id[:mars]\n499\n\njulia> naifId.names[0]\nSet(Symbol[:ssb, :solar_system_barycenter])\n\n\n\n\n\n\n"
+},
+
+{
+    "location": "api/#CALCEPH.outputEulerAngles",
+    "page": "API",
+    "title": "CALCEPH.outputEulerAngles",
+    "category": "constant",
+    "text": "outputEulerAngles\n\nhas to be added to the unit argument for orient to output Euler angles\n\n\n\n\n\n"
+},
+
+{
+    "location": "api/#CALCEPH.outputNutationAngles",
+    "page": "API",
+    "title": "CALCEPH.outputNutationAngles",
+    "category": "constant",
+    "text": "outputNutationAngles\n\nhas to be added to the unit argument for orient to output nutation angles\n\n\n\n\n\n"
+},
+
+{
+    "location": "api/#CALCEPH.unitAU",
+    "page": "API",
+    "title": "CALCEPH.unitAU",
+    "category": "constant",
+    "text": "unitAU\n\nAstronomical unit: distance unit\n\n\n\n\n\n"
+},
+
+{
+    "location": "api/#CALCEPH.unitDay",
+    "page": "API",
+    "title": "CALCEPH.unitDay",
+    "category": "constant",
+    "text": "unitDay\n\nday: time unit\n\n\n\n\n\n"
+},
+
+{
+    "location": "api/#CALCEPH.unitKM",
+    "page": "API",
+    "title": "CALCEPH.unitKM",
+    "category": "constant",
+    "text": "unitKM\n\nkilometer: distance unit\n\n\n\n\n\n"
+},
+
+{
+    "location": "api/#CALCEPH.unitRad",
+    "page": "API",
+    "title": "CALCEPH.unitRad",
+    "category": "constant",
+    "text": "unitRad\n\nradian: angle unit\n\n\n\n\n\n"
+},
+
+{
+    "location": "api/#CALCEPH.unitSec",
+    "page": "API",
+    "title": "CALCEPH.unitSec",
+    "category": "constant",
+    "text": "unitSec\n\nsecond: time unit\n\n\n\n\n\n"
+},
+
+{
+    "location": "api/#CALCEPH.useNaifId",
+    "page": "API",
+    "title": "CALCEPH.useNaifId",
+    "category": "constant",
+    "text": "useNaifId\n\nhas to be added to the unit argument when using NAIF integer codes for identification of center and target\n\n\n\n\n\n"
+},
+
+{
+    "location": "api/#CALCEPH.Ephem",
+    "page": "API",
+    "title": "CALCEPH.Ephem",
+    "category": "type",
+    "text": "Ephem\n\nEphemeris descriptor. Create with:\n\neph = Ephem(filename)\neph = Ephem([filename1,filename2...])\n\nThe ephemeris descriptor will be used to access the ephemeris and related   data stored in the specified files.\n\nBecause, Julia GC is lazy, you may want to free the memory managed by eph   before you get rid of the reference to eph with:\n\nfinalize(eph)\n\nor after by forcing the GC to run:\n\ngc()\n\n\n\n\n\n"
+},
+
+{
+    "location": "api/#CALCEPH.compute-Tuple{Ephem,Float64,Float64,Integer,Integer,Integer,Integer}",
+    "page": "API",
+    "title": "CALCEPH.compute",
+    "category": "method",
+    "text": "compute(eph,jd0,time,target,center,unit,order)\n\nCompute position and derivatives up to order of target with respect to center at epoch jd0+time. To get the best precision for the interpolation, the time is splitted in two floating-point numbers. The argument jd0 should be an integer and time should be a fraction of the day. But you may call this function with time=0 and jd0, the desired time, if you don\'t care about precision.\n\nArguments\n\neph: ephemeris\njd0::Float64: jd0+time must be equal to the Julian Day for the time coordinate corresponding to the ephemeris (usually TDB or TCB)\ntime::Float64: jd0+time must be equal to the Julian Day for the time coordinate corresponding to the ephemeris (usually TDB or TCB)\ntarget::Integer: The body or reference point whose coordinates are required. The numbering system depends on the parameter unit.\ncenter::Integer: The origin of the coordinate system. The numbering system depends on the parameter unit.\nunit::Integer : The units of the result. This integer is a sum of some unit constants (unit*) and/or the constant useNaifId. If the unit contains useNaifId, the NAIF identification numbering system is used for the target and the center. If the unit does not contain useNaifId, the old number system is used for the target and the center.\norder::Integer : The order of derivatives\n0: only the position is computed.\n1: only the position and velocity are computed.\n2: only the position, velocity and acceleration are computed.\n3: the position, velocity and acceleration and jerk are computed.\n\n\n\n\n\n"
+},
+
+{
+    "location": "api/#CALCEPH.compute-Tuple{Ephem,Float64,Float64,Integer,Integer,Integer}",
+    "page": "API",
+    "title": "CALCEPH.compute",
+    "category": "method",
+    "text": "compute(eph,jd0,time,target,center,unit)\n\nCompute position and velocity of target with respect to center at epoch jd0+time. To get the best precision for the interpolation, the time is splitted in two floating-point numbers. The argument jd0 should be an integer and time should be a fraction of the day. But you may call this function with time=0 and jd0, the desired time, if you don\'t care about precision.\n\nArguments\n\neph: ephemeris\njd0::Float64: jd0+time must be equal to the Julian Day for the time coordinate corresponding to the ephemeris (usually TDB or TCB)\ntime::Float64: jd0+time must be equal to the Julian Day for the time coordinate corresponding to the ephemeris (usually TDB or TCB)\ntarget::Integer: The body or reference point whose coordinates are required. The numbering system depends on the parameter unit.\ncenter::Integer: The origin of the coordinate system. The numbering system depends on the parameter unit.\nunit::Integer : The units of the result. This integer is a sum of some unit constants (unit*) and/or the constant useNaifId. If the unit contains useNaifId, the NAIF identification numbering system is used for the target and the center. If the unit does not contain useNaifId, the old number system is used for the target and the center.\n\n\n\n\n\n"
+},
+
+{
+    "location": "api/#CALCEPH.compute-Tuple{Ephem,Float64,Float64,Integer,Integer}",
+    "page": "API",
+    "title": "CALCEPH.compute",
+    "category": "method",
+    "text": "compute(eph,jd0,time,target,center)\n\nCompute position and velocity of target with respect to center at epoch jd0+time. This method does not support the NAIF numbering scheme. To get the best precision for the interpolation, the time is splitted in two floating-point numbers. The argument jd0 should be an integer and time should be a fraction of the day. But you may call this function with time=0 and jd0, the desired time, if you don\'t care about precision.\n\nThis method does not support the NAIF body identification scheme.\n\nOutput units are:\n\nAU and AU/day for position and velocity\nrad and rad/day for librations\nsecond and unitless for time ephemeris and time ephemeris rate\n\nArguments\n\neph: ephemeris\njd0::Float64: jd0+time must be equal to the Julian Day for the time coordinate corresponding to the ephemeris (usually TDB or TCB)\ntime::Float64: jd0+time must be equal to the Julian Day for the time coordinate corresponding to the ephemeris (usually TDB or TCB)\ntarget::Integer: The body or reference point whose coordinates are required.\ncenter::Integer: The origin of the coordinate system.\n\nThe possible values for target and center are :\n\n1 : Mercury Barycenter\n2 : Venus Barycenter\n3 : Earth\n4 : Mars Barycenter\n5 : Jupiter Barycenter\n6 : Saturn Barycenter\n7 : Uranus Barycenter\n8 : Neptune Barycenter\n9 : Pluto Barycenter\n10    : Moon\n11    : Sun\n12    : Solar Sytem barycenter\n13    : Earth-moon barycenter\n14    : Nutation angles\n15    : Librations\n16    : TT-TDB\n17    : TCG-TCB\nasteroid number + 2000000    : asteroid\n\n\n\n\n\n"
+},
+
+{
+    "location": "api/#CALCEPH.constants-Tuple{Ephem}",
+    "page": "API",
+    "title": "CALCEPH.constants",
+    "category": "method",
+    "text": "constants(eph)\n\nRetrieve the constants stored in the ephemeris associated to handle eph as a dictionary\n\n\n\n\n\n"
+},
+
+{
+    "location": "api/#CALCEPH.orient-Tuple{Ephem,Float64,Float64,Integer,Integer,Integer}",
+    "page": "API",
+    "title": "CALCEPH.orient",
+    "category": "method",
+    "text": "orient(eph,jd0,time,target,unit,order)\n\nCompute Euler angles and derivatives up to order for the orientation of target at epoch jd0+time. To get the best precision for the interpolation, the time is split in two floating-point numbers. The argument jd0 should be an integer and time should be a fraction of the day. But you may call this function with time=0 and jd0, the desired time, if you don\'t take care about precision.\n\nArguments\n\neph: ephemeris\njd0::Float64: jd0+time must be equal to the Julian Day for the time coordinate corresponding to the ephemeris (usually TDB or TCB)\ntime::Float64: jd0+time must be equal to the Julian Day for the time coordinate corresponding to the ephemeris (usually TDB or TCB)\ntarget::Integer: The body whose orientation is required. The numbering system depends on the parameter unit.\nunit::Integer : The units of the result. This integer is a sum of some unit constants (unit*) and/or the constant useNaifId. If the unit contains useNaifId, the NAIF identification numbering system is used for the target and the center. If the unit does not contain useNaifId, the old number system is used for the target and the center (see the list in the documentation of function compute). If the unit contains outputNutationAngles, the nutation angles are computed rather than the Euler angles.\norder::Integer : The order of derivatives\n0: only the angles are computed.\n1: only the angles and 1st derivatives are computed.\n2: only the angles, the 1st derivatives and 2nd derivatives are computed.\n3: the angles, the 1st derivatives, 2nd derivatives and 3rd derivatives are computed.\n\n\n\n\n\n"
+},
+
+{
+    "location": "api/#CALCEPH.orient-Tuple{Ephem,Float64,Float64,Integer,Integer}",
+    "page": "API",
+    "title": "CALCEPH.orient",
+    "category": "method",
+    "text": "orient(eph,jd0,time,target,unit)\n\nCompute Euler angles and first derivative for the orientation of target at epoch jd0+time. To get the best precision for the interpolation, the time is split in two floating-point numbers. The argument jd0 should be an integer and time should be a fraction of the day. But you may call this function with time=0 and jd0, the desired time, if you don\'t take care about precision.\n\nArguments\n\neph: ephemeris\njd0::Float64: jd0+time must be equal to the Julian Day for the time coordinate corresponding to the ephemeris (usually TDB or TCB)\ntime::Float64: jd0+time must be equal to the Julian Day for the time coordinate corresponding to the ephemeris (usually TDB or TCB)\ntarget::Integer: The body whose orientation is required. The numbering system depends on the parameter unit.\nunit::Integer : The units of the result. This integer is a sum of some unit constants (unit*) and/or the constant useNaifId. If the unit contains useNaifId, the NAIF identification numbering system is used for the target and the center. If the unit does not contain useNaifId, the old number system is used for the target and the center (see the list in the documentation of function compute). The angles are expressed in radians if unit contains unitRad. If the unit contains outputNutationAngles, the nutation angles are computed rather than the Euler angles.\n\n\n\n\n\n"
+},
+
+{
+    "location": "api/#CALCEPH.orientationRecords-Tuple{Ephem}",
+    "page": "API",
+    "title": "CALCEPH.orientationRecords",
+    "category": "method",
+    "text": "orientationRecords(eph)\n\nRetrieve orientation records metadata in ephemeris associated to    handler eph .\n\n\n\n\n\n"
+},
+
+{
+    "location": "api/#CALCEPH.positionRecords-Tuple{Ephem}",
+    "page": "API",
+    "title": "CALCEPH.positionRecords",
+    "category": "method",
+    "text": "positionRecords(eph)\n\nRetrieve position records metadata in ephemeris associated to    handler eph .\n\n\n\n\n\n"
+},
+
+{
+    "location": "api/#CALCEPH.prefetch-Tuple{Ephem}",
+    "page": "API",
+    "title": "CALCEPH.prefetch",
+    "category": "method",
+    "text": "prefetch(eph)\n\nThis function prefetches to the main memory all files associated to the ephemeris descriptor eph.\n\n\n\n\n\n"
+},
+
+{
+    "location": "api/#CALCEPH.rotAngMom-Tuple{Ephem,Float64,Float64,Integer,Integer,Integer}",
+    "page": "API",
+    "title": "CALCEPH.rotAngMom",
+    "category": "method",
+    "text": "rotAngMom(eph,jd0,time,target,unit,order)\n\nCompute angular momentum due to rotation and derivatives up to order of target at epoch jd0+time. To get the best precision for the interpolation, the time is splitted in two floating-point numbers. The argument jd0 should be an integer and time should be a fraction of the day. But you may call this function with time=0 and jd0, the desired time, if you don\'t take care about precision.\n\nArguments\n\neph: ephemeris\njd0::Float64: jd0+time must be equal to the Julian Day for the time coordinate corresponding to the ephemeris (usually TDB or TCB)\ntime::Float64: jd0+time must be equal to the Julian Day for the time coordinate corresponding to the ephemeris (usually TDB or TCB)\ntarget::Integer: The body whose angular momentum is required. The numbering system depends on the parameter unit.\nunit::Integer : The units of the result. This integer is a sum of some unit constants (unit*) and/or the constant useNaifId. If the unit contains useNaifId, the NAIF identification numbering system is used for the target and the center. If the unit does not contain useNaifId, the old number system is used for the target and the center (see the list in the documentation of function compute).\norder::Integer : The order of derivatives\n0: only the angles are computed.\n1: only the angles and 1st derivatives are computed.\n2: only the angles, the 1st derivatives and 2nd derivatives are computed.\n3: the angles, the 1st derivatives, 2nd derivatives and 3rd derivatives are computed.\n\n\n\n\n\n"
+},
+
+{
+    "location": "api/#CALCEPH.rotAngMom-Tuple{Ephem,Float64,Float64,Integer,Integer}",
+    "page": "API",
+    "title": "CALCEPH.rotAngMom",
+    "category": "method",
+    "text": "rotAngMom(eph,jd0,time,target,unit)\n\nCompute angular momentum due to rotation and first derivative of target at epoch jd0+time. To get the best precision for the interpolation, the time is splitted in two floating-point numbers. The argument jd0 should be an integer and time should be a fraction of the day. But you may call this function with time=0 and jd0, the desired time, if you don\'t take care about precision.\n\nArguments\n\neph: ephemeris\njd0::Float64: jd0+time must be equal to the Julian Day for the time coordinate corresponding to the ephemeris (usually TDB or TCB)\ntime::Float64: jd0+time must be equal to the Julian Day for the time coordinate corresponding to the ephemeris (usually TDB or TCB)\ntarget::Integer: The body whose angular momentum is required. The numbering system depends on the parameter unit.\nunit::Integer : The units of the result. This integer is a sum of some unit constants (unit*) and/or the constant useNaifId. If the unit contains useNaifId, the NAIF identification numbering system is used for the target and the center. If the unit does not contain useNaifId, the old number system is used for the target and the center (see the list in the documentation of function compute). The angles are expressed in radians if unit contains unitRad.\n\n\n\n\n\n"
+},
+
+{
+    "location": "api/#CALCEPH.timeScale-Tuple{Ephem}",
+    "page": "API",
+    "title": "CALCEPH.timeScale",
+    "category": "method",
+    "text": "timeScale(eph)\n\nRetrieve the timescale associated with ephemeris handler eph    Returns 1 for TDB and 2 for TCB.\n\n\n\n\n\n"
+},
+
+{
+    "location": "api/#CALCEPH.timespan-Tuple{Ephem}",
+    "page": "API",
+    "title": "CALCEPH.timespan",
+    "category": "method",
+    "text": "timespan(eph::Ephem)\n\nThis function returns the first and last time available in the ephemeris file associated to eph.\n\nArguments:\n\neph : ephemeris\n\nReturn:\n\na tuple containing:     * firsttime: Julian date of the first time     * lasttime: Julian date of the last time     * continuous: information about the availability of the quantities over the time span\n\n    It returns the following value in the parameter continuous :\n\n    1 if the quantities of all bodies are available for any time between the first and last time.\n    2 if the quantities of some bodies are available on discontinuous time intervals between the first and last time.\n    3 if the quantities of each body are available on a continuous time interval between the first and last time,\n      but not available for any time between the first and last time.\n\nSee: https://www.imcce.fr/content/medias/recherche/equipes/asd/calceph/html/c/calceph.multiple.html#menu-calceph-gettimespan\n\n\n\n\n\n"
+},
+
+{
+    "location": "api/#API-1",
+    "page": "API",
+    "title": "API",
+    "category": "section",
+    "text": "DocTestSetup = quote\n    using CALCEPH\nendModules = [CALCEPH]\nPrivate = false"
 },
 
 ]}
