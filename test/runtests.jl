@@ -6,6 +6,9 @@ CALCEPH.disableCustomHandler()
 CALCEPH.setCustomHandler(s::String->Nothing )
 testpath = joinpath(dirname(pathof(CALCEPH)), "..", "test")
 
+@testset "CALCEPH" begin
+
+@testset "Naif Id" begin
 # NAIF ID tests
 
 for (name,id) ∈ naifId.id
@@ -49,6 +52,10 @@ end
 @test naifId.id[:charon] == 901
 @test naifId.id[:pluto] == 999
 
+end
+
+@testset "Core" begin
+
 # test error case: changing name->id mapping
 @test_throws CALCEPHException CALCEPH.add!(naifId,:jupiter,1)
 # test error case: parsing wrongly formatted body id input file
@@ -74,6 +81,31 @@ CALCEPH._ephemDestructor(eph2)
 # Opening invalid ephemeris
 @test_throws CALCEPHException Ephem(String[])
 
+# test error case wrong order
+eph1 = Ephem(joinpath(testpath,"example1.bsp"))
+@test_throws CALCEPHException compute(eph1,0.0,0.0,1,0,0,4)
+@test_throws CALCEPHException compute(eph1,0.0,0.0,1,0,0,-1)
+
+# test error case:
+@test_throws CALCEPHException compute(eph1,0.0,0.0,-144,0,0)
+
+# Five-Point Stencil
+
+f(x)=x^8
+@test_throws ErrorException CALCEPH.fivePointStencil(f,1.5,5,0.001)
+@test_throws ErrorException CALCEPH.fivePointStencil(f,1.5,-1,0.001)
+@test_throws ErrorException CALCEPH.fivePointStencil(f,1.5,4,0.0)
+val = CALCEPH.fivePointStencil(f,1.5,4,0.001)
+ref = [25.62890625,136.6875,637.875,2551.5,8505.0]
+@test ref[1] ≈ val[1] atol=1e-10
+@test ref[2] ≈ val[2] atol=1e-8
+@test ref[3] ≈ val[3] atol=1e-5
+@test ref[4] ≈ val[4] atol=1e-2
+@test ref[5] ≈ val[5] atol=1e-2
+
+end
+
+@testset "Constants" begin
 # check constants
 eph1 = Ephem(joinpath(testpath,"example1.dat"))
 eph2 = Ephem([joinpath(testpath,"example1.bsp"),
@@ -107,6 +139,8 @@ con4 = constants(eph4)
 finalize(eph2)
 @test_throws CALCEPHException constants(eph2)
 
+end
+
 # test compute*
 # test data and thresholds from CALCEPH C library tests
 inpop_files = [joinpath(testpath,"example1.dat")]
@@ -117,7 +151,7 @@ spk_files = [joinpath(testpath,"example1.bsp"),
              joinpath(testpath,"example1spk_time.bsp")]
 
 testfile = joinpath(testpath,"example1_tests.dat")
-
+testfile2 = joinpath(testpath,"example1_tests_naifid.dat")
 test_data = [
     (inpop_files,false),
     (spk_files,false),
@@ -126,43 +160,21 @@ test_data = [
 ]
 
 include("testfunction1.jl")
+include("testfunction2.jl")
+
+@testset "Compute" begin
 
 for (ephFiles,prefetch) in test_data
     testFunction1(testfile,ephFiles,prefetch)
 end
 
-testfile2 = joinpath(testpath,"example1_tests_naifid.dat")
-
-include("testfunction2.jl")
-
 for (ephFiles,prefetch) in test_data
     testFunction2(testfile,testfile2,ephFiles,prefetch)
 end
 
-# test error case wrong order
-eph1 = Ephem(joinpath(testpath,"example1.bsp"))
-@test_throws CALCEPHException compute(eph1,0.0,0.0,1,0,0,4)
-@test_throws CALCEPHException compute(eph1,0.0,0.0,1,0,0,-1)
+end
 
-# test error case:
-@test_throws CALCEPHException compute(eph1,0.0,0.0,-144,0,0)
-
-
-# Five-Point Stencil
-
-f(x)=x^8
-@test_throws ErrorException CALCEPH.fivePointStencil(f,1.5,5,0.001)
-@test_throws ErrorException CALCEPH.fivePointStencil(f,1.5,-1,0.001)
-@test_throws ErrorException CALCEPH.fivePointStencil(f,1.5,4,0.0)
-val = CALCEPH.fivePointStencil(f,1.5,4,0.001)
-ref = [25.62890625,136.6875,637.875,2551.5,8505.0]
-@test ref[1] ≈ val[1] atol=1e-10
-@test ref[2] ≈ val[2] atol=1e-8
-@test ref[3] ≈ val[3] atol=1e-5
-@test ref[4] ≈ val[4] atol=1e-2
-@test ref[5] ≈ val[5] atol=1e-2
-
-
+@testset "Introspection" begin
 # introspection
 eph = Ephem(inpop_files)
 @test timeScale(eph) == 1
@@ -174,11 +186,15 @@ records = orientationRecords(eph)
 @test length(records) == 1
 
 @test timespan(eph) == (2.442457e6, 2.451545e6, 1)
+end
 
-
+@testset "Angular Momentum" begin
 # rotangmom
 eph = Ephem(joinpath(testpath,"example2_rotangmom.dat"))
 a = rotAngMom(eph,2.4515e6,0.0,399,useNaifId+unitSec)
 b = rotAngMom(eph,2.4515e6,0.0,399,useNaifId+unitSec,1)
 @test a == b
 @test length(a) == 6
+end
+
+end
