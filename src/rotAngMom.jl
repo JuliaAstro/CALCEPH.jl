@@ -3,7 +3,7 @@
 
 Compute angular momentum due to rotation and first derivative of target at
 epoch jd0+time.
-To get the best precision for the interpolation, the time is splitted in two
+To get the best precision for the interpolation, the time is split in two
 floating-point numbers. The argument jd0 should be an integer and time should
 be a fraction of the day. But you may call this function with time=0 and jd0,
 the desired time, if you don't take care about precision.
@@ -31,7 +31,7 @@ end
 In place version of the rotAngMom function. Does not perform any checks!
 Compute angular momentum due to rotation and first derivative of target at
 epoch jd0+time.
-To get the best precision for the interpolation, the time is splitted in two
+To get the best precision for the interpolation, the time is split in two
 floating-point numbers. The argument jd0 should be an integer and time should
 be a fraction of the day. But you may call this function with time=0 and jd0,
 the desired time, if you don't take care about precision.
@@ -61,7 +61,7 @@ end
 
 Compute angular momentum due to rotation and derivatives up to order of target
 at epoch jd0+time.
-To get the best precision for the interpolation, the time is splitted in two
+To get the best precision for the interpolation, the time is split in two
 floating-point numbers. The argument jd0 should be an integer and time should
 be a fraction of the day. But you may call this function with time=0 and jd0,
 the desired time, if you don't take care about precision.
@@ -95,7 +95,7 @@ end
 In place version of the rotAngMom function. Does not perform any checks!
 Compute angular momentum due to rotation and derivatives up to order of target
 at epoch jd0+time.
-To get the best precision for the interpolation, the time is splitted in two
+To get the best precision for the interpolation, the time is split in two
 floating-point numbers. The argument jd0 should be an integer and time should
 be a fraction of the day. But you may call this function with time=0 and jd0,
 the desired time, if you don't take care about precision.
