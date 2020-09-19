@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/JuliaAstro/CALCEPH.jl.svg?branch=master)](https://travis-ci.org/JuliaAstro/CALCEPH.jl)
+[![Build Status](https://travis-ci.com/JuliaAstro/CALCEPH.jl.svg?branch=master)](https://travis-ci.com/JuliaAstro/CALCEPH.jl)
 [![AppVoyer](https://ci.appveyor.com/api/projects/status/24rxwncnrij2o0co?svg=true)](https://ci.appveyor.com/project/bgodard/calceph-jl)
 [![Coverage Status](https://coveralls.io/repos/JuliaAstro/CALCEPH.jl/badge.svg?branch=master&service=github)](https://coveralls.io/github/JuliaAstro/CALCEPH.jl?branch=master)
 [![codecov.io](http://codecov.io/github/JuliaAstro/CALCEPH.jl/coverage.svg?branch=master)](http://codecov.io/github/JuliaAstro/CALCEPH.jl?branch=master)
