@@ -9,16 +9,7 @@
 """
 module CALCEPH
 
-# To make Pkg aware that this dependency
-# will be injected by BinaryProvider.
-using Libdl
-
-deps = abspath(joinpath(splitdir(@__FILE__)[1], "..", "deps", "deps.jl"))
-if isfile(deps)
-    include(deps)
-else
-    error("libcalceph was not found. Please run 'Pkg.build(\"CALCEPH\").")
-end
+using CALCEPH_jll: libcalceph
 
 struct CALCEPHException <: Exception
     msg::String
