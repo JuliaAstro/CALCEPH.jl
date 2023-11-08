@@ -1,13 +1,14 @@
 name = "CALCEPH"
 uuid = "1537fe66-4725-5aba-80f4-3a74792cecc1"
 authors = ["Bernard Godard"]
-version = "1.1.1"
+version = "1.2.0"
 
 [deps]
 CALCEPH_jll = "dd3044d3-6c85-52eb-b239-9fbeaa51d7ac"
 
 [compat]
-julia = "^1.0"
+julia = "1.3"
+CALCEPH_jll = "3.5"
 
 [extras]
 Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
