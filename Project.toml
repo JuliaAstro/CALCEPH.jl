@@ -1,17 +1,14 @@
 name = "CALCEPH"
 uuid = "1537fe66-4725-5aba-80f4-3a74792cecc1"
 authors = ["Bernard Godard"]
-version = "1.1.0"
+version = "1.2.0"
 
 [deps]
-BinDeps = "9e28174c-4ba2-5203-b857-d8d62c4213ee"
-BinaryProvider = "b99e7846-7c00-51b0-8f62-c81ae34c0232"
-Libdl = "8f399da3-3557-5675-b5ff-fb832c97cbdb"
+CALCEPH_jll = "dd3044d3-6c85-52eb-b239-9fbeaa51d7ac"
 
 [compat]
-BinDeps = "^1"
-BinaryProvider = "^0"
-julia = "^1.0"
+julia = "1.6"
+CALCEPH_jll = "3.5"
 
 [extras]
 Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
