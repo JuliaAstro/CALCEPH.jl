@@ -100,7 +100,7 @@ The more complete NAIF identification scheme can be used if the value useNaifId 
 
 ## NAIF body identification scheme
 
-See [https://naif.jpl.nasa.gov/pub/naif/toolkit_docs/C/req/naif_ids.html](https://naif.jpl.nasa.gov/pub/naif/toolkit_docs/C/req/naif_ids.html)
+See <https://naif.jpl.nasa.gov/pub/naif/toolkit_docs/C/req/naif_ids.html>
 
 CALCEPH uses this identification scheme only when the value useNaifId is added to the options argument.
 
@@ -243,8 +243,8 @@ The time ephemeris TT-TDB or TCG-TCB at the geocenter can be evaluated with a su
 INPOP and some JPL DE ephemerides includes a numerically integrated time ephemeris for the geocenter which is usually more accurate than the analytical series: Moreover it is much faster to interpolate those ephemerides than to evaluate the analytical series. This is only for the geocenter but a simple correction can also be added for the location of the observer (and its velocity in case the observer is on a highly elliptical orbit).
 
 Files that can be used to obtain the difference between TT and TDB are, e.g.:
-- [ftp://ftp.imcce.fr/pub/ephem/planets/inpop17a/inpop17a_TDB_m100_p100_tt.dat](ftp://ftp.imcce.fr/pub/ephem/planets/inpop17a/inpop17a_TDB_m100_p100_tt.dat)
-- [ftp://ssd.jpl.nasa.gov/pub/eph/planets/bsp/de432t.bsp](ftp://ssd.jpl.nasa.gov/pub/eph/planets/bsp/de432t.bsp)
+- <ftp://ftp.imcce.fr/pub/ephem/planets/inpop17a/inpop17a_TDB_m100_p100_tt.dat>
+- <ftp://ssd.jpl.nasa.gov/pub/eph/planets/bsp/de432t.bsp>
 
 #### Example:
 Computing TT-TDB at geocenter in seconds at JD=2456293.5 (Ephemeris Time).
