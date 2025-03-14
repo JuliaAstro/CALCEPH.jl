@@ -106,7 +106,7 @@ CALCEPH uses this identification scheme only when the value useNaifId is added t
 
 The CALCEPH julia wrapper comes with the naifId object which contains the mapping between NAIF identification numbers and names:
 
-```julia
+```julia-repl
 julia> naifId.id[:sun]
 10
 
