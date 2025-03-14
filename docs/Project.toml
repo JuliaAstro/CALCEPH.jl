@@ -1,5 +1,9 @@
 [deps]
+CALCEPH = "1537fe66-4725-5aba-80f4-3a74792cecc1"
 Documenter = "e30172f5-a6a5-5a46-863b-614d45cd2de4"
 
 [compat]
-Documenter = "~0.21"
+Documenter = "1"
+
+[sources.CALCEPH]
+path = ".."
