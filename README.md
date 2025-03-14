@@ -1,3 +1,5 @@
+# CALCEPH.jl
+
 [![Build Status](https://github.com/JuliaAstro/CALCEPH.jl/actions/workflows/CI.yml/badge.svg?branch=master)](https://github.com/JuliaAstro/CALCEPH.jl/actions/workflows/CI.yml)
 [![Stable Documentation](https://img.shields.io/badge/docs-stable-blue.svg)](https://JuliaAstro.github.io/CALCEPH.jl/stable/)
 [![Dev Documentation](https://img.shields.io/badge/docs-dev-blue.svg)](https://JuliaAstro.github.io/CALCEPH.jl/dev/)
@@ -6,7 +8,7 @@ This is a julia wrapper for [CALCEPH](https://www.imcce.fr/inpop/calceph/) a C l
 
 [CALCEPH](https://www.imcce.fr/inpop/calceph/) C library is developped by [IMCCE](https://www.imcce.fr/).
 
-# Quick start
+## Quick start
 
 In the Julia interpreter, run:
 
@@ -52,7 +54,7 @@ names_0 = naifId.names[0]
 
 ```
 
-# Why use CALCEPH?
+## Why use CALCEPH?
 CALCEPH functionality is also provided by [NAIF SPICE Toolkit](https://naif.jpl.nasa.gov/naif/toolkit.html). However CALCEPH has several advantages over the SPICE toolkit, mainly:
 - It can handle multiple ephemeris contexts.
 - It is thread safe (if using one context per thread).
