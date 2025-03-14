@@ -1,7 +1,6 @@
 using Documenter, CALCEPH
 
 makedocs(
-    format = :html,
 	sitename = "CALCEPH.jl",
 	authors = "Bernard Godard and the CALCEPH.jl contributors",
 	pages = [
