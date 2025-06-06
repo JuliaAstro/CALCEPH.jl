@@ -9,9 +9,12 @@ makedocs(
         "Tutorial" => "tutorial.md",
         "API" => "api.md"
     ],
+    format = Documenter.HTML(;
+         canonical = "https://JuliaAstro.org/CALCEPH/stable/",
+    ),
 )
 
 deploydocs(
     repo = "github.com/JuliaAstro/CALCEPH.jl.git",
-    target = "build",
+    versions = ["stable" => "v^", "v#.#"], # Restrict to minor releases
 )
